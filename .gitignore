@@ -1,0 +1,11 @@
+# Secret keys — never upload to GitHub
+.env
+.env*.local
+
+# Installed packages and build output (created automatically)
+node_modules/
+.next/
+out/
+
+# System files
+.DS_Store

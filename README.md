@@ -1,22 +1,19 @@
-# To-dooo
+# VdoU
 
-A simple to-do planner web app. Plain HTML, CSS and JavaScript — no build step.
+A simple, low-cost life planner for everyone. "Plan your life in 2 taps."
 
-## Features
+- Full plan, prices and schedule: [docs/PLAN.md](docs/PLAN.md)
 
-- Add tasks with an optional due date and priority (low / medium / high)
-- Filter by All, Today (due today or overdue), Upcoming, and Done
-- Mark complete, edit, delete, and clear completed tasks
-- Overdue tasks are highlighted
-- Tasks are saved in your browser (localStorage)
-- Light and dark mode follow your system setting
+## Folder guide (where things live)
 
-## Run it
+| Folder | What is inside | Open this when you want to… |
+|---|---|---|
+| `src/app/` | The screens (pages) and the back-end code | Change a page or how something works |
+| `src/components/` | Reusable building blocks (buttons, task card, menus) | Change how a piece looks everywhere |
+| `src/lib/` | Connections to Supabase, Razorpay and AI | Change settings for outside services |
+| `src/locales/` | All app words in each language | Fix a translation or add a language |
+| `public/` | Images, logo, icons | Change the logo or pictures |
+| `supabase/` | Database setup | Change what data is saved |
+| `docs/` | Plan and guides | Read the plan or how-to guides |
 
-Open `index.html` in a browser, or serve the folder:
-
-```sh
-python3 -m http.server 8000
-```
-
-Then visit http://localhost:8000.
+Each folder has its own `README.md` with more detail.
