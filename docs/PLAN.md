@@ -89,3 +89,30 @@
 
 **Safety rule:** secret keys (passwords from Supabase, Razorpay, etc.) are never typed into chat
 and never saved in GitHub. They go only into Vercel's settings and a private `.env.local` file.
+
+## 8. Login and sign-up (decided)
+
+Design is based on `prototype/login/` (galaxy background, quote, logo, 5 languages, dark/light mode).
+
+**Login page**
+- Email + password, "Continue with Google", "Forgot password" (real reset email)
+- On phones the login box shows first, with a short quote above it
+- Fewer galaxy stars on phones so it runs smoothly; fix the small box glitch in the galaxy
+
+**Daily quote**
+- 365 quotes, a new one each day, the same for everyone (changes at midnight India time)
+- Each quote in all 5 languages, kept in one easy-to-edit file
+- Native speakers to check Tamil, Malayalam, Telugu and Hindi before launch
+
+**Sign-up page** (same galaxy design)
+
+| Field | Required |
+|---|---|
+| Full name | Yes |
+| Email | Yes |
+| Phone number (+91 pre-filled) | Yes |
+| Password + confirm password | Yes |
+| Agree to Terms & Privacy Policy | Yes |
+
+- Phone number is saved but not checked by OTP at launch (OTP costs per SMS; can add later)
+- More details (date of birth, city, etc.) can be added later in Settings
