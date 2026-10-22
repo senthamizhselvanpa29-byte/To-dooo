@@ -15,5 +15,6 @@ A simple, low-cost life planner for everyone. "Plan your life in 2 taps."
 | `public/` | Images, logo, icons | Change the logo or pictures |
 | `supabase/` | Database setup | Change what data is saved |
 | `docs/` | Plan and guides | Read the plan or how-to guides |
+| `prototype/` | Your original designs (login page) | See the design the app is based on |
 
 Each folder has its own `README.md` with more detail.
