@@ -1,0 +1,106 @@
+// ============================================================
+// TAMIL (தமிழ்) — every word shown in the app
+//
+// To change a word: edit the text inside the quotes '...'.
+// Do not change the names on the left (like signIn:).
+// Text inside { } (like {email}) is filled in by the app — keep it.
+// Please ask a native speaker to check these before launch.
+// ============================================================
+
+const ta = {
+  // ----- Top bar -----
+  changeLanguage: 'மொழியை மாற்று',
+  darkMode: 'இருண்ட பயன்முறை',
+  lightMode: 'ஒளி பயன்முறை',
+  switchTheme: 'இருண்ட / ஒளி பயன்முறையை மாற்று',
+  home: 'VdoU முகப்பு',
+
+  // ----- Daily quote -----
+  quotePill: 'தினசரி உத்வேகம்',
+
+  // ----- Login page -----
+  loginTitle: 'VdoU-விற்கு நல்வரவு',
+  loginSubtitle: 'ஆயிரம் மைல் பயணம் ஒரு சிறிய அடியிலிருந்தே தொடங்குகிறது.',
+  emailLabel: 'மின்னஞ்சல் முகவரி',
+  emailPlaceholder: 'name@example.com',
+  passwordLabel: 'கடவுச்சொல்',
+  passwordPlaceholder: 'உங்கள் கடவுச்சொல்',
+  forgotLink: 'கடவுச்சொல் மறந்துவிட்டதா?',
+  keepSignedIn: 'என்னை உள்நுழைந்த நிலையில் வைத்திரு',
+  signIn: 'உள்நுழைய',
+  or: 'அல்லது',
+  continueGoogle: 'கூகுள் மூலம் தொடரவும்',
+  noAccount: 'கணக்கு இல்லையா?',
+  signUpLink: 'பதிவு செய்க',
+  showPassword: 'கடவுச்சொல்லைக் காட்டு',
+  hidePassword: 'கடவுச்சொல்லை மறை',
+
+  // ----- Sign-up page -----
+  signupTitle: 'உங்கள் VdoU கணக்கை உருவாக்குங்கள்',
+  signupSubtitle: '2 தொடுதல்களில் உங்கள் வாழ்க்கையைத் திட்டமிடுங்கள்.',
+  fullNameLabel: 'முழுப் பெயர்',
+  fullNamePlaceholder: 'உங்கள் முழுப் பெயர்',
+  phoneLabel: 'தொலைபேசி எண்',
+  phonePlaceholder: '98765 43210',
+  countryCode: 'நாட்டுக் குறியீடு',
+  newPasswordPlaceholder: 'குறைந்தது 8 எழுத்துகள்',
+  confirmPasswordLabel: 'கடவுச்சொல்லை உறுதிப்படுத்தவும்',
+  confirmPasswordPlaceholder: 'கடவுச்சொல்லை மீண்டும் உள்ளிடவும்',
+  agreeText: '{terms} மற்றும் {privacy}-ஐ ஏற்கிறேன்',
+  terms: 'விதிமுறைகள்',
+  privacy: 'தனியுரிமைக் கொள்கை',
+  createAccount: 'கணக்கை உருவாக்கு',
+  haveAccount: 'ஏற்கனவே கணக்கு உள்ளதா?',
+  signInLink: 'உள்நுழைக',
+  checkEmailTitle: 'உங்கள் மின்னஞ்சலைப் பாருங்கள்',
+  checkEmailMsg: '{email} முகவரிக்கு ஒரு இணைப்பை அனுப்பியுள்ளோம். உங்கள் கணக்கைச் செயல்படுத்த அதைத் திறக்கவும்.',
+
+  // ----- Forgot password page -----
+  forgotTitle: 'கடவுச்சொல் மறந்துவிட்டதா?',
+  forgotSubtitle: 'உங்கள் மின்னஞ்சலை உள்ளிடவும். புதிய கடவுச்சொல் அமைக்க ஒரு இணைப்பை அனுப்புவோம்.',
+  sendResetLink: 'இணைப்பை அனுப்பு',
+  resetSentTitle: 'மின்னஞ்சல் அனுப்பப்பட்டது',
+  resetSentMsg: '{email} முகவரிக்கு கணக்கு இருந்தால், மீட்டமைப்பு இணைப்பு வந்து சேரும்.',
+  backToLogin: 'உள்நுழைவுக்குத் திரும்பு',
+
+  // ----- New password page -----
+  resetTitle: 'புதிய கடவுச்சொல்லை அமைக்கவும்',
+  resetSubtitle: 'நினைவில் வைத்துக்கொள்ளக்கூடிய வலுவான கடவுச்சொல்லைத் தேர்ந்தெடுங்கள்.',
+  newPasswordLabel: 'புதிய கடவுச்சொல்',
+  savePassword: 'கடவுச்சொல்லைச் சேமி',
+  passwordSaved: 'கடவுச்சொல் புதுப்பிக்கப்பட்டது. உங்கள் திட்டமிடலுக்கு அழைத்துச் செல்கிறோம்…',
+
+  // ----- Complete profile page (after Google sign-in) -----
+  completeTitle: 'இன்னும் ஒரு படி',
+  completeSubtitle: 'உங்கள் கணக்கை முடிக்க தொலைபேசி எண்ணைச் சேர்க்கவும்.',
+  continue: 'தொடரவும்',
+
+  // ----- Error messages -----
+  errEmail: 'சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்',
+  errPasswordRequired: 'உங்கள் கடவுச்சொல்லை உள்ளிடவும்',
+  errPasswordShort: 'கடவுச்சொல் குறைந்தது 8 எழுத்துகள் இருக்க வேண்டும்',
+  errPasswordMatch: 'கடவுச்சொற்கள் பொருந்தவில்லை',
+  errFullName: 'உங்கள் பெயரை உள்ளிடவும்',
+  errPhone: 'சரியான தொலைபேசி எண்ணை உள்ளிடவும்',
+  errAgree: 'விதிமுறைகள் மற்றும் தனியுரிமைக் கொள்கையை ஏற்கவும்',
+  errLoginFailed: 'மின்னஞ்சல் அல்லது கடவுச்சொல் தவறு',
+  errEmailNotConfirmed: 'முதலில் உங்கள் மின்னஞ்சலை உறுதிப்படுத்தவும். இன்பாக்ஸைப் பாருங்கள்.',
+  errUserExists: 'இந்த மின்னஞ்சலுடன் ஏற்கனவே கணக்கு உள்ளது. உள்நுழையவும்.',
+  errTooMany: 'அதிக முயற்சிகள். ஒரு நிமிடம் காத்திருந்து மீண்டும் முயற்சிக்கவும்.',
+  errLinkExpired: 'இந்த இணைப்பு காலாவதியானது அல்லது ஏற்கனவே பயன்படுத்தப்பட்டது. மீண்டும் முயற்சிக்கவும்.',
+  errNotConnected: 'உள்நுழைவு இன்னும் இணைக்கப்படவில்லை. Supabase விசைகளைச் சேர்க்கவும்.',
+  errGeneric: 'ஏதோ தவறு நடந்தது. மீண்டும் முயற்சிக்கவும்.',
+
+  // ----- Today page -----
+  todayTitle: 'இன்று',
+  todayHello: 'வணக்கம், {name}!',
+  todayComingSoon: 'உங்கள் பணிகள் விரைவில் இங்கே தோன்றும்.',
+  signOut: 'வெளியேறு',
+
+  // ----- Terms & Privacy pages -----
+  termsTitle: 'சேவை விதிமுறைகள்',
+  privacyTitle: 'தனியுரிமைக் கொள்கை',
+  pageComingSoon: 'இந்தப் பக்கம் எழுதப்பட்டு வருகிறது; வெளியீட்டுக்கு முன் தயாராகும்.',
+};
+
+export default ta;
