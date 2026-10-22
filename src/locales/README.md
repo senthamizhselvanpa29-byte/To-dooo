@@ -1,13 +1,15 @@
 # src/locales — Languages
 
-One file per language holds every word shown in the app.
+One file per language with every word shown in the app.
 
-| File (planned) | Language |
+| File | Language |
 |---|---|
-| `en` | English |
-| `ta` | Tamil |
-| `ml` | Malayalam |
-| `te` | Telugu |
-| `hi` | Hindi |
+| `en.js` | English |
+| `ta.js` | Tamil |
+| `ml.js` | Malayalam |
+| `te.js` | Telugu |
+| `hi.js` | Hindi |
 
-To add a new language later: copy `en`, rename it, and translate the words.
+The daily quotes are in `src/data/quotes.js`.
+
+**To add a new language:** follow the steps at the top of `src/lib/i18n.js`.

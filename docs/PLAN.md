@@ -58,7 +58,7 @@
 | Week | Work | Status |
 |---|---|---|
 | 0 | Plan + project folders | ✅ Done |
-| 1 | Project setup, database, login (email + Google) | ⬜ |
+| 1 | Project setup, database, login (email + Google) | ✅ Built — needs Supabase keys (docs/SETUP.md) |
 | 2 | Tasks: add, edit, delete, complete, due date, priority | ⬜ |
 | 3 | Lists, Today / Upcoming views, phone-friendly design | ⬜ |
 | 4 | 5 languages, light / dark mode | ⬜ |
