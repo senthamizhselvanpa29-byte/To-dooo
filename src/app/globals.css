@@ -1955,6 +1955,282 @@ input:focus-visible {
   .add-task-footer .save-btn { justify-content: center; }
 }
 
+/* ==========================================================================
+   WEEK 3: Upcoming, calendar, lists, steps, clash window
+   ========================================================================== */
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.page-head h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  color: var(--text-pure);
+}
+
+/* [ List | Calendar ] switch */
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--app-chip);
+  border: 1px solid var(--app-chip-border);
+}
+
+.segmented button {
+  padding: 0.45rem 1rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.segmented button[aria-selected="true"] {
+  background: var(--vdou-gradient);
+  color: #ffffff;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.day-head-right { display: inline-flex; align-items: center; gap: 0.6rem; }
+.colour-counts { display: inline-flex; gap: 0.5rem; font-size: 0.78rem; color: var(--text-muted); font-weight: 700; }
+.colour-count { display: inline-flex; align-items: center; gap: 0.25rem; }
+
+.icon-round.small { width: 30px; height: 30px; }
+.icon-round.small svg { width: 15px; height: 15px; }
+.chev-left { transform: rotate(90deg); }
+.chev-right { transform: rotate(-90deg); }
+
+.ghost-btn.small,
+.delete-btn.small { padding: 0.45rem 0.85rem; font-size: 0.82rem; }
+
+/* Extra labels on a task: "all day", "🏠 Home", "2/3 steps" */
+.meta-tag {
+  padding: 0.08rem 0.5rem;
+  border-radius: 999px;
+  background: var(--app-chip);
+  border: 1px solid var(--app-chip-border);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.steps-tag { color: var(--vdou-blue); }
+.steps-tag.complete { color: var(--vdou-green); }
+
+.part-of {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--vdou-cyan);
+}
+
+.task-item.is-step { margin-left: 1.25rem; }
+
+/* "Many days" last-day picker */
+.end-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ----- Steps inside a plan ----- */
+.steps-hint { font-size: 0.82rem; color: var(--text-muted); }
+
+.steps-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--app-chip);
+  overflow: hidden;
+}
+
+.steps-bar span {
+  display: block;
+  height: 100%;
+  background: var(--vdou-gradient);
+  transition: width 0.3s ease;
+}
+
+.steps-list { list-style: none; display: grid; gap: 0.35rem; }
+
+.steps-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 10px;
+  background: var(--app-card);
+  border: 1px solid var(--app-card-border);
+}
+
+.step-check {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid var(--app-chip-border);
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.step-check svg { width: 12px; height: 12px; }
+.steps-list li.done .step-check { background: var(--vdou-green); border-color: var(--vdou-green); }
+
+.step-body {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.step-title { color: var(--text-pure); font-size: 0.9rem; font-weight: 600; }
+.steps-list li.done .step-title { text-decoration: line-through; color: var(--text-muted); }
+.step-time { font-size: 0.75rem; color: var(--text-muted); }
+
+.step-add { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+
+.step-add-title {
+  flex: 1 1 160px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--app-chip-border);
+  background: var(--app-chip);
+  color: var(--text-pure);
+  font: inherit;
+  font-size: 0.88rem;
+}
+
+/* ----- Clash window ----- */
+.panel-overlay.center { justify-content: center; align-items: center; padding: 1rem; }
+
+.clash-dialog {
+  width: min(480px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.35rem;
+  border-radius: 20px;
+  background: var(--app-bg);
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+}
+
+.clash-dialog h2 { font-size: 1.15rem; color: var(--text-pure); }
+.clash-explain { color: var(--text-muted); font-size: 0.88rem; }
+
+.clash-list { list-style: none; display: grid; gap: 0.4rem; }
+
+.clash-list li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 12px;
+  background: var(--app-card);
+  border: 1px solid var(--app-card-border);
+}
+
+.clash-list li.lower { border-style: dashed; border-color: #f59e0b; }
+.clash-name { color: var(--text-pure); font-weight: 700; }
+.clash-name em { font-style: normal; color: var(--vdou-cyan); font-size: 0.8rem; }
+.clash-when { margin-left: auto; font-size: 0.8rem; color: var(--text-muted); }
+.clash-less { font-weight: 600; color: #f59e0b; font-size: 0.9rem; }
+
+/* ----- Calendar ----- */
+.calendar { padding: 1rem; }
+
+.calendar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.calendar-head h2 { font-size: 1.05rem; color: var(--text-pure); text-transform: capitalize; }
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-weekday {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding-bottom: 0.3rem;
+}
+
+.calendar-day {
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-main);
+  font: inherit;
+  cursor: pointer;
+}
+
+.calendar-day:hover { background: var(--app-hover); }
+.calendar-day.other-month { opacity: 0.4; }
+.calendar-day.today .calendar-num { color: var(--vdou-blue); font-weight: 800; }
+.calendar-day.selected { border-color: var(--vdou-blue); background: rgba(0, 132, 255, 0.12); }
+.calendar-num { font-size: 0.9rem; font-weight: 600; }
+.calendar-dots { display: flex; gap: 3px; min-height: 7px; }
+.calendar-dots .prio-dot { width: 6px; height: 6px; }
+
+/* ----- Lists ----- */
+.list-tabs { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.25rem; }
+
+.list-tab {
+  flex: none;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--app-chip-border);
+  background: var(--app-chip);
+  color: var(--text-main);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.list-tab.active { background: rgba(0, 132, 255, 0.16); border-color: var(--vdou-blue); color: var(--text-pure); }
+
+.new-list { display: grid; gap: 0.75rem; padding: 1rem; }
+.emoji-chip { font-size: 1.1rem; padding: 0.3rem 0.6rem; }
+.list-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
+
 /* Indian scripts: no extra letter spacing / capitals on small headings */
 html:not([lang="en"]) .section-title,
 html:not([lang="en"]) .section-toggle,

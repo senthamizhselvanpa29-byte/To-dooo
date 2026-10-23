@@ -20,8 +20,8 @@ import UserMenu from './UserMenu';
 // href: null means the page is not built yet ("Soon")
 const MENU = [
   { key: 'navToday', href: '/today', Icon: SunIcon },
-  { key: 'navUpcoming', href: null, Icon: CalendarIcon },
-  { key: 'navLists', href: null, Icon: ListIcon },
+  { key: 'navUpcoming', href: '/upcoming', Icon: CalendarIcon },
+  { key: 'navLists', href: '/lists', Icon: ListIcon },
 ];
 
 export default function AppShell({ name, email, children }) {

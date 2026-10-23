@@ -13,7 +13,8 @@
 | `authErrors.js` | Turns login errors into friendly messages |
 | `googleSignIn.js` | "Continue with Google" |
 | `rememberMe.js` | "Keep me signed in" tick box |
-| `tasks.js` | Reads and saves tasks in the database |
+| `tasks.js` | Reads and saves tasks and lists in the database |
+| `clash.js` | Clash check rules: which plan moves, free-day suggestions |
 | `dates.js` | Date and time helpers, quick time buttons, evening hour |
 | `safeRedirect.js` | Makes sure email links only go to our own pages |
 

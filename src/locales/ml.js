@@ -169,6 +169,62 @@ const ml = {
   unitDay: 'ദി',
   unitHour: 'മ',
   unitMinute: 'മി',
+
+  // ----- Upcoming page + calendar -----
+  listView: 'പട്ടിക',
+  calendarView: 'കലണ്ടർ',
+  later: 'പിന്നീട്',
+  nothingUpcoming: 'വരുന്ന ദിവസങ്ങളിലേക്ക് ഒന്നും ആസൂത്രണം ചെയ്തിട്ടില്ല.',
+  addForDay: '{day}-ലേക്ക് ഒരു ജോലി ചേർക്കുക',
+  noTasksThisDay: 'ഈ ദിവസം ജോലികളില്ല.',
+  prevMonth: 'മുൻ മാസം',
+  nextMonth: 'അടുത്ത മാസം',
+
+  // ----- Lists -----
+  newList: 'പുതിയ പട്ടിക',
+  listNamePlaceholder: 'പട്ടികയുടെ പേര് (ഉദാ. വീട്)',
+  createList: 'സൃഷ്ടിക്കുക',
+  noLists: 'ഇതുവരെ പട്ടികകളില്ല. ജോലികൾ ഗ്രൂപ്പാക്കാൻ ഒന്ന് സൃഷ്ടിക്കുക.',
+  listEmpty: 'ഈ പട്ടികയിൽ ഇതുവരെ ജോലികളില്ല.',
+  renameList: 'പേര് മാറ്റുക',
+  deleteList: 'പട്ടിക ഇല്ലാതാക്കുക',
+  deleteListConfirm: 'ഈ പട്ടിക ഇല്ലാതാക്കണോ? അതിലെ ജോലികൾ പട്ടികയില്ലാതെ നിലനിൽക്കും.',
+  listLabel: 'പട്ടിക',
+  noList: 'പട്ടികയില്ല',
+  tasksCount: '{count} ജോലികൾ',
+  chooseEmoji: 'ഒരു ചിഹ്നം തിരഞ്ഞെടുക്കുക',
+
+  // ----- How long? -----
+  durationLabel: 'എത്ര സമയം? (ഐച്ഛികം)',
+  dur15: '15 മിനിറ്റ്',
+  dur30: '30 മിനിറ്റ്',
+  dur1h: '1 മണിക്കൂർ',
+  dur2h: '2 മണിക്കൂർ',
+  durAllDay: 'ദിവസം മുഴുവൻ',
+  durDays: 'പല ദിവസങ്ങൾ',
+  endDateLabel: 'വരെ',
+  allDay: 'ദിവസം മുഴുവൻ',
+  errEndBeforeStart: 'അവസാന ദിവസം ആദ്യ ദിവസമോ അതിനു ശേഷമോ ആയിരിക്കണം',
+
+  // ----- Steps inside a big plan -----
+  stepsLabel: 'ഘട്ടങ്ങൾ',
+  addStep: 'ഘട്ടം ചേർക്കുക',
+  stepPlaceholder: 'ഘട്ടത്തിന്റെ പേര്',
+  stepsProgress: '{total}-ൽ {done} ഘട്ടങ്ങൾ',
+  errStepAfterPlan: 'ഈ ഘട്ടം നിങ്ങളുടെ പദ്ധതിക്ക് ({date}) ശേഷമാണ്. നേരത്തെയുള്ള തീയതി തിരഞ്ഞെടുക്കുക.',
+  errStepAfterPlanShort: 'ഘട്ടം അതിന്റെ പദ്ധതിക്ക് ശേഷമാകാൻ പാടില്ല. നേരത്തെയുള്ള തീയതി തിരഞ്ഞെടുക്കുക.',
+  partOf: '{title}-ന്റെ ഭാഗം',
+  stepsHint: 'ഈ പദ്ധതിക്ക് മുമ്പ് (അല്ലെങ്കിൽ ഇടയിൽ) തീർക്കേണ്ട ചെറിയ ജോലികൾ.',
+
+  // ----- Clash check -----
+  clashTitle: '{date}-ൽ കൂട്ടിമുട്ടൽ',
+  clashExplain: 'ഈ പദ്ധതികൾ ഒരേ സമയത്താണ്.',
+  clashLess: '“{title}” കുറഞ്ഞ പ്രാധാന്യമുള്ളതാണ്.',
+  moveTo: '“{title}” ഇതിലേക്ക് മാറ്റുക:',
+  noFreeDays: 'അടുത്ത 30 ദിവസത്തിൽ ഒഴിവുള്ള ദിവസമില്ല.',
+  keepBoth: 'രണ്ടും നിലനിർത്തുക',
+  changeTime: 'സമയം മാറ്റുക',
+  newTaskLabel: 'പുതിയത്',
 };
 
 export default ml;

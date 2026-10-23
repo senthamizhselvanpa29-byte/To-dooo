@@ -33,6 +33,9 @@ This page tells you which file to open.
 | Add phone (Google users) | `/complete-profile` | `src/app/(auth)/complete-profile/page.js` | `src/components/auth/CompleteProfileForm.js` |
 | Terms / Privacy | `/terms`, `/privacy` | `src/app/(auth)/terms/page.js` … | (text coming in Week 7) |
 | Today (planner) | `/today` | `src/app/today/page.js` | `src/components/today/TodayBoard.js` (parts in `src/components/today/`) |
+| Upcoming + calendar | `/upcoming` | `src/app/upcoming/page.js` | `src/components/upcoming/UpcomingBoard.js`, `CalendarView.js` |
+| Lists | `/lists` | `src/app/lists/page.js` | `src/components/lists/ListsBoard.js` |
+| Edit panel, steps, clash window (all pages) | — | — | `src/components/tasks/` |
 
 ## Rules and settings
 
@@ -44,6 +47,10 @@ This page tells you which file to open.
 | Quick time buttons (Morning 9:00…) | `src/lib/dates.js` → `QUICK_TIMES` |
 | When "Plan tomorrow" glows (6 PM) | `src/lib/dates.js` → `EVENING_HOUR` |
 | Planner colours (red / yellow / green) | `src/app/globals.css` → `--prio-high` / `--prio-medium` / `--prio-low` |
+| Clash rules (which plan moves, how many free days) | `src/lib/clash.js` |
+| "How long?" choices | `src/lib/dates.js` → `DURATIONS` |
+| List icons to choose from | `src/components/lists/ListsBoard.js` → `LIST_EMOJIS` |
+| Days shown one by one on Upcoming | `src/components/upcoming/UpcomingBoard.js` → `DAYS_SHOWN` |
 | Menu items (Today, Upcoming, Lists) | `src/components/app/AppShell.js` → `MENU` |
 | Login error messages | Words: `src/locales/*.js` · Which error shows: `src/lib/authErrors.js` |
 | Database tables | `supabase/migrations/` (see `supabase/README.md`) |

@@ -169,6 +169,62 @@ const te = {
   unitDay: 'రో',
   unitHour: 'గం',
   unitMinute: 'ని',
+
+  // ----- Upcoming page + calendar -----
+  listView: 'జాబితా',
+  calendarView: 'క్యాలెండర్',
+  later: 'తర్వాత',
+  nothingUpcoming: 'రాబోయే రోజులకు ఏదీ ప్లాన్ చేయలేదు.',
+  addForDay: '{day}కి ఒక పనిని జోడించండి',
+  noTasksThisDay: 'ఈ రోజు పనులు లేవు.',
+  prevMonth: 'గత నెల',
+  nextMonth: 'వచ్చే నెల',
+
+  // ----- Lists -----
+  newList: 'కొత్త జాబితా',
+  listNamePlaceholder: 'జాబితా పేరు (ఉదా. ఇల్లు)',
+  createList: 'సృష్టించండి',
+  noLists: 'ఇంకా జాబితాలు లేవు. పనులను గుంపుగా చేయడానికి ఒకటి సృష్టించండి.',
+  listEmpty: 'ఈ జాబితాలో ఇంకా పనులు లేవు.',
+  renameList: 'పేరు మార్చండి',
+  deleteList: 'జాబితాను తొలగించండి',
+  deleteListConfirm: 'ఈ జాబితాను తొలగించాలా? దానిలోని పనులు జాబితా లేకుండా ఉంటాయి.',
+  listLabel: 'జాబితా',
+  noList: 'జాబితా లేదు',
+  tasksCount: '{count} పనులు',
+  chooseEmoji: 'ఒక చిహ్నం ఎంచుకోండి',
+
+  // ----- How long? -----
+  durationLabel: 'ఎంత సేపు? (ఐచ్ఛికం)',
+  dur15: '15 ని',
+  dur30: '30 ని',
+  dur1h: '1 గం',
+  dur2h: '2 గం',
+  durAllDay: 'రోజంతా',
+  durDays: 'చాలా రోజులు',
+  endDateLabel: 'వరకు',
+  allDay: 'రోజంతా',
+  errEndBeforeStart: 'చివరి రోజు మొదటి రోజు లేదా తర్వాత ఉండాలి',
+
+  // ----- Steps inside a big plan -----
+  stepsLabel: 'దశలు',
+  addStep: 'దశ జోడించండి',
+  stepPlaceholder: 'దశ పేరు',
+  stepsProgress: '{total}లో {done} దశలు',
+  errStepAfterPlan: 'ఈ దశ మీ ప్రణాళిక ({date}) తర్వాత ఉంది. ముందు తేదీని ఎంచుకోండి.',
+  errStepAfterPlanShort: 'దశ దాని ప్రణాళిక తర్వాత ఉండకూడదు. ముందు తేదీని ఎంచుకోండి.',
+  partOf: '{title}లో భాగం',
+  stepsHint: 'ఈ ప్రణాళికకు ముందు (లేదా మధ్యలో) పూర్తి చేయాల్సిన చిన్న పనులు.',
+
+  // ----- Clash check -----
+  clashTitle: '{date}న ఢీ',
+  clashExplain: 'ఈ ప్రణాళికలు ఒకే సమయంలో ఉన్నాయి.',
+  clashLess: '“{title}” తక్కువ ముఖ్యమైనది.',
+  moveTo: '“{title}”ని ఇక్కడికి మార్చండి:',
+  noFreeDays: 'రాబోయే 30 రోజుల్లో ఖాళీ రోజు లేదు.',
+  keepBoth: 'రెండూ ఉంచండి',
+  changeTime: 'సమయం మార్చండి',
+  newTaskLabel: 'కొత్తది',
 };
 
 export default te;

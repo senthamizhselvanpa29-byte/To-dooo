@@ -1,61 +1,53 @@
 'use client';
 
 // ============================================================
-// ADD A TASK — the box at the top of the Today page.
+// ADD A TASK — the box at the top of Today, Upcoming and Lists.
 // Type a name → choose the time (required) → Save.
 // The task will NOT save without a date and a time.
 // ============================================================
 
 import { useImperativeHandle, useRef, useState } from 'react';
-import { combineDateTime, toDateInput } from '@/lib/dates';
 import { usePreferences } from '../Preferences';
 import { PlusIcon } from '../Icons';
-import TaskFields from './TaskFields';
+import TaskFields, { emptyPickers, pickersToFields } from './TaskFields';
 
-const emptyDetails = () => ({ date: toDateInput(new Date()), time: '', priority: 'medium', ball: 'rubber' });
-
-export default function AddTaskForm({ ref, onAdd }) {
+export default function AddTaskForm({ ref, onAdd, lists, defaults }) {
   const { t } = usePreferences();
   const titleRef = useRef(null);
   const [title, setTitle] = useState('');
-  const [details, setDetails] = useState(emptyDetails);
+  const [pickers, setPickers] = useState(() => emptyPickers(defaults));
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [triedSave, setTriedSave] = useState(false);
 
-  // Lets the "Plan tomorrow" box open this form with a date already chosen
+  // Lets other parts of the page open this form with a date already chosen
+  // (e.g. "Add for tomorrow", or the ＋ next to a day on Upcoming)
   useImperativeHandle(ref, () => ({
     startFor(dateText) {
-      setDetails((d) => ({ ...d, date: dateText }));
+      setPickers((p) => ({ ...p, date: dateText }));
       setOpen(true);
       titleRef.current?.focus();
       titleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     },
   }));
 
-  const dueAt = combineDateTime(details.date, details.time);
-  const canSave = title.trim().length > 0 && dueAt !== null && !busy;
+  const fields = pickersToFields(pickers);
+  const canSave = title.trim().length > 0 && fields !== null && !busy;
+  const endDateError = pickers.duration === 'days' && pickers.endDate && pickers.endDate < pickers.date;
 
   // What is still missing (shown under the form)
   let hint = null;
-  if (!title.trim()) hint = triedSave ? t('enterTitle') : null;
-  else if (!details.time) hint = t('chooseTime');
+  if (title.trim() && !pickers.time) hint = t('chooseTime');
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setTriedSave(true);
-    if (!canSave) {
-      if (title.trim() && !details.time) document.getElementById('add-time')?.focus();
-      return;
-    }
+    if (!canSave) return;
     setBusy(true);
-    const ok = await onAdd({ title, dueAt, priority: details.priority, ball: details.ball });
+    const ok = await onAdd({ title: title.trim(), ...fields });
     setBusy(false);
     if (ok) {
-      // Keep the chosen date (handy when adding several tasks for one day)
+      // Keep the chosen date and list (handy when adding several tasks)
       setTitle('');
-      setDetails((d) => ({ ...emptyDetails(), date: d.date }));
-      setTriedSave(false);
+      setPickers((p) => emptyPickers({ ...defaults, date: p.date, listId: p.listId }));
       titleRef.current?.focus();
     }
   }
@@ -80,15 +72,17 @@ export default function AddTaskForm({ ref, onAdd }) {
         <>
           <TaskFields
             idPrefix="add"
-            value={details}
-            onChange={(changes) => setDetails((d) => ({ ...d, ...changes }))}
-            timeMissing={Boolean(title.trim()) && !details.time}
+            value={pickers}
+            onChange={(changes) => setPickers((p) => ({ ...p, ...changes }))}
+            timeMissing={Boolean(title.trim()) && !pickers.time}
+            endDateError={endDateError}
+            lists={lists}
           />
           <div className="add-task-footer">
             <span className="form-hint" role="status">
               {hint}
             </span>
-            <button type="submit" className="save-btn" disabled={!canSave} aria-disabled={!canSave}>
+            <button type="submit" className="save-btn" disabled={!canSave}>
               {t('saveTask')}
             </button>
           </div>

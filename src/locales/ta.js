@@ -169,6 +169,62 @@ const ta = {
   unitDay: 'நா',
   unitHour: 'ம',
   unitMinute: 'நி',
+
+  // ----- Upcoming page + calendar -----
+  listView: 'பட்டியல்',
+  calendarView: 'நாட்காட்டி',
+  later: 'பிறகு',
+  nothingUpcoming: 'வரும் நாட்களுக்கு எதுவும் திட்டமிடவில்லை.',
+  addForDay: '{day} அன்று ஒரு வேலையைச் சேர்',
+  noTasksThisDay: 'இந்த நாளில் வேலைகள் இல்லை.',
+  prevMonth: 'முந்தைய மாதம்',
+  nextMonth: 'அடுத்த மாதம்',
+
+  // ----- Lists -----
+  newList: 'புதிய பட்டியல்',
+  listNamePlaceholder: 'பட்டியல் பெயர் (எ.கா. வீடு)',
+  createList: 'உருவாக்கு',
+  noLists: 'இன்னும் பட்டியல்கள் இல்லை. வேலைகளைக் குழுவாக்க ஒன்றை உருவாக்குங்கள்.',
+  listEmpty: 'இந்தப் பட்டியலில் இன்னும் வேலைகள் இல்லை.',
+  renameList: 'பெயர் மாற்று',
+  deleteList: 'பட்டியலை நீக்கு',
+  deleteListConfirm: 'இந்தப் பட்டியலை நீக்கவா? அதன் வேலைகள் பட்டியல் இல்லாமல் இருக்கும்.',
+  listLabel: 'பட்டியல்',
+  noList: 'பட்டியல் இல்லை',
+  tasksCount: '{count} வேலைகள்',
+  chooseEmoji: 'ஒரு சின்னத்தைத் தேர்ந்தெடுக்கவும்',
+
+  // ----- How long? -----
+  durationLabel: 'எவ்வளவு நேரம்? (விருப்பம்)',
+  dur15: '15 நிமி',
+  dur30: '30 நிமி',
+  dur1h: '1 மணி',
+  dur2h: '2 மணி',
+  durAllDay: 'நாள் முழுவதும்',
+  durDays: 'பல நாட்கள்',
+  endDateLabel: 'வரை',
+  allDay: 'நாள் முழுவதும்',
+  errEndBeforeStart: 'கடைசி நாள் முதல் நாளுக்குப் பிறகு அல்லது அதே நாளாக இருக்க வேண்டும்',
+
+  // ----- Steps inside a big plan -----
+  stepsLabel: 'படிகள்',
+  addStep: 'படி சேர்',
+  stepPlaceholder: 'படியின் பெயர்',
+  stepsProgress: '{total}-இல் {done} படிகள்',
+  errStepAfterPlan: 'இந்தப் படி உங்கள் திட்டத்துக்குப் ({date}) பிறகு உள்ளது. முந்தைய தேதியைத் தேர்ந்தெடுக்கவும்.',
+  errStepAfterPlanShort: 'படி அதன் திட்டத்துக்குப் பிறகு இருக்க முடியாது. முந்தைய தேதியைத் தேர்ந்தெடுக்கவும்.',
+  partOf: '{title}-இன் பகுதி',
+  stepsHint: 'இந்தத் திட்டத்துக்கு முன் (அல்லது இடையில்) முடிக்க வேண்டிய சிறு வேலைகள்.',
+
+  // ----- Clash check -----
+  clashTitle: '{date} அன்று மோதல்',
+  clashExplain: 'இந்தத் திட்டங்கள் ஒரே நேரத்தில் வருகின்றன.',
+  clashLess: '“{title}” குறைந்த முக்கியத்துவம் உடையது.',
+  moveTo: '“{title}”-ஐ இங்கே மாற்று:',
+  noFreeDays: 'அடுத்த 30 நாட்களில் காலியான நாள் இல்லை.',
+  keepBoth: 'இரண்டையும் வை',
+  changeTime: 'நேரத்தை மாற்று',
+  newTaskLabel: 'புதியது',
 };
 
 export default ta;
