@@ -164,10 +164,66 @@ const en = {
   loadingTasks: 'Loading your tasks…',
   errLoadTasks: 'Couldn’t load your tasks. Please refresh the page.',
   errSaveTask: 'Couldn’t save. Please try again.',
-  errDbNotReady: 'The tasks database is not set up yet (run supabase/migrations/0002_tasks.sql).',
+  errDbNotReady: 'The database is not fully set up yet. Please run the latest setup step in Supabase (supabase/migrations).',
   unitDay: 'd',
   unitHour: 'h',
   unitMinute: 'm',
+
+  // ----- Upcoming page + calendar -----
+  listView: 'List',
+  calendarView: 'Calendar',
+  later: 'Later',
+  nothingUpcoming: 'Nothing planned for the coming days.',
+  addForDay: 'Add a task for {day}',
+  noTasksThisDay: 'No tasks on this day.',
+  prevMonth: 'Previous month',
+  nextMonth: 'Next month',
+
+  // ----- Lists -----
+  newList: 'New list',
+  listNamePlaceholder: 'List name (e.g. Home)',
+  createList: 'Create',
+  noLists: 'No lists yet. Create one to group your tasks.',
+  listEmpty: 'No tasks in this list yet.',
+  renameList: 'Rename',
+  deleteList: 'Delete list',
+  deleteListConfirm: 'Delete this list? Its tasks will stay, without a list.',
+  listLabel: 'List',
+  noList: 'No list',
+  tasksCount: '{count} tasks',
+  chooseEmoji: 'Choose an icon',
+
+  // ----- How long? -----
+  durationLabel: 'How long? (optional)',
+  dur15: '15 min',
+  dur30: '30 min',
+  dur1h: '1 hr',
+  dur2h: '2 hr',
+  durAllDay: 'All day',
+  durDays: 'Many days',
+  endDateLabel: 'Until',
+  allDay: 'all day',
+  errEndBeforeStart: 'The last day must be on or after the first day',
+
+  // ----- Steps inside a big plan -----
+  stepsLabel: 'Steps',
+  addStep: 'Add step',
+  stepPlaceholder: 'Step name',
+  stepsProgress: '{done}/{total} steps',
+  errStepAfterPlan: 'This step is after your plan ({date}). Please choose an earlier date.',
+  errStepAfterPlanShort: 'A step can’t be after its plan. Please choose an earlier date.',
+  partOf: 'Part of {title}',
+  stepsHint: 'Small jobs to finish before (or during) this plan.',
+
+  // ----- Clash check -----
+  clashTitle: 'Clash on {date}',
+  clashExplain: 'These plans happen at the same time.',
+  clashLess: '“{title}” is less important.',
+  moveTo: 'Move “{title}” to:',
+  noFreeDays: 'No free day found in the next 30 days.',
+  keepBoth: 'Keep both',
+  changeTime: 'Change the time',
+  newTaskLabel: 'New',
 };
 
 export default en;

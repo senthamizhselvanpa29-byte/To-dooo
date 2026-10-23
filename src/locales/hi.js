@@ -169,6 +169,62 @@ const hi = {
   unitDay: 'दि',
   unitHour: 'घं',
   unitMinute: 'मि',
+
+  // ----- Upcoming page + calendar -----
+  listView: 'सूची',
+  calendarView: 'कैलेंडर',
+  later: 'बाद में',
+  nothingUpcoming: 'आने वाले दिनों के लिए कुछ प्लान नहीं है।',
+  addForDay: '{day} के लिए काम जोड़ें',
+  noTasksThisDay: 'इस दिन कोई काम नहीं।',
+  prevMonth: 'पिछला महीना',
+  nextMonth: 'अगला महीना',
+
+  // ----- Lists -----
+  newList: 'नई सूची',
+  listNamePlaceholder: 'सूची का नाम (जैसे घर)',
+  createList: 'बनाएँ',
+  noLists: 'अभी कोई सूची नहीं। कामों को समूह में रखने के लिए एक बनाएँ।',
+  listEmpty: 'इस सूची में अभी कोई काम नहीं।',
+  renameList: 'नाम बदलें',
+  deleteList: 'सूची हटाएँ',
+  deleteListConfirm: 'यह सूची हटाएँ? इसके काम बिना सूची के रहेंगे।',
+  listLabel: 'सूची',
+  noList: 'कोई सूची नहीं',
+  tasksCount: '{count} काम',
+  chooseEmoji: 'एक चिह्न चुनें',
+
+  // ----- How long? -----
+  durationLabel: 'कितनी देर? (वैकल्पिक)',
+  dur15: '15 मिनट',
+  dur30: '30 मिनट',
+  dur1h: '1 घंटा',
+  dur2h: '2 घंटे',
+  durAllDay: 'पूरा दिन',
+  durDays: 'कई दिन',
+  endDateLabel: 'तक',
+  allDay: 'पूरा दिन',
+  errEndBeforeStart: 'आख़िरी दिन पहले दिन के बाद या उसी दिन होना चाहिए',
+
+  // ----- Steps inside a big plan -----
+  stepsLabel: 'चरण',
+  addStep: 'चरण जोड़ें',
+  stepPlaceholder: 'चरण का नाम',
+  stepsProgress: '{total} में से {done} चरण',
+  errStepAfterPlan: 'यह चरण आपकी योजना ({date}) के बाद है। कृपया पहले की तारीख चुनें।',
+  errStepAfterPlanShort: 'चरण अपनी योजना के बाद नहीं हो सकता। कृपया पहले की तारीख चुनें।',
+  partOf: '{title} का हिस्सा',
+  stepsHint: 'इस योजना से पहले (या दौरान) पूरे करने वाले छोटे काम।',
+
+  // ----- Clash check -----
+  clashTitle: '{date} को टकराव',
+  clashExplain: 'ये योजनाएँ एक ही समय पर हैं।',
+  clashLess: '“{title}” कम ज़रूरी है।',
+  moveTo: '“{title}” को यहाँ ले जाएँ:',
+  noFreeDays: 'अगले 30 दिनों में कोई खाली दिन नहीं मिला।',
+  keepBoth: 'दोनों रखें',
+  changeTime: 'समय बदलें',
+  newTaskLabel: 'नया',
 };
 
 export default hi;

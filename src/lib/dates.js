@@ -88,3 +88,57 @@ export function formatDuration(minutes, t) {
   if (!days && mins) parts.push(`${mins}${t('unitMinute')}`);
   return parts.join(' ') || `0${t('unitMinute')}`;
 }
+
+// ----- "How long?" (used by the clash check) -----
+// Keys are saved in the database; words are in src/locales (dur15, dur30…)
+export const DURATIONS = [
+  { key: '15m', label: 'dur15', minutes: 15 },
+  { key: '30m', label: 'dur30', minutes: 30 },
+  { key: '1h', label: 'dur1h', minutes: 60 },
+  { key: '2h', label: 'dur2h', minutes: 120 },
+  { key: 'all_day', label: 'durAllDay' },
+  { key: 'days', label: 'durDays' },
+];
+
+// Last second of a day (23:59:59)
+export function endOfDay(date) {
+  const d = new Date(date);
+  d.setHours(23, 59, 59, 0);
+  return d;
+}
+
+// When does a task end? Returns null when no "how long" was chosen.
+// endDateText is only used for "Many days" (e.g. vacation until 5 Jan).
+export function computeEnd(dueAt, duration, endDateText) {
+  if (!dueAt || !duration) return null;
+  const preset = DURATIONS.find((d) => d.key === duration);
+  if (preset?.minutes) return new Date(dueAt.getTime() + preset.minutes * 60000);
+  if (duration === 'all_day') return endOfDay(dueAt);
+  if (duration === 'days') {
+    if (!endDateText) return null;
+    return endOfDay(new Date(`${endDateText}T00:00`));
+  }
+  return null;
+}
+
+// "1 Jan" in the user's language
+export function formatShortDate(date, lang) {
+  return new Date(date).toLocaleDateString(localeFor(lang), { day: 'numeric', month: 'short' });
+}
+
+// "Thu, 1 Jan 2026, 10:00 am"
+export function formatDateTime(date, lang) {
+  return new Date(date).toLocaleString(localeFor(lang), {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+  });
+}
+
+// Month name + year, e.g. "October 2026"
+export function formatMonth(date, lang) {
+  return new Date(date).toLocaleDateString(localeFor(lang), { month: 'long', year: 'numeric' });
+}

@@ -11,4 +11,7 @@ Pieces used on many pages. Change one here and it changes everywhere.
 | `Icons.js` | Small icons (mail, lock, eye…) |
 | `auth/` | Login, sign-up and password forms, and their shared pieces (`FormParts.js`) |
 | `app/` | Planner frame: menu (Today, Upcoming, Lists) and account menu |
-| `today/` | The Today page: greeting, Plan tomorrow, add task, task list, edit panel |
+| `tasks/` | Parts shared by all planner pages: add box, task row, edit panel, steps, clash window, Undo |
+| `today/` | The Today page: greeting, Plan tomorrow, sections |
+| `upcoming/` | The Upcoming page: next 7 days, Later, and the month calendar |
+| `lists/` | The Lists page: create, rename, delete lists and see their tasks |
