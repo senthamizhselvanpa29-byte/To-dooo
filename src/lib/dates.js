@@ -16,8 +16,8 @@ export const QUICK_TIMES = [
   { key: 'night', time: '21:00' },
 ];
 
-// From this hour the "Plan tomorrow" box is highlighted.
-export const EVENING_HOUR = 18;
+// The "Plan tomorrow" box glows this many minutes before night planning time
+export const EVENING_GLOW_MINUTES = 180;
 
 // Midnight at the start of a day
 export function startOfDay(date = new Date()) {

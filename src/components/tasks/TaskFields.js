@@ -8,19 +8,20 @@
 //   🔴🟡🟢 Priority
 //   🔮 Glass / 🏀 Rubber
 //   📁 List      (only when `lists` is given)
+//   🔁 Repeat    (only when adding: every day … every 2 months, every year)
 //
 // `value` = { date, time, duration, endDate, priority, ball, listId }
 // `onChange(changes)` is called with only what changed.
 // ============================================================
 
-import { addDays, combineDateTime, computeEnd, DURATIONS, QUICK_TIMES, toDateInput, toTimeInput } from '@/lib/dates';
+import { addDays, combineDateTime, computeEnd, DURATIONS, localeFor, QUICK_TIMES, toDateInput, toTimeInput } from '@/lib/dates';
 import { PRIORITIES } from '@/lib/tasks';
 import { usePreferences } from '../Preferences';
 import { CalendarIcon, ClockIcon } from '../Icons';
 
 const PRIORITY_KEYS = { high: 'priorityHigh', medium: 'priorityMedium', low: 'priorityLow' };
 
-export default function TaskFields({ idPrefix, value, onChange, timeMissing, endDateError, lists }) {
+export default function TaskFields({ idPrefix, value, onChange, timeMissing, endDateError, lists, showRepeat }) {
   const { t } = usePreferences();
   const todayText = toDateInput(new Date());
   const tomorrowText = toDateInput(addDays(new Date(), 1));
@@ -133,6 +134,9 @@ export default function TaskFields({ idPrefix, value, onChange, timeMissing, end
         </div>
       </div>
 
+      {/* ----- Repeat (only when adding a task) ----- */}
+      {showRepeat && <RepeatPicker value={value} onChange={onChange} />}
+
       {/* ----- List (optional) ----- */}
       {lists && lists.length > 0 && (
         <div className="field-group">
@@ -193,8 +197,69 @@ export function emptyPickers(overrides = {}) {
     priority: 'medium',
     ball: 'rubber',
     listId: null,
+    repeat: 'never',
+    repeatDays: [],
     ...overrides,
   };
+}
+
+// ------------------------------------------------------------
+// 🔁 Repeat: Never / Every day / Weekdays / Weekly (pick days) /
+// Monthly / Every 2 months / Every year
+// ------------------------------------------------------------
+const REPEAT_KEYS = {
+  never: 'repeatNever',
+  daily: 'repeatDaily',
+  weekdays: 'repeatWeekdays',
+  weekly: 'repeatWeekly',
+  monthly: 'repeatMonthly',
+  bimonthly: 'repeatBimonthly',
+  yearly: 'repeatYearly',
+};
+
+function RepeatPicker({ value, onChange }) {
+  const { t, lang } = usePreferences();
+  const repeat = value.repeat || 'never';
+  const days = value.repeatDays || [];
+
+  // Short weekday names in the user's language (1 Jan 2023 was a Sunday)
+  const weekdayName = (i) => new Date(2023, 0, 1 + i).toLocaleDateString(localeFor(lang), { weekday: 'short' });
+
+  const toggleDay = (i) =>
+    onChange({ repeatDays: days.includes(i) ? days.filter((d) => d !== i) : [...days, i].sort() });
+
+  return (
+    <div className="field-group">
+      <span className="field-group-label">🔁 {t('repeatLabel')}</span>
+      <div className="chip-row" role="radiogroup" aria-label={t('repeatLabel')}>
+        {Object.entries(REPEAT_KEYS).map(([key, label]) => (
+          <Chip
+            key={key}
+            role="radio"
+            active={repeat === key}
+            onClick={() => onChange({ repeat: key, repeatDays: key === 'weekly' && days.length === 0 ? defaultWeekday(value) : days })}
+          >
+            {t(label)}
+          </Chip>
+        ))}
+      </div>
+      {repeat === 'weekly' && (
+        <div className="chip-row">
+          {[1, 2, 3, 4, 5, 6, 0].map((i) => (
+            <Chip key={i} active={days.includes(i)} onClick={() => toggleDay(i)}>
+              {weekdayName(i)}
+            </Chip>
+          ))}
+        </div>
+      )}
+      {repeat === 'weekly' && days.length === 0 && <span className="field-error">{t('errChooseDays')}</span>}
+    </div>
+  );
+}
+
+// Weekly repeat starts with the chosen date's weekday ticked
+function defaultWeekday(value) {
+  return value.date ? [new Date(`${value.date}T00:00`).getDay()] : [];
 }
 
 // A small rounded button that can be "selected"

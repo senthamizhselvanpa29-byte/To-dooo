@@ -2,18 +2,17 @@
 
 // ============================================================
 // "PLAN TOMORROW" BOX — at the top of the Today page.
-// In the evening (from 6 PM) it glows and invites you to spend
-// 5 minutes planning tomorrow. It lists tomorrow's tasks.
-// The evening hour is EVENING_HOUR in src/lib/dates.js.
+// In the evening (3 hours before your night planning time) it glows
+// and invites you to spend 5 minutes planning tomorrow.
+// It lists tomorrow's tasks (not the daily routine).
 // ============================================================
 
-import { EVENING_HOUR, formatTime } from '@/lib/dates';
+import { formatTime } from '@/lib/dates';
 import { usePreferences } from '../Preferences';
 import { MoonStarIcon, PlusIcon } from '../Icons';
 
-export default function PlanTomorrow({ tasks, now, onAdd, onOpen }) {
+export default function PlanTomorrow({ tasks, isEvening, onAdd, onOpen, onStartPlanning }) {
   const { t, lang } = usePreferences();
-  const isEvening = now.getHours() >= EVENING_HOUR;
 
   return (
     <section className={`plan-tomorrow card${isEvening ? ' evening' : ''}`} aria-labelledby="plan-tomorrow-title">
@@ -23,9 +22,16 @@ export default function PlanTomorrow({ tasks, now, onAdd, onOpen }) {
           <h2 id="plan-tomorrow-title">{t('planTomorrowTitle')}</h2>
           <p>{isEvening ? t('planTomorrowEvening') : t('planTomorrowDay')}</p>
         </div>
-        <button type="button" className="save-btn small" onClick={onAdd}>
-          <PlusIcon /> {t('addForTomorrow')}
-        </button>
+        <div className="plan-tomorrow-buttons">
+          {isEvening && onStartPlanning && (
+            <button type="button" className="save-btn small" onClick={onStartPlanning}>
+              🌙 {t('startNightPlanning')}
+            </button>
+          )}
+          <button type="button" className={isEvening ? 'ghost-btn small' : 'save-btn small'} onClick={onAdd}>
+            <PlusIcon /> {t('addForTomorrow')}
+          </button>
+        </div>
       </div>
 
       {tasks.length === 0 ? (

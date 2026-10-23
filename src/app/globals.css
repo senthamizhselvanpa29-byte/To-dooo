@@ -2231,6 +2231,133 @@ input:focus-visible {
 .emoji-chip { font-size: 1.1rem; padding: 0.3rem 0.6rem; }
 .list-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
 
+/* ==========================================================================
+   WEEK 4: routine setup, night planning, settings
+   ========================================================================== */
+.segmented button[aria-checked="true"] {
+  background: var(--vdou-gradient);
+  color: #ffffff;
+}
+
+.segmented.big button { padding: 0.65rem 1.2rem; font-size: 0.95rem; }
+.chip-input.big { font-size: 1.2rem; padding: 0.6rem 1rem; width: fit-content; }
+
+.plan-tomorrow-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.task-section.routine .section-title { color: var(--vdou-cyan); }
+
+/* "🔁 Repeating task — Stop repeating" inside the edit panel */
+.routine-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 0.85rem;
+  border-radius: 12px;
+  background: rgba(0, 210, 255, 0.08);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ----- Setup + night planning windows ----- */
+.setup-dialog {
+  width: min(560px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.5rem;
+  border-radius: 22px;
+  background: var(--app-bg);
+  border: 1px solid var(--app-card-border);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+}
+
+.setup-dialog.night {
+  background:
+    radial-gradient(ellipse 80% 50% at 100% 0%, rgba(0, 132, 255, 0.22), transparent 60%),
+    var(--app-bg);
+  border-color: rgba(0, 210, 255, 0.4);
+}
+
+.setup-dialog h2 { font-family: var(--font-heading); font-size: 1.35rem; color: var(--text-pure); }
+
+.setup-steps { display: flex; gap: 0.35rem; }
+.setup-steps span { flex: 1; height: 5px; border-radius: 999px; background: var(--app-chip); }
+.setup-steps span.on { background: var(--vdou-gradient); }
+
+.habit-pick-list { list-style: none; display: grid; gap: 0.4rem; }
+
+.habit-pick-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 12px;
+  background: var(--app-card);
+  border: 1px solid var(--app-card-border);
+  opacity: 0.6;
+}
+
+.habit-pick-list li.on { opacity: 1; }
+
+.habit-pick {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+}
+
+.habit-pick input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--vdou-blue); }
+.habit-emoji { font-size: 1.2rem; }
+.habit-title { color: var(--text-pure); font-weight: 600; overflow-wrap: anywhere; }
+
+.habit-summary { list-style: none; display: grid; gap: 0.3rem; color: var(--text-main); }
+.habit-summary span { display: inline-block; min-width: 5rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+.np-section { display: grid; gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--app-card-border); }
+.np-section h3 { font-size: 0.95rem; color: var(--text-pure); }
+
+.np-list { list-style: none; display: grid; gap: 0.4rem; }
+
+.np-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.5rem 0.7rem;
+  border-radius: 12px;
+  background: var(--app-card);
+  border: 1px solid var(--app-card-border);
+}
+
+.np-name { flex: 1 1 140px; color: var(--text-pure); font-weight: 600; }
+
+.np-summary {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(0, 230, 118, 0.1);
+  border: 1px solid rgba(0, 230, 118, 0.35);
+  color: var(--text-pure);
+  font-weight: 600;
+}
+
+/* ----- Settings page ----- */
+.settings-card { display: grid; gap: 0.85rem; padding: 1.15rem; }
+.settings-card h2 { font-size: 1.05rem; color: var(--text-pure); }
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.saved-note { color: var(--vdou-green); font-weight: 700; font-size: 0.88rem; }
+
 /* Indian scripts: no extra letter spacing / capitals on small headings */
 html:not([lang="en"]) .section-title,
 html:not([lang="en"]) .section-toggle,

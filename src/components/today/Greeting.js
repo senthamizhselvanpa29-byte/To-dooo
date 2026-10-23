@@ -3,16 +3,18 @@
 // ============================================================
 // GREETING — "Good morning, Senthamizh", today's date,
 // the progress circle ("2 of 5 done") and today's quote.
+// Morning / afternoon / evening follow the user's wake-up time,
+// so night-shift workers get "Good morning" when they wake up.
 // ============================================================
 
 import { formatLongDate } from '@/lib/dates';
 import { usePreferences } from '../Preferences';
 
-export default function Greeting({ name, now, done, total, quote }) {
+export default function Greeting({ name, now, done, total, quote, awakeMinutes }) {
   const { t, lang } = usePreferences();
 
-  const hour = now.getHours();
-  const greetingKey = hour < 12 ? 'goodMorning' : hour < 17 ? 'goodAfternoon' : 'goodEvening';
+  // Up to 6 hours after waking → morning, up to 11 hours → afternoon
+  const greetingKey = awakeMinutes < 360 ? 'goodMorning' : awakeMinutes < 660 ? 'goodAfternoon' : 'goodEvening';
 
   // Progress circle maths
   const ratio = total === 0 ? 0 : done / total;

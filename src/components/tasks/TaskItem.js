@@ -61,6 +61,7 @@ export default function TaskItem({ task, now, showDay, listsById, onToggle, onOp
             {formatTime(due, lang)}
           </span>
           {span && <span className="meta-tag">{span}</span>}
+          {task.routine_id && !task.habit && <span className="meta-tag">🔁</span>}
           {list && (
             <span className="meta-tag">
               {list.emoji} {list.name}

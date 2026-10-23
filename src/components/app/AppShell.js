@@ -14,7 +14,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import TopBar from '../TopBar';
 import { usePreferences } from '../Preferences';
-import { CalendarIcon, ListIcon, SunIcon } from '../Icons';
+import { CalendarIcon, GearIcon, ListIcon, SunIcon } from '../Icons';
 import UserMenu from './UserMenu';
 
 // href: null means the page is not built yet ("Soon")
@@ -22,6 +22,7 @@ const MENU = [
   { key: 'navToday', href: '/today', Icon: SunIcon },
   { key: 'navUpcoming', href: '/upcoming', Icon: CalendarIcon },
   { key: 'navLists', href: '/lists', Icon: ListIcon },
+  { key: 'navSettings', href: '/settings', Icon: GearIcon },
 ];
 
 export default function AppShell({ name, email, children }) {
