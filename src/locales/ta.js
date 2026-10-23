@@ -91,16 +91,84 @@ const ta = {
   errNotConnected: 'உள்நுழைவு இன்னும் இணைக்கப்படவில்லை. Supabase விசைகளைச் சேர்க்கவும்.',
   errGeneric: 'ஏதோ தவறு நடந்தது. மீண்டும் முயற்சிக்கவும்.',
 
-  // ----- Today page -----
-  todayTitle: 'இன்று',
-  todayHello: 'வணக்கம், {name}!',
-  todayComingSoon: 'உங்கள் பணிகள் விரைவில் இங்கே தோன்றும்.',
+  // ----- Account -----
   signOut: 'வெளியேறு',
 
   // ----- Terms & Privacy pages -----
   termsTitle: 'சேவை விதிமுறைகள்',
   privacyTitle: 'தனியுரிமைக் கொள்கை',
   pageComingSoon: 'இந்தப் பக்கம் எழுதப்பட்டு வருகிறது; வெளியீட்டுக்கு முன் தயாராகும்.',
+
+  // ----- Planner: menu and account -----
+  navToday: 'இன்று',
+  navUpcoming: 'வரவிருப்பவை',
+  navLists: 'பட்டியல்கள்',
+  comingSoon: 'விரைவில்',
+  accountMenu: 'கணக்கு மெனு',
+
+  // ----- Planner: greeting -----
+  goodMorning: 'காலை வணக்கம், {name}',
+  goodAfternoon: 'மதிய வணக்கம், {name}',
+  goodEvening: 'மாலை வணக்கம், {name}',
+  progressLabel: '{total}-இல் {done} முடிந்தது',
+
+  // ----- Planner: plan tomorrow -----
+  planTomorrowTitle: 'நாளையைத் திட்டமிடுங்கள்',
+  planTomorrowEvening: 'மாலை ஆகிவிட்டது — நாளையைத் திட்டமிட 5 நிமிடம் ஒதுக்குங்கள்.',
+  planTomorrowDay: 'முன்கூட்டியே இருங்கள்: நாளைய வேலைகளைத் திட்டமிடுங்கள்.',
+  planTomorrowNone: 'நாளைக்கு இன்னும் எதுவும் திட்டமிடவில்லை.',
+  planTomorrowCount: 'நாளைக்கு {count} திட்டமிடப்பட்டுள்ளது',
+  addForTomorrow: 'நாளைக்குச் சேர்',
+
+  // ----- Planner: add / edit a task -----
+  addPlaceholder: 'ஒரு வேலையைச் சேர்க்கவும்…',
+  dateLabel: 'தேதி',
+  timeLabel: 'நேரம்',
+  today: 'இன்று',
+  tomorrow: 'நாளை',
+  yesterday: 'நேற்று',
+  morning: 'காலை',
+  afternoon: 'மதியம்',
+  evening: 'மாலை',
+  night: 'இரவு',
+  priorityLabel: 'முன்னுரிமை',
+  priorityHigh: 'அதிகம்',
+  priorityMedium: 'நடுத்தரம்',
+  priorityLow: 'குறைவு',
+  ballLabel: 'இதை மாற்ற முடியுமா?',
+  ballGlass: 'கண்ணாடி',
+  ballRubber: 'ரப்பர்',
+  ballGlassHint: 'கைவிட முடியாது',
+  ballRubberHint: 'மாற்றலாம்',
+  noteLabel: 'குறிப்பு',
+  notePlaceholder: 'குறிப்பு சேர்க்கவும் (விருப்பம்)',
+  saveTask: 'சேமி',
+  chooseTime: 'நேரத்தைத் தேர்ந்தெடுக்கவும்',
+  enterTitle: 'வேலையின் பெயரை எழுதவும்',
+  editTask: 'வேலையைத் திருத்து',
+  deleteTask: 'நீக்கு',
+  cancel: 'ரத்து',
+  close: 'மூடு',
+
+  // ----- Planner: task list -----
+  sectionOverdue: 'தாமதமானவை',
+  sectionToday: 'இன்று',
+  sectionCompleted: 'முடிந்தவை',
+  emptyToday: 'இன்னும் எதுவும் திட்டமிடவில்லை. முதல் வேலையைச் சேர்க்கவும் ✨',
+  allDoneToday: 'இன்றைய வேலைகள் அனைத்தும் முடிந்தன! 🎉',
+  markDone: 'முடிந்ததாகக் குறி',
+  markNotDone: 'முடியவில்லை எனக் குறி',
+  postponedInfo: '{count} முறை தள்ளிவைக்கப்பட்டது · {time} தாமதம்',
+  late: 'தாமதம்',
+  taskDeleted: 'வேலை நீக்கப்பட்டது',
+  undo: 'திரும்பப் பெறு',
+  loadingTasks: 'உங்கள் வேலைகள் ஏற்றப்படுகின்றன…',
+  errLoadTasks: 'வேலைகளை ஏற்ற முடியவில்லை. பக்கத்தைப் புதுப்பிக்கவும்.',
+  errSaveTask: 'சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.',
+  errDbNotReady: 'வேலைகளுக்கான தரவுத்தளம் இன்னும் அமைக்கப்படவில்லை.',
+  unitDay: 'நா',
+  unitHour: 'ம',
+  unitMinute: 'நி',
 };
 
 export default ta;

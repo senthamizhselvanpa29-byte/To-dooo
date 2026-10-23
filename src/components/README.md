@@ -10,4 +10,5 @@ Pieces used on many pages. Change one here and it changes everywhere.
 | `DailyQuote.js` | Today's quote |
 | `Icons.js` | Small icons (mail, lock, eye…) |
 | `auth/` | Login, sign-up and password forms, and their shared pieces (`FormParts.js`) |
-| `today/` | The Today page (temporary until Week 2) |
+| `app/` | Planner frame: menu (Today, Upcoming, Lists) and account menu |
+| `today/` | The Today page: greeting, Plan tomorrow, add task, task list, edit panel |

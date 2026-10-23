@@ -30,18 +30,23 @@
 
 | Feature | Free | Pro |
 |---|---|---|
-| Unlimited tasks | ✅ | ✅ |
-| Due dates and priority | ✅ | ✅ |
-| Today / Upcoming / Done views | ✅ | ✅ |
-| All 5 languages | ✅ | ✅ |
-| Phone + computer sync | ✅ | ✅ |
-| Light / dark mode | ✅ | ✅ |
+| Unlimited tasks (every task has date + time) | ✅ | ✅ |
+| 🔴 / 🟡 / 🟢 colours and 🔮 glass / 🏀 rubber | ✅ | ✅ |
+| Today / Upcoming views | ✅ | ✅ |
+| Clash check + new date suggestions | ✅ | ✅ |
+| Postpone tracker | ✅ | ✅ |
+| Benefits library (common daily tasks) | ✅ | ✅ |
+| Night planning (5 minutes) | ✅ | ✅ |
+| Mini Jarvis lite (morning + evening messages) | ✅ | ✅ |
+| Weekly report | ✅ | ✅ |
+| All 5 languages, phone + computer sync, light / dark | ✅ | ✅ |
+| Daily routine habits | Up to 5 | Unlimited |
 | Lists / projects | Up to 3 | Unlimited |
-| Repeating tasks | — | ✅ |
-| Subtasks | — | ✅ |
+| Big plans with steps inside | Up to 3 steps | Unlimited |
+| Monthly report + full history | — | ✅ |
 | Calendar view (week / month) | — | ✅ |
 | Email reminders | — | ✅ |
-| AI planning (after launch) | — | ✅ |
+| AI features (after launch) | — | ✅ |
 
 ## 4. Technology
 
@@ -53,27 +58,27 @@
 | Hosting | Vercel | Puts the app online |
 | AI (later) | Claude or OpenAI | Smart planning features |
 
-## 5. Eight-week schedule
+## 5. Eight-week schedule (updated 23 Oct 2026)
 
 | Week | Work | Status |
 |---|---|---|
 | 0 | Plan + project folders | ✅ Done |
-| 1 | Project setup, database, login (email + Google) | ✅ Built — needs Supabase keys (docs/SETUP.md) |
-| 2 | Tasks: add, edit, delete, complete, due date, priority | ⬜ |
-| 3 | Lists, Today / Upcoming views, phone-friendly design | ⬜ |
-| 4 | 5 languages, light / dark mode | ⬜ |
-| 5 | Pro features: repeating tasks, subtasks, calendar view | ⬜ |
+| 1 | Login: email + Google, sign-up, 5 languages, daily quotes | ✅ Done and online |
+| 2 | Today page: add / edit / delete / tick tasks, date + time required, colours, glass / rubber, Plan tomorrow box, postpone tracker | ✅ Built — run supabase/migrations/0002_tasks.sql |
+| 3 | Upcoming, Lists, big plans with steps, clash check, calendar view | ⬜ |
+| 4 | Daily routine setup, repeating tasks, night planning, night-shift settings | ⬜ |
+| 5 | Postpone tracker, weekly / monthly reports, benefits library | ⬜ |
 | 6 | Razorpay payments, Free vs Pro limits | ⬜ |
-| 7 | Email reminders, home page, privacy policy, terms | ⬜ |
-| 8 | Testing, fixing, **launch** 🚀 | ⬜ |
+| 7 | Mini Jarvis lite, reminders, home page, privacy / terms, email service, Google verification | ⬜ |
+| 8 | Testing, native speakers check translations, **launch** 🚀 | ⬜ |
 
 ## 6. After launch (updates)
 
-1. AI: "plan my week", break big tasks into steps, suggest priorities
-2. Share lists with family or team
-3. Phone notifications
-4. Android / iPhone app
-5. Productivity stats
+1. Full Jarvis: AI chat + voice ("Remind me to pay rent on the 5th at 9 AM, red")
+2. AI benefits for any task, AI smart rescheduling, "plan my week"
+3. Share lists with family or team
+4. Phone notifications
+5. Android / iPhone app
 6. Google Calendar sync
 7. More languages and themes
 
@@ -116,3 +121,19 @@ Design is based on `prototype/login/` (galaxy background, quote, logo, 5 languag
 
 - Phone number is saved but not checked by OTP at launch (OTP costs per SMS; can add later)
 - More details (date of birth, city, etc.) can be added later in Settings
+
+## 9. Smart features (decided 23 Oct 2026)
+
+| # | Feature | How it works |
+|---|---|---|
+| 1 | **Postpone tracker** | Every time a task is moved later, VdoU remembers how much. Shown on the task: "Postponed 3 times · 2 days 5 hrs late". |
+| 2 | **Reports** | Weekly (every Sunday) and monthly: done vs pending by 🔴 / 🟡 / 🟢, on time vs late, most postponed task, best day. |
+| 3 | **Benefits** | Common daily tasks (water, walking, reading, sleep…) show their benefits, e.g. 💧 "Drinking water keeps you energetic and helps digestion". About 100 tasks, all 5 languages. AI benefits for any task come after launch. |
+| 4 | **Glass vs rubber ball** | Every task is 🔮 Glass (can't be dropped or moved: health, family, friends) or 🏀 Rubber (can be moved). Separate from the colour. When the day is too full, VdoU suggests moving rubber tasks, never glass. |
+| 5 | **Daily routine first** | First login asks wake-up, brush, meals, exercise, sleep times and creates the daily routine automatically. Free: 5 habits. Pro: unlimited. |
+| 6 | **Colours everywhere** | 🔴 High · 🟡 Medium · 🟢 Low on every task and plan. |
+| 7 | **Linked plans** | (a) **Clash check**: two plans at the same date / time → warning; the lower one (colour, then rubber before glass) gets new free dates suggested. (b) **Big plans with steps**: e.g. Vacation → Book tickets, Pack bags, Book hotel. |
+| 8 | **Mini Jarvis** | Launch: morning briefing and evening summary messages (no AI cost). After launch: AI chat + voice. |
+| 9 | **Deadline required** | Every task MUST have a date AND a time — it will not save without both. No automatic time. |
+| 10 | **Night planning** | When the app is opened at night: "Let's plan tomorrow" — a 5-minute guided session to give every task a time and a reminder. |
+| 11 | **Night-shift setting** | Each user sets their own "day start" and "planning time" (e.g. night-shift worker plans at 8 AM). Morning / evening messages and night planning follow these times. |

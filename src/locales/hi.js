@@ -91,16 +91,84 @@ const hi = {
   errNotConnected: 'लॉगिन अभी जुड़ा नहीं है। कृपया Supabase कुंजियाँ जोड़ें।',
   errGeneric: 'कुछ गलत हो गया। कृपया फिर से कोशिश करें।',
 
-  // ----- Today page -----
-  todayTitle: 'आज',
-  todayHello: 'नमस्ते, {name}!',
-  todayComingSoon: 'आपके काम जल्द ही यहाँ दिखेंगे।',
+  // ----- Account -----
   signOut: 'साइन आउट',
 
   // ----- Terms & Privacy pages -----
   termsTitle: 'सेवा की शर्तें',
   privacyTitle: 'गोपनीयता नीति',
   pageComingSoon: 'यह पेज लिखा जा रहा है और लॉन्च से पहले तैयार होगा।',
+
+  // ----- Planner: menu and account -----
+  navToday: 'आज',
+  navUpcoming: 'आने वाले',
+  navLists: 'सूचियाँ',
+  comingSoon: 'जल्द',
+  accountMenu: 'खाता मेनू',
+
+  // ----- Planner: greeting -----
+  goodMorning: 'सुप्रभात, {name}',
+  goodAfternoon: 'शुभ दोपहर, {name}',
+  goodEvening: 'शुभ संध्या, {name}',
+  progressLabel: '{total} में से {done} पूरे',
+
+  // ----- Planner: plan tomorrow -----
+  planTomorrowTitle: 'कल की योजना',
+  planTomorrowEvening: 'शाम हो गई — कल की योजना के लिए 5 मिनट निकालें।',
+  planTomorrowDay: 'आगे रहें: कल के काम अभी प्लान करें।',
+  planTomorrowNone: 'कल के लिए अभी कुछ प्लान नहीं है।',
+  planTomorrowCount: 'कल के लिए {count} प्लान किए गए',
+  addForTomorrow: 'कल के लिए जोड़ें',
+
+  // ----- Planner: add / edit a task -----
+  addPlaceholder: 'एक काम जोड़ें…',
+  dateLabel: 'तारीख',
+  timeLabel: 'समय',
+  today: 'आज',
+  tomorrow: 'कल',
+  yesterday: 'बीता कल',
+  morning: 'सुबह',
+  afternoon: 'दोपहर',
+  evening: 'शाम',
+  night: 'रात',
+  priorityLabel: 'प्राथमिकता',
+  priorityHigh: 'ज़्यादा',
+  priorityMedium: 'मध्यम',
+  priorityLow: 'कम',
+  ballLabel: 'क्या इसे बदला जा सकता है?',
+  ballGlass: 'काँच',
+  ballRubber: 'रबर',
+  ballGlassHint: 'छोड़ा नहीं जा सकता',
+  ballRubberHint: 'बदला जा सकता है',
+  noteLabel: 'नोट',
+  notePlaceholder: 'नोट जोड़ें (वैकल्पिक)',
+  saveTask: 'सेव करें',
+  chooseTime: 'कृपया समय चुनें',
+  enterTitle: 'कृपया काम का नाम लिखें',
+  editTask: 'काम बदलें',
+  deleteTask: 'हटाएँ',
+  cancel: 'रद्द करें',
+  close: 'बंद करें',
+
+  // ----- Planner: task list -----
+  sectionOverdue: 'देरी वाले',
+  sectionToday: 'आज',
+  sectionCompleted: 'पूरे हुए',
+  emptyToday: 'अभी कुछ प्लान नहीं है। अपना पहला काम जोड़ें ✨',
+  allDoneToday: 'आज के सारे काम पूरे! 🎉',
+  markDone: 'पूरा हुआ चिह्नित करें',
+  markNotDone: 'अधूरा चिह्नित करें',
+  postponedInfo: '{count} बार टाला · {time} देरी',
+  late: 'देरी',
+  taskDeleted: 'काम हटाया गया',
+  undo: 'वापस लाएँ',
+  loadingTasks: 'आपके काम लोड हो रहे हैं…',
+  errLoadTasks: 'काम लोड नहीं हो सके। कृपया पेज रीफ़्रेश करें।',
+  errSaveTask: 'सेव नहीं हो सका। फिर से कोशिश करें।',
+  errDbNotReady: 'कामों का डेटाबेस अभी सेट नहीं हुआ है।',
+  unitDay: 'दि',
+  unitHour: 'घं',
+  unitMinute: 'मि',
 };
 
 export default hi;

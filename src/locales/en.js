@@ -90,16 +90,84 @@ const en = {
   errNotConnected: 'Login is not connected yet. Please add the Supabase keys.',
   errGeneric: 'Something went wrong. Please try again.',
 
-  // ----- Today page -----
-  todayTitle: 'Today',
-  todayHello: 'Hello, {name}!',
-  todayComingSoon: 'Your tasks will appear here soon.',
+  // ----- Account -----
   signOut: 'Sign out',
 
   // ----- Terms & Privacy pages -----
   termsTitle: 'Terms of Service',
   privacyTitle: 'Privacy Policy',
   pageComingSoon: 'This page is being written and will be ready before launch.',
+
+  // ----- Planner: menu and account -----
+  navToday: 'Today',
+  navUpcoming: 'Upcoming',
+  navLists: 'Lists',
+  comingSoon: 'Soon',
+  accountMenu: 'Account menu',
+
+  // ----- Planner: greeting -----
+  goodMorning: 'Good morning, {name}',
+  goodAfternoon: 'Good afternoon, {name}',
+  goodEvening: 'Good evening, {name}',
+  progressLabel: '{done} of {total} done',
+
+  // ----- Planner: plan tomorrow -----
+  planTomorrowTitle: 'Plan tomorrow',
+  planTomorrowEvening: 'It’s evening — take 5 minutes to plan tomorrow.',
+  planTomorrowDay: 'Get ahead: plan tomorrow’s tasks.',
+  planTomorrowNone: 'Nothing planned for tomorrow yet.',
+  planTomorrowCount: '{count} planned for tomorrow',
+  addForTomorrow: 'Add for tomorrow',
+
+  // ----- Planner: add / edit a task -----
+  addPlaceholder: 'Add a task…',
+  dateLabel: 'Date',
+  timeLabel: 'Time',
+  today: 'Today',
+  tomorrow: 'Tomorrow',
+  yesterday: 'Yesterday',
+  morning: 'Morning',
+  afternoon: 'Afternoon',
+  evening: 'Evening',
+  night: 'Night',
+  priorityLabel: 'Priority',
+  priorityHigh: 'High',
+  priorityMedium: 'Medium',
+  priorityLow: 'Low',
+  ballLabel: 'Can it be moved?',
+  ballGlass: 'Glass',
+  ballRubber: 'Rubber',
+  ballGlassHint: 'Can’t be dropped',
+  ballRubberHint: 'Can be moved',
+  noteLabel: 'Note',
+  notePlaceholder: 'Add a note (optional)',
+  saveTask: 'Save',
+  chooseTime: 'Please choose a time',
+  enterTitle: 'Please write the task name',
+  editTask: 'Edit task',
+  deleteTask: 'Delete',
+  cancel: 'Cancel',
+  close: 'Close',
+
+  // ----- Planner: task list -----
+  sectionOverdue: 'Overdue',
+  sectionToday: 'Today',
+  sectionCompleted: 'Completed',
+  emptyToday: 'Nothing planned yet. Add your first task ✨',
+  allDoneToday: 'All done for today! 🎉',
+  markDone: 'Mark as done',
+  markNotDone: 'Mark as not done',
+  postponedInfo: 'Postponed {count}× · {time} late',
+  late: 'late',
+  taskDeleted: 'Task deleted',
+  undo: 'Undo',
+  loadingTasks: 'Loading your tasks…',
+  errLoadTasks: 'Couldn’t load your tasks. Please refresh the page.',
+  errSaveTask: 'Couldn’t save. Please try again.',
+  errDbNotReady: 'The tasks database is not set up yet (run supabase/migrations/0002_tasks.sql).',
+  unitDay: 'd',
+  unitHour: 'h',
+  unitMinute: 'm',
 };
 
 export default en;

@@ -91,16 +91,84 @@ const te = {
   errNotConnected: 'లాగిన్ ఇంకా కనెక్ట్ కాలేదు. Supabase కీలను జోడించండి.',
   errGeneric: 'ఏదో పొరపాటు జరిగింది. మళ్లీ ప్రయత్నించండి.',
 
-  // ----- Today page -----
-  todayTitle: 'ఈ రోజు',
-  todayHello: 'నమస్కారం, {name}!',
-  todayComingSoon: 'మీ పనులు త్వరలో ఇక్కడ కనిపిస్తాయి.',
+  // ----- Account -----
   signOut: 'సైన్ అవుట్',
 
   // ----- Terms & Privacy pages -----
   termsTitle: 'సేవా నిబంధనలు',
   privacyTitle: 'గోప్యతా విధానం',
   pageComingSoon: 'ఈ పేజీ సిద్ధమవుతోంది; లాంచ్‌కు ముందు అందుబాటులో ఉంటుంది.',
+
+  // ----- Planner: menu and account -----
+  navToday: 'ఈ రోజు',
+  navUpcoming: 'రాబోయేవి',
+  navLists: 'జాబితాలు',
+  comingSoon: 'త్వరలో',
+  accountMenu: 'ఖాతా మెనూ',
+
+  // ----- Planner: greeting -----
+  goodMorning: 'శుభోదయం, {name}',
+  goodAfternoon: 'శుభ మధ్యాహ్నం, {name}',
+  goodEvening: 'శుభ సాయంత్రం, {name}',
+  progressLabel: '{total}లో {done} పూర్తయ్యాయి',
+
+  // ----- Planner: plan tomorrow -----
+  planTomorrowTitle: 'రేపటి ప్రణాళిక',
+  planTomorrowEvening: 'సాయంత్రం అయింది — రేపటి ప్రణాళిక కోసం 5 నిమిషాలు కేటాయించండి.',
+  planTomorrowDay: 'ముందుగానే సిద్ధం అవ్వండి: రేపటి పనులను ప్లాన్ చేయండి.',
+  planTomorrowNone: 'రేపటి కోసం ఇంకా ఏదీ ప్లాన్ చేయలేదు.',
+  planTomorrowCount: 'రేపటికి {count} ప్లాన్ చేశారు',
+  addForTomorrow: 'రేపటికి జోడించండి',
+
+  // ----- Planner: add / edit a task -----
+  addPlaceholder: 'ఒక పనిని జోడించండి…',
+  dateLabel: 'తేదీ',
+  timeLabel: 'సమయం',
+  today: 'ఈ రోజు',
+  tomorrow: 'రేపు',
+  yesterday: 'నిన్న',
+  morning: 'ఉదయం',
+  afternoon: 'మధ్యాహ్నం',
+  evening: 'సాయంత్రం',
+  night: 'రాత్రి',
+  priorityLabel: 'ప్రాధాన్యత',
+  priorityHigh: 'ఎక్కువ',
+  priorityMedium: 'మధ్యస్థం',
+  priorityLow: 'తక్కువ',
+  ballLabel: 'దీన్ని మార్చవచ్చా?',
+  ballGlass: 'గాజు',
+  ballRubber: 'రబ్బరు',
+  ballGlassHint: 'వదులుకోలేం',
+  ballRubberHint: 'మార్చవచ్చు',
+  noteLabel: 'గమనిక',
+  notePlaceholder: 'గమనిక జోడించండి (ఐచ్ఛికం)',
+  saveTask: 'సేవ్ చేయండి',
+  chooseTime: 'దయచేసి సమయం ఎంచుకోండి',
+  enterTitle: 'పని పేరు రాయండి',
+  editTask: 'పనిని సవరించండి',
+  deleteTask: 'తొలగించండి',
+  cancel: 'రద్దు చేయండి',
+  close: 'మూసివేయండి',
+
+  // ----- Planner: task list -----
+  sectionOverdue: 'ఆలస్యమైనవి',
+  sectionToday: 'ఈ రోజు',
+  sectionCompleted: 'పూర్తయినవి',
+  emptyToday: 'ఇంకా ఏదీ ప్లాన్ చేయలేదు. మీ మొదటి పనిని జోడించండి ✨',
+  allDoneToday: 'ఈ రోజు పనులన్నీ పూర్తయ్యాయి! 🎉',
+  markDone: 'పూర్తయినట్టు గుర్తించండి',
+  markNotDone: 'పూర్తి కాలేదని గుర్తించండి',
+  postponedInfo: '{count} సార్లు వాయిదా · {time} ఆలస్యం',
+  late: 'ఆలస్యం',
+  taskDeleted: 'పని తొలగించబడింది',
+  undo: 'రద్దు చేయి',
+  loadingTasks: 'మీ పనులు లోడ్ అవుతున్నాయి…',
+  errLoadTasks: 'పనులను లోడ్ చేయలేకపోయాం. పేజీని రిఫ్రెష్ చేయండి.',
+  errSaveTask: 'సేవ్ చేయలేకపోయాం. మళ్లీ ప్రయత్నించండి.',
+  errDbNotReady: 'పనుల డేటాబేస్ ఇంకా సిద్ధం కాలేదు.',
+  unitDay: 'రో',
+  unitHour: 'గం',
+  unitMinute: 'ని',
 };
 
 export default te;

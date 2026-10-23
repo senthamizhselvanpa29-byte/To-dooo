@@ -32,7 +32,7 @@ This page tells you which file to open.
 | New password | `/reset-password` | `src/app/(auth)/reset-password/page.js` | `src/components/auth/ResetPasswordForm.js` |
 | Add phone (Google users) | `/complete-profile` | `src/app/(auth)/complete-profile/page.js` | `src/components/auth/CompleteProfileForm.js` |
 | Terms / Privacy | `/terms`, `/privacy` | `src/app/(auth)/terms/page.js` … | (text coming in Week 7) |
-| Today (planner) | `/today` | `src/app/today/page.js` | `src/components/today/TodayPlaceholder.js` |
+| Today (planner) | `/today` | `src/app/today/page.js` | `src/components/today/TodayBoard.js` (parts in `src/components/today/`) |
 
 ## Rules and settings
 
@@ -41,6 +41,10 @@ This page tells you which file to open.
 | Minimum password length | `src/lib/validation.js` → `MIN_PASSWORD_LENGTH` |
 | Phone number rules | `src/lib/validation.js` → `normalizePhone` |
 | Which pages need login | `src/lib/supabase/proxy.js` → `PRIVATE_PAGES` |
+| Quick time buttons (Morning 9:00…) | `src/lib/dates.js` → `QUICK_TIMES` |
+| When "Plan tomorrow" glows (6 PM) | `src/lib/dates.js` → `EVENING_HOUR` |
+| Planner colours (red / yellow / green) | `src/app/globals.css` → `--prio-high` / `--prio-medium` / `--prio-low` |
+| Menu items (Today, Upcoming, Lists) | `src/components/app/AppShell.js` → `MENU` |
 | Login error messages | Words: `src/locales/*.js` · Which error shows: `src/lib/authErrors.js` |
 | Database tables | `supabase/migrations/` (see `supabase/README.md`) |
 | Secret keys | Never in files! Vercel → Settings → Environment Variables (see `docs/SETUP.md`) |
