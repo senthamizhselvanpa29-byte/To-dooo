@@ -2,6 +2,8 @@
 
 // ============================================================
 // TOP BAR — logo on the left, language menu + theme switch on the right
+// Pages can add extra buttons on the right (the planner adds the
+// account menu) by putting them inside <TopBar>…</TopBar>.
 // ============================================================
 
 import Image from 'next/image';
@@ -11,11 +13,11 @@ import { LANGUAGES } from '@/lib/i18n';
 import { usePreferences } from './Preferences';
 import { ChevronIcon, GlobeIcon, MoonIcon, SunIcon } from './Icons';
 
-export default function TopBar() {
+export default function TopBar({ variant, children }) {
   const { t } = usePreferences();
 
   return (
-    <header className="top-controls">
+    <header className={`top-controls${variant ? ` ${variant}` : ''}`}>
       {/* ----- Logo (left corner) ----- */}
       <Link href="/" className="top-brand" aria-label={t('home')}>
         <span className="brand-logo-badge">
@@ -27,6 +29,7 @@ export default function TopBar() {
       <div className="top-actions">
         <LanguageMenu />
         <ThemeToggle />
+        {children}
       </div>
     </header>
   );

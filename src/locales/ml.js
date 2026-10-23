@@ -91,16 +91,84 @@ const ml = {
   errNotConnected: 'ലോഗിൻ ഇതുവരെ ബന്ധിപ്പിച്ചിട്ടില്ല. Supabase കീകൾ ചേർക്കുക.',
   errGeneric: 'എന്തോ പിശക് സംഭവിച്ചു. വീണ്ടും ശ്രമിക്കുക.',
 
-  // ----- Today page -----
-  todayTitle: 'ഇന്ന്',
-  todayHello: 'നമസ്കാരം, {name}!',
-  todayComingSoon: 'നിങ്ങളുടെ ജോലികൾ ഉടൻ ഇവിടെ കാണാം.',
+  // ----- Account -----
   signOut: 'സൈൻ ഔട്ട്',
 
   // ----- Terms & Privacy pages -----
   termsTitle: 'സേവന നിബന്ധനകൾ',
   privacyTitle: 'സ്വകാര്യതാ നയം',
   pageComingSoon: 'ഈ പേജ് തയ്യാറാക്കിക്കൊണ്ടിരിക്കുന്നു; ലോഞ്ചിന് മുമ്പ് തയ്യാറാകും.',
+
+  // ----- Planner: menu and account -----
+  navToday: 'ഇന്ന്',
+  navUpcoming: 'വരാനിരിക്കുന്നവ',
+  navLists: 'പട്ടികകൾ',
+  comingSoon: 'ഉടൻ',
+  accountMenu: 'അക്കൗണ്ട് മെനു',
+
+  // ----- Planner: greeting -----
+  goodMorning: 'സുപ്രഭാതം, {name}',
+  goodAfternoon: 'ശുഭ ഉച്ച, {name}',
+  goodEvening: 'ശുഭ സന്ധ്യ, {name}',
+  progressLabel: '{total}-ൽ {done} പൂർത്തിയായി',
+
+  // ----- Planner: plan tomorrow -----
+  planTomorrowTitle: 'നാളെ ആസൂത്രണം ചെയ്യുക',
+  planTomorrowEvening: 'വൈകുന്നേരമായി — നാളെ ആസൂത്രണം ചെയ്യാൻ 5 മിനിറ്റ് എടുക്കൂ.',
+  planTomorrowDay: 'മുന്നേ ഒരുങ്ങൂ: നാളത്തെ ജോലികൾ ആസൂത്രണം ചെയ്യൂ.',
+  planTomorrowNone: 'നാളേക്ക് ഇതുവരെ ഒന്നും ആസൂത്രണം ചെയ്തിട്ടില്ല.',
+  planTomorrowCount: 'നാളേക്ക് {count} ആസൂത്രണം ചെയ്തു',
+  addForTomorrow: 'നാളേക്ക് ചേർക്കുക',
+
+  // ----- Planner: add / edit a task -----
+  addPlaceholder: 'ഒരു ജോലി ചേർക്കുക…',
+  dateLabel: 'തീയതി',
+  timeLabel: 'സമയം',
+  today: 'ഇന്ന്',
+  tomorrow: 'നാളെ',
+  yesterday: 'ഇന്നലെ',
+  morning: 'രാവിലെ',
+  afternoon: 'ഉച്ച',
+  evening: 'വൈകുന്നേരം',
+  night: 'രാത്രി',
+  priorityLabel: 'മുൻഗണന',
+  priorityHigh: 'ഉയർന്നത്',
+  priorityMedium: 'ഇടത്തരം',
+  priorityLow: 'കുറഞ്ഞത്',
+  ballLabel: 'ഇത് മാറ്റാനാകുമോ?',
+  ballGlass: 'ഗ്ലാസ്',
+  ballRubber: 'റബ്ബർ',
+  ballGlassHint: 'ഉപേക്ഷിക്കാനാവില്ല',
+  ballRubberHint: 'മാറ്റാം',
+  noteLabel: 'കുറിപ്പ്',
+  notePlaceholder: 'കുറിപ്പ് ചേർക്കുക (ഐച്ഛികം)',
+  saveTask: 'സേവ് ചെയ്യുക',
+  chooseTime: 'ദയവായി സമയം തിരഞ്ഞെടുക്കുക',
+  enterTitle: 'ജോലിയുടെ പേര് എഴുതുക',
+  editTask: 'ജോലി തിരുത്തുക',
+  deleteTask: 'ഇല്ലാതാക്കുക',
+  cancel: 'റദ്ദാക്കുക',
+  close: 'അടയ്ക്കുക',
+
+  // ----- Planner: task list -----
+  sectionOverdue: 'വൈകിയവ',
+  sectionToday: 'ഇന്ന്',
+  sectionCompleted: 'പൂർത്തിയായവ',
+  emptyToday: 'ഇതുവരെ ഒന്നും ആസൂത്രണം ചെയ്തിട്ടില്ല. ആദ്യ ജോലി ചേർക്കൂ ✨',
+  allDoneToday: 'ഇന്നത്തെ എല്ലാ ജോലികളും കഴിഞ്ഞു! 🎉',
+  markDone: 'പൂർത്തിയായി എന്ന് അടയാളപ്പെടുത്തുക',
+  markNotDone: 'പൂർത്തിയായില്ല എന്ന് അടയാളപ്പെടുത്തുക',
+  postponedInfo: '{count} തവണ മാറ്റിവെച്ചു · {time} വൈകി',
+  late: 'വൈകി',
+  taskDeleted: 'ജോലി ഇല്ലാതാക്കി',
+  undo: 'പഴയപടിയാക്കുക',
+  loadingTasks: 'നിങ്ങളുടെ ജോലികൾ ലോഡ് ചെയ്യുന്നു…',
+  errLoadTasks: 'ജോലികൾ ലോഡ് ചെയ്യാനായില്ല. പേജ് പുതുക്കുക.',
+  errSaveTask: 'സേവ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക.',
+  errDbNotReady: 'ജോലികൾക്കുള്ള ഡാറ്റാബേസ് ഇതുവരെ സജ്ജമാക്കിയിട്ടില്ല.',
+  unitDay: 'ദി',
+  unitHour: 'മ',
+  unitMinute: 'മി',
 };
 
 export default ml;

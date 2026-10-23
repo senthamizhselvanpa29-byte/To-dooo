@@ -64,7 +64,7 @@
 |---|---|---|
 | 0 | Plan + project folders | ✅ Done |
 | 1 | Login: email + Google, sign-up, 5 languages, daily quotes | ✅ Done and online |
-| 2 | Today page: add / edit / delete / tick tasks, date + time required, colours, glass / rubber | ⬜ |
+| 2 | Today page: add / edit / delete / tick tasks, date + time required, colours, glass / rubber, Plan tomorrow box, postpone tracker | ✅ Built — run supabase/migrations/0002_tasks.sql |
 | 3 | Upcoming, Lists, big plans with steps, clash check, calendar view | ⬜ |
 | 4 | Daily routine setup, repeating tasks, night planning, night-shift settings | ⬜ |
 | 5 | Postpone tracker, weekly / monthly reports, benefits library | ⬜ |
