@@ -50,7 +50,8 @@ export default function CalendarView() {
   const reload = useCallback(async () => {
     if (!gridStart) return;
     try {
-      setTasks(await withPlanDetails(await fetchTasksBetween(gridStart, addDays(gridStart, 42))));
+      const all = await fetchTasksBetween(gridStart, addDays(gridStart, 42));
+      setTasks(await withPlanDetails(all.filter((x) => !x.habit))); // routine habits stay on Today
       setLoadErrorKey(null);
     } catch (error) {
       setTasks((current) => current || []);

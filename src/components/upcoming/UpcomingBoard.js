@@ -10,6 +10,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { addDays, formatDayLabel, startOfDay, toDateInput } from '@/lib/dates';
+import { ensureCopies } from '@/lib/routines';
 import { fetchUpcomingTasks, PRIORITIES, taskErrorKey, withPlanDetails } from '@/lib/tasks';
 import { usePreferences } from '../Preferences';
 import { PlusIcon } from '../Icons';
@@ -58,7 +59,9 @@ function UpcomingList() {
 
   const reload = useCallback(async () => {
     try {
-      setTasks(await withPlanDetails(await fetchUpcomingTasks()));
+      await ensureCopies().catch(() => {}); // repeating tasks for the next 7 days
+      // The daily routine is shown on Today only
+      setTasks(await withPlanDetails((await fetchUpcomingTasks()).filter((x) => !x.habit)));
       setLoadErrorKey(null);
     } catch (error) {
       setTasks((current) => current || []);

@@ -14,8 +14,9 @@
 | `googleSignIn.js` | "Continue with Google" |
 | `rememberMe.js` | "Keep me signed in" tick box |
 | `tasks.js` | Reads and saves tasks and lists in the database |
+| `routines.js` | Daily habits and repeating tasks: shift-aware times, "does it happen on this day?", making each day's copies |
 | `clash.js` | Clash check rules: which plan moves, free-day suggestions |
-| `dates.js` | Date and time helpers, quick time buttons, evening hour |
+| `dates.js` | Date and time helpers, quick time buttons, evening glow |
 | `safeRedirect.js` | Makes sure email links only go to our own pages |
 
 Coming later: `razorpay` (payments, Week 6), `plans` (Free vs Pro limits), `ai` (after launch).

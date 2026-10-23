@@ -8,6 +8,8 @@
 //   2. Clash check: if it overlaps another plan, the clash window asks
 //      what to do (move the less important one / keep both / change time)
 //   3. Save, then reload the page's tasks
+// Repeating tasks are saved as a routine; their daily copies are made
+// by src/lib/routines.js. Daily-routine habits never clash.
 //
 // Also: tick done, delete (with Undo), add steps, open the edit panel.
 // Each page shows the windows with <TaskOverlays actions={…} />.
@@ -16,6 +18,7 @@
 import { useCallback, useRef, useState } from 'react';
 import { addDays } from '@/lib/dates';
 import { clashes, importance, LOOK_AHEAD_DAYS, lessImportant, suggestFreeDays, taskRange } from '@/lib/clash';
+import { createRoutines, ensureCopies, repeatRoutineFrom, stopRoutine } from '@/lib/routines';
 import {
   createTask,
   deleteTask,
@@ -65,7 +68,8 @@ export function useTaskActions({ tasks, setTasks, reload }) {
   async function askAboutClash(draft) {
     const range = taskRange(draft);
     const others = (await fetchOverlapping(range.start, range.end)).filter(
-      (o) => o.id !== draft.id && o.id !== draft.parent_id && o.parent_id !== draft.id && clashes(draft, o)
+      (o) =>
+        o.id !== draft.id && o.id !== draft.parent_id && o.parent_id !== draft.id && !o.habit && clashes(draft, o)
     );
     if (others.length === 0) return { action: 'none' };
 
@@ -93,15 +97,23 @@ export function useTaskActions({ tasks, setTasks, reload }) {
   );
 
   // ----- Save a new task (existing = null) or a changed one -----
-  async function save(fields, existing = null) {
+  async function save({ repeat, repeatDays, ...fields }, existing = null) {
     setErrorKey(null);
     let toSave = fields;
     try {
+      // 🔁 New repeating task → save the routine and make its copies
+      if (repeat && !existing) {
+        await createRoutines([repeatRoutineFrom(fields, repeat, repeatDays)]);
+        await ensureCopies();
+        await reload();
+        return true;
+      }
+
       const timeChanged =
         !existing || existing.due_at !== fields.due_at || (existing.end_at || null) !== (fields.end_at || null);
 
-      // Steps are getting-ready jobs, so they skip the clash check
-      if (timeChanged && !(existing?.parent_id || fields.parent_id)) {
+      // Steps (getting-ready jobs) and routine habits skip the clash check
+      if (timeChanged && !(existing?.parent_id || fields.parent_id) && !existing?.habit) {
         const draft = { ...existing, ...fields, id: existing?.id ?? 'new' };
         const decision = await askAboutClash(draft);
         if (decision.action === 'cancel') return false;
@@ -119,6 +131,18 @@ export function useTaskActions({ tasks, setTasks, reload }) {
     } catch (error) {
       setErrorKey(taskErrorKey(error));
       return false;
+    }
+  }
+
+  // ----- Stop a repeating task (future copies are removed) -----
+  async function stopRepeating(task) {
+    setErrorKey(null);
+    setEditingId(null);
+    try {
+      await stopRoutine(task.routine_id);
+      await reload();
+    } catch (error) {
+      setErrorKey(taskErrorKey(error));
     }
   }
 
@@ -192,6 +216,7 @@ export function useTaskActions({ tasks, setTasks, reload }) {
     close,
     save,
     addStep,
+    stopRepeating,
     toggle,
     remove,
     undoDelete,

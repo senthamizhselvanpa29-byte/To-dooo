@@ -4,6 +4,7 @@
 // ADD A TASK — the box at the top of Today, Upcoming and Lists.
 // Type a name → choose the time (required) → Save.
 // The task will NOT save without a date and a time.
+// 🔁 Repeat makes it a repeating task (saved as a routine).
 // ============================================================
 
 import { useImperativeHandle, useRef, useState } from 'react';
@@ -31,7 +32,8 @@ export default function AddTaskForm({ ref, onAdd, lists, defaults }) {
   }));
 
   const fields = pickersToFields(pickers);
-  const canSave = title.trim().length > 0 && fields !== null && !busy;
+  const weeklyMissingDays = pickers.repeat === 'weekly' && pickers.repeatDays.length === 0;
+  const canSave = title.trim().length > 0 && fields !== null && !weeklyMissingDays && !busy;
   const endDateError = pickers.duration === 'days' && pickers.endDate && pickers.endDate < pickers.date;
 
   // What is still missing (shown under the form)
@@ -42,7 +44,8 @@ export default function AddTaskForm({ ref, onAdd, lists, defaults }) {
     e.preventDefault();
     if (!canSave) return;
     setBusy(true);
-    const ok = await onAdd({ title: title.trim(), ...fields });
+    const repeat = pickers.repeat !== 'never' ? { repeat: pickers.repeat, repeatDays: pickers.repeatDays } : {};
+    const ok = await onAdd({ title: title.trim(), ...fields, ...repeat });
     setBusy(false);
     if (ok) {
       // Keep the chosen date and list (handy when adding several tasks)
@@ -77,6 +80,7 @@ export default function AddTaskForm({ ref, onAdd, lists, defaults }) {
             timeMissing={Boolean(title.trim()) && !pickers.time}
             endDateError={endDateError}
             lists={lists}
+            showRepeat
           />
           <div className="add-task-footer">
             <span className="form-hint" role="status">

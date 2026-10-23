@@ -7,6 +7,7 @@
 // add STEPS (for big plans) — or Delete.
 // ============================================================
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { formatDateTime } from '@/lib/dates';
 import { usePreferences } from '../Preferences';
@@ -72,6 +73,24 @@ export default function EditTaskPanel({ task, lists, actions }) {
 
         {task.parentTitle && <p className="part-of">↳ {t('partOf', { title: task.parentTitle })}</p>}
 
+        {/* Habit or repeating task: changes here are for this day only */}
+        {task.routine_id && (
+          <div className="routine-banner">
+            {task.habit ? (
+              <Link href="/settings" className="text-link">
+                {t('routineTask')}
+              </Link>
+            ) : (
+              <>
+                <span>{t('repeatingTask')}</span>
+                <button type="button" className="ghost-btn small" onClick={() => actions.stopRepeating(task)}>
+                  {t('stopRepeating')}
+                </button>
+              </>
+            )}
+          </div>
+        )}
+
         <input
           ref={titleRef}
           className="edit-title-input"
@@ -90,7 +109,7 @@ export default function EditTaskPanel({ task, lists, actions }) {
           lists={isStep ? undefined : lists}
         />
 
-        {!isStep && <StepsEditor plan={task} actions={actions} />}
+        {!isStep && !task.routine_id && <StepsEditor plan={task} actions={actions} />}
 
         <label className="field-group">
           <span className="field-group-label">{t('noteLabel')}</span>

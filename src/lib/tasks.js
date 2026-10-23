@@ -11,7 +11,7 @@ export const PRIORITIES = ['high', 'medium', 'low'];
 export const PRIORITY_RANK = { high: 0, medium: 1, low: 2 };
 
 const COLUMNS =
-  'id, title, note, due_at, end_at, duration, priority, ball, done, done_at, postpone_count, postponed_minutes, list_id, parent_id, created_at';
+  'id, title, note, due_at, end_at, duration, priority, ball, done, done_at, postpone_count, postponed_minutes, list_id, parent_id, routine_id, occurrence_date, habit, created_at';
 
 const db = () => createClient();
 const iso = (date) => new Date(date).toISOString();

@@ -36,6 +36,8 @@ This page tells you which file to open.
 | Upcoming + calendar | `/upcoming` | `src/app/upcoming/page.js` | `src/components/upcoming/UpcomingBoard.js`, `CalendarView.js` |
 | Lists | `/lists` | `src/app/lists/page.js` | `src/components/lists/ListsBoard.js` |
 | Edit panel, steps, clash window (all pages) | — | — | `src/components/tasks/` |
+| Settings (shift, routine, repeats) | `/settings` | `src/app/settings/page.js` | `src/components/settings/SettingsBoard.js` |
+| Routine setup + night planning windows | — | — | `src/components/routine/` |
 
 ## Rules and settings
 
@@ -45,7 +47,9 @@ This page tells you which file to open.
 | Phone number rules | `src/lib/validation.js` → `normalizePhone` |
 | Which pages need login | `src/lib/supabase/proxy.js` → `PRIVATE_PAGES` |
 | Quick time buttons (Morning 9:00…) | `src/lib/dates.js` → `QUICK_TIMES` |
-| When "Plan tomorrow" glows (6 PM) | `src/lib/dates.js` → `EVENING_HOUR` |
+| When "Plan tomorrow" glows (3 hrs before planning time) | `src/lib/dates.js` → `EVENING_GLOW_MINUTES` |
+| Starting habits in the routine setup | `src/data/habits.js` |
+| Repeat rules, shift times, habit copies | `src/lib/routines.js` |
 | Planner colours (red / yellow / green) | `src/app/globals.css` → `--prio-high` / `--prio-medium` / `--prio-low` |
 | Clash rules (which plan moves, how many free days) | `src/lib/clash.js` |
 | "How long?" choices | `src/lib/dates.js` → `DURATIONS` |
