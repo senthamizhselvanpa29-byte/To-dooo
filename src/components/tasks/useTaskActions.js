@@ -15,7 +15,7 @@
 
 import { useCallback, useRef, useState } from 'react';
 import { addDays } from '@/lib/dates';
-import { importance, LOOK_AHEAD_DAYS, lessImportant, suggestFreeDays, taskRange } from '@/lib/clash';
+import { clashes, importance, LOOK_AHEAD_DAYS, lessImportant, suggestFreeDays, taskRange } from '@/lib/clash';
 import {
   createTask,
   deleteTask,
@@ -65,7 +65,7 @@ export function useTaskActions({ tasks, setTasks, reload }) {
   async function askAboutClash(draft) {
     const range = taskRange(draft);
     const others = (await fetchOverlapping(range.start, range.end)).filter(
-      (o) => o.id !== draft.id && o.id !== draft.parent_id && o.parent_id !== draft.id
+      (o) => o.id !== draft.id && o.id !== draft.parent_id && o.parent_id !== draft.id && clashes(draft, o)
     );
     if (others.length === 0) return { action: 'none' };
 

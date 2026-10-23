@@ -132,7 +132,7 @@ Design is based on `prototype/login/` (galaxy background, quote, logo, 5 languag
 | 4 | **Glass vs rubber ball** | Every task is 🔮 Glass (can't be dropped or moved: health, family, friends) or 🏀 Rubber (can be moved). Separate from the colour. When the day is too full, VdoU suggests moving rubber tasks, never glass. |
 | 5 | **Daily routine first** | First login asks wake-up, brush, meals, exercise, sleep times and creates the daily routine automatically. Free: 5 habits. Pro: unlimited. |
 | 6 | **Colours everywhere** | 🔴 High · 🟡 Medium · 🟢 Low on every task and plan. |
-| 7 | **Linked plans** | (a) **Clash check**: two plans at the same date / time → warning; the lower one (colour, then rubber before glass) gets new free dates suggested. (b) **Big plans with steps**: e.g. Vacation → Book tickets, Pack bags, Book hotel. |
+| 7 | **Linked plans** | (a) **Clash check**: two plans at the same date / time → warning. Day plans (All day / Many days) only clash with other day plans; time tasks only with time tasks at the same time; the lower one (colour, then rubber before glass) gets new free dates suggested. (b) **Big plans with steps**: e.g. Vacation → Book tickets, Pack bags, Book hotel. |
 | 8 | **Mini Jarvis** | Launch: morning briefing and evening summary messages (no AI cost). After launch: AI chat + voice. |
 | 9 | **Deadline required** | Every task MUST have a date AND a time — it will not save without both. No automatic time. |
 | 10 | **Night planning** | When the app is opened at night: "Let's plan tomorrow" — a 5-minute guided session to give every task a time and a reminder. |
