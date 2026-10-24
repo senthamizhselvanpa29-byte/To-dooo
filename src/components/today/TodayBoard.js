@@ -6,6 +6,7 @@
 // Order on the page:
 //   1. Greeting + progress circle + quote
 //   2. Plan tomorrow box
+//   2b. "You moved this 4 times" message (only when needed)
 //   3. Add a task
 //   4. Overdue (from earlier days, not done — habits never pile up here)
 //   5. Today (High first, then by time)
@@ -37,6 +38,7 @@ import { useLists } from '../tasks/useLists';
 import { useTaskActions } from '../tasks/useTaskActions';
 import Greeting from './Greeting';
 import PlanTomorrow from './PlanTomorrow';
+import PostponeNudge from './PostponeNudge';
 
 const byDue = (a, b) => new Date(a.due_at) - new Date(b.due_at);
 const byPriorityThenDue = (a, b) => PRIORITY_RANK[a.priority] - PRIORITY_RANK[b.priority] || byDue(a, b);
@@ -177,6 +179,8 @@ export default function TodayBoard({ name, quote }) {
         onAdd={() => addFormRef.current?.startFor(toDateInput(addDays(now, 1)))}
         onStartPlanning={() => setPlanningOpen(true)}
       />
+
+      <PostponeNudge tasks={[...overdue, ...today, ...tomorrow]} actions={actions} />
 
       <AddTaskForm ref={addFormRef} onAdd={(fields) => actions.save(fields)} lists={lists} />
 

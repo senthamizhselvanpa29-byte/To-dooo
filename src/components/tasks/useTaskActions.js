@@ -11,7 +11,8 @@
 // Repeating tasks are saved as a routine; their daily copies are made
 // by src/lib/routines.js. Daily-routine habits never clash.
 //
-// Also: tick done, delete (with Undo), add steps, open the edit panel.
+// Also: tick done, delete (with Undo), add steps, open the edit panel,
+// and answer the "You moved this 4 times" message.
 // Each page shows the windows with <TaskOverlays actions={…} />.
 // ============================================================
 
@@ -180,6 +181,17 @@ export function useTaskActions({ tasks, setTasks, reload }) {
     }
   }
 
+  // ----- "You moved this 4 times" was answered: don't ask again until 4 more moves -----
+  async function answerNudge(task) {
+    setErrorKey(null);
+    setTasks((list) => patchTasks(list, task.id, { nudged_at_count: task.postpone_count }));
+    try {
+      await updateTask(task.id, { nudged_at_count: task.postpone_count });
+    } catch (error) {
+      setErrorKey(taskErrorKey(error));
+    }
+  }
+
   // ----- Delete (with Undo) -----
   async function remove(task) {
     setErrorKey(null);
@@ -218,6 +230,7 @@ export function useTaskActions({ tasks, setTasks, reload }) {
     addStep,
     stopRepeating,
     toggle,
+    answerNudge,
     remove,
     undoDelete,
     hideUndo,

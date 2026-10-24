@@ -10,8 +10,17 @@ import { addDays, startOfDay } from '@/lib/dates';
 export const PRIORITIES = ['high', 'medium', 'low'];
 export const PRIORITY_RANK = { high: 0, medium: 1, low: 2 };
 
+// Postpone tracker: after this many moves, VdoU asks
+// "Do it now, break it into steps, or drop it?"
+export const POSTPONE_NUDGE = 4;
+
+// Does this task need the postpone message now?
+// (It asks again after every 4 more moves.)
+export const needsNudge = (task) =>
+  !task.done && task.postpone_count >= (task.nudged_at_count || 0) + POSTPONE_NUDGE;
+
 const COLUMNS =
-  'id, title, note, due_at, end_at, duration, priority, ball, done, done_at, postpone_count, postponed_minutes, list_id, parent_id, routine_id, occurrence_date, habit, created_at';
+  'id, title, note, due_at, end_at, duration, priority, ball, done, done_at, postpone_count, postponed_minutes, list_id, parent_id, routine_id, occurrence_date, habit, why, nudged_at_count, created_at';
 
 const db = () => createClient();
 const iso = (date) => new Date(date).toISOString();
@@ -64,6 +73,20 @@ export async function fetchUpcomingTasks() {
       .gte('due_at', iso(addDays(startOfDay(), 1)))
       .order('due_at', { ascending: true })
       .limit(300)
+  );
+}
+
+// Reports: every task due in [from, to) — done or not (habits too)
+export async function fetchReportTasks(from, to) {
+  return run(
+    db()
+      .from('tasks')
+      .select('id, title, due_at, priority, ball, done, habit, postpone_count, postponed_minutes, parent_id')
+      .is('deleted_at', null)
+      .gte('due_at', iso(from))
+      .lt('due_at', iso(to))
+      .order('due_at', { ascending: true })
+      .limit(3000)
   );
 }
 
@@ -146,7 +169,7 @@ export async function withPlanDetails(tasks) {
 // Saving tasks
 // ------------------------------------------------------------
 
-// fields: { title, due_at, end_at, duration, priority, ball, note, list_id, parent_id }
+// fields: { title, due_at, end_at, duration, priority, ball, note, why, list_id, parent_id }
 export async function createTask(fields) {
   return run(db().from('tasks').insert(fields).select(COLUMNS).single());
 }

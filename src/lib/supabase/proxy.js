@@ -14,7 +14,7 @@ import { SUPABASE_URL, SUPABASE_KEY, isSupabaseConfigured } from './config';
 import { FORGET_COOKIE, ALIVE_COOKIE } from '@/lib/rememberMe';
 
 // Pages only for logged-in users. Add new private pages here.
-const PRIVATE_PAGES = ['/today', '/upcoming', '/lists', '/settings', '/complete-profile'];
+const PRIVATE_PAGES = ['/today', '/upcoming', '/lists', '/settings', '/reports', '/complete-profile'];
 
 // Pages only for logged-out visitors.
 const GUEST_PAGES = ['/login', '/signup', '/forgot-password'];

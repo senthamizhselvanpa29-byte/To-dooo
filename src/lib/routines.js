@@ -26,6 +26,7 @@ export const DEFAULT_SETTINGS = {
   planning_offset: 900, // 15 hours after waking up → 9:00 PM on day shift
   routine_set_up: false,
   night_planned_on: null,
+  week_start: 1, // 1 = Monday, 0 = Sunday
 };
 
 const db = () => createClient();

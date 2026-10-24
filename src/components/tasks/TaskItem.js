@@ -5,10 +5,13 @@
 //   ○ circle  → tick done / not done (with a small ✨)
 //   name      → tap to open the edit panel
 //   🔴 🔮 5:30 PM · all day · 📁 Home · 2/3 steps · "Part of Vacation"
-//   "Postponed 2× · 1d 3h late"
+//   "Postponed 2× · 1d 3h late" (red after 4 moves)
+//   💭 my reason, or 💡 the benefit (from the benefits library)
 // ============================================================
 
 import { useState } from 'react';
+import { findBenefit } from '@/lib/benefits';
+import { POSTPONE_NUDGE } from '@/lib/tasks';
 import { DURATIONS, formatDayLabel, formatDuration, formatShortDate, formatTime } from '@/lib/dates';
 import { usePreferences } from '../Preferences';
 import { CheckIcon } from '../Icons';
@@ -22,6 +25,7 @@ export default function TaskItem({ task, now, showDay, listsById, onToggle, onOp
   const list = task.list_id && listsById?.[task.list_id];
   const steps = task.steps || [];
   const stepsDone = steps.filter((s) => s.done).length;
+  const benefit = !task.why && !task.done ? findBenefit(task.title, lang) : null;
 
   function handleToggle() {
     if (!task.done) {
@@ -73,7 +77,7 @@ export default function TaskItem({ task, now, showDay, listsById, onToggle, onOp
             </span>
           )}
           {task.postpone_count > 0 && (
-            <span className="postpone-badge">
+            <span className={`postpone-badge${task.postpone_count >= POSTPONE_NUDGE ? ' strong' : ''}`}>
               {t('postponedInfo', {
                 count: task.postpone_count,
                 time: formatDuration(task.postponed_minutes, t),
@@ -81,6 +85,12 @@ export default function TaskItem({ task, now, showDay, listsById, onToggle, onOp
             </span>
           )}
         </span>
+        {task.why && !task.done && <span className="task-why">💭 {task.why}</span>}
+        {benefit && (
+          <span className="task-why">
+            {benefit.emoji} {benefit.text}
+          </span>
+        )}
       </button>
     </li>
   );

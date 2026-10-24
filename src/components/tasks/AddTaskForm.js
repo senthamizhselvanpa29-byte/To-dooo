@@ -5,15 +5,17 @@
 // Type a name → choose the time (required) → Save.
 // The task will NOT save without a date and a time.
 // 🔁 Repeat makes it a repeating task (saved as a routine).
+// 💡 If the name matches the benefits library, its benefit shows below.
 // ============================================================
 
 import { useImperativeHandle, useRef, useState } from 'react';
+import { findBenefit } from '@/lib/benefits';
 import { usePreferences } from '../Preferences';
 import { PlusIcon } from '../Icons';
 import TaskFields, { emptyPickers, pickersToFields } from './TaskFields';
 
 export default function AddTaskForm({ ref, onAdd, lists, defaults }) {
-  const { t } = usePreferences();
+  const { t, lang } = usePreferences();
   const titleRef = useRef(null);
   const [title, setTitle] = useState('');
   const [pickers, setPickers] = useState(() => emptyPickers(defaults));
@@ -32,6 +34,7 @@ export default function AddTaskForm({ ref, onAdd, lists, defaults }) {
   }));
 
   const fields = pickersToFields(pickers);
+  const benefit = findBenefit(title, lang);
   const weeklyMissingDays = pickers.repeat === 'weekly' && pickers.repeatDays.length === 0;
   const canSave = title.trim().length > 0 && fields !== null && !weeklyMissingDays && !busy;
   const endDateError = pickers.duration === 'days' && pickers.endDate && pickers.endDate < pickers.date;
@@ -70,6 +73,13 @@ export default function AddTaskForm({ ref, onAdd, lists, defaults }) {
           onFocus={() => setOpen(true)}
         />
       </div>
+
+      {open && benefit && (
+        <p className="benefit-box" role="status">
+          <span aria-hidden="true">{benefit.emoji}</span>
+          <span>{benefit.text}</span>
+        </p>
+      )}
 
       {open && (
         <>

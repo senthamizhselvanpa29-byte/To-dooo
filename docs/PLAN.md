@@ -67,7 +67,7 @@
 | 2 | Today page: add / edit / delete / tick tasks, date + time required, colours, glass / rubber, Plan tomorrow box, postpone tracker | ✅ Built — run supabase/migrations/0002_tasks.sql |
 | 3 | Upcoming, Lists, big plans with steps, clash check, calendar view | ✅ Built — run supabase/migrations/0003_lists_steps_duration.sql |
 | 4 | Daily routine setup, repeating tasks, night planning, night-shift settings | ✅ Built — run supabase/migrations/0004_routine_repeat_settings.sql |
-| 5 | Postpone tracker, weekly / monthly reports, benefits library | ⬜ |
+| 5 | Postpone tracker, weekly / monthly reports, benefits library | ✅ Built — run supabase/migrations/0005_reports_why_week_start.sql |
 | 6 | Razorpay payments, Free vs Pro limits | ⬜ |
 | 7 | Mini Jarvis lite, reminders, home page, privacy / terms, email service, Google verification | ⬜ |
 | 8 | Testing, native speakers check translations, **launch** 🚀 | ⬜ |
