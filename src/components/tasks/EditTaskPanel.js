@@ -4,11 +4,13 @@
 // EDIT A TASK — opens when you tap a task.
 // Slides in from the side on computers, from the bottom on phones.
 // Change name, date, time, how long, colour, glass/rubber, list, note,
-// add STEPS (for big plans) — or Delete.
+// add STEPS (for big plans), see the 💡 benefit, write "Why am I doing
+// this?" — or Delete.
 // ============================================================
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import { findBenefit } from '@/lib/benefits';
 import { formatDateTime } from '@/lib/dates';
 import { usePreferences } from '../Preferences';
 import { TrashIcon, XIcon } from '../Icons';
@@ -20,6 +22,7 @@ export default function EditTaskPanel({ task, lists, actions }) {
   const titleRef = useRef(null);
   const [title, setTitle] = useState(task.title);
   const [note, setNote] = useState(task.note || '');
+  const [why, setWhy] = useState(task.why || '');
   const [pickers, setPickers] = useState(() => pickersFromTask(task));
   const [busy, setBusy] = useState(false);
   const { close } = actions;
@@ -34,6 +37,7 @@ export default function EditTaskPanel({ task, lists, actions }) {
 
   const fields = pickersToFields(pickers);
   const isStep = Boolean(task.parent_id);
+  const benefit = findBenefit(title, lang);
 
   // A step can't be after its plan ends
   const stepTooLate = isStep && fields && task.parentEnd && new Date(fields.due_at) > new Date(task.parentEnd);
@@ -49,7 +53,7 @@ export default function EditTaskPanel({ task, lists, actions }) {
     e.preventDefault();
     if (!canSave) return;
     setBusy(true);
-    const ok = await actions.save({ ...fields, title: title.trim(), note: note.trim() || null }, task);
+    const ok = await actions.save({ ...fields, title: title.trim(), note: note.trim() || null, why: why.trim() || null }, task);
     setBusy(false);
     if (ok) close();
   }
@@ -99,6 +103,26 @@ export default function EditTaskPanel({ task, lists, actions }) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
+
+        {benefit && (
+          <p className="benefit-box">
+            <span aria-hidden="true">{benefit.emoji}</span>
+            <span>
+              <strong>{t('benefitLabel')}:</strong> {benefit.text}
+            </span>
+          </p>
+        )}
+
+        <label className="field-group">
+          <span className="field-group-label">💭 {t('whyLabel')}</span>
+          <input
+            className="chip-input why-input"
+            maxLength={500}
+            placeholder={t('whyPlaceholder')}
+            value={why}
+            onChange={(e) => setWhy(e.target.value)}
+          />
+        </label>
 
         <TaskFields
           idPrefix="edit"

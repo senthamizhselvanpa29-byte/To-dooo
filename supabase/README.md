@@ -8,6 +8,7 @@ Files here create the database tables. They run **on Supabase**, not in the app.
 | `migrations/0002_tasks.sql` | `tasks` table — every task (date + time, colour, glass / rubber) and the postpone tracker |
 | `migrations/0003_lists_steps_duration.sql` | `lists` table, steps inside big plans, and "How long?" for the clash check |
 | `migrations/0004_routine_repeat_settings.sql` | `user_settings` (day / night shift, wake-up time, night planning) and `routines` (daily habits + repeating tasks) |
+| `migrations/0005_reports_why_week_start.sql` | Week starts on Monday / Sunday, "Why am I doing this?" on tasks, and the postpone message memory |
 
 **How to run a file:** Supabase → your project → **SQL Editor** → New query →
 paste the whole file → **Run**. Run each file once, in number order.

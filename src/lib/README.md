@@ -15,6 +15,8 @@
 | `rememberMe.js` | "Keep me signed in" tick box |
 | `tasks.js` | Reads and saves tasks and lists in the database |
 | `routines.js` | Daily habits and repeating tasks: shift-aware times, "does it happen on this day?", making each day's copies |
+| `reports.js` | Weekly / monthly report numbers and day colours (🟢 80%+, 🟡 50–79%, 🔴 under 50%) |
+| `benefits.js` | Finds the 💡 benefit line for a task name |
 | `clash.js` | Clash check rules: which plan moves, free-day suggestions |
 | `dates.js` | Date and time helpers, quick time buttons, evening glow |
 | `safeRedirect.js` | Makes sure email links only go to our own pages |

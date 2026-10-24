@@ -10,6 +10,8 @@ import { DEFAULT_SETTINGS, fetchSettings, saveSettings } from '@/lib/routines';
 
 // Only these fields are saved by the app
 const EDITABLE = ['shift', 'day_wake', 'night_wake', 'planning_offset', 'routine_set_up', 'night_planned_on'];
+// Added later (Step 5) — saved only when the database already has it or it is being changed
+const NEWER = ['week_start'];
 
 export function useSettings() {
   const [settings, setSettings] = useState(null); // null = still loading
@@ -35,12 +37,13 @@ export function useSettings() {
   const update = useCallback(
     async (changes) => {
       const next = { ...(settings || DEFAULT_SETTINGS), ...changes };
-      const saved = await saveSettings(Object.fromEntries(EDITABLE.map((k) => [k, next[k]])));
+      const keys = [...EDITABLE, ...NEWER.filter((k) => k in changes || (settings && k in settings && hasRow))];
+      const saved = await saveSettings(Object.fromEntries(keys.map((k) => [k, next[k]])));
       setSettings(saved);
       setHasRow(true);
       return saved;
     },
-    [settings]
+    [settings, hasRow]
   );
 
   return {

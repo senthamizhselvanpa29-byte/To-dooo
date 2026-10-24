@@ -26,6 +26,19 @@ export function startOfDay(date = new Date()) {
   return d;
 }
 
+// First day of the week that contains `date`
+// weekStart: 1 = Monday, 0 = Sunday (chosen in Settings)
+export function startOfWeek(date, weekStart = 1) {
+  const d = startOfDay(date);
+  return addDays(d, -((d.getDay() - weekStart + 7) % 7));
+}
+
+// First day of the month that contains `date`
+export function startOfMonth(date) {
+  const d = new Date(date);
+  return new Date(d.getFullYear(), d.getMonth(), 1);
+}
+
 export function addDays(date, days) {
   const d = new Date(date);
   d.setDate(d.getDate() + days);

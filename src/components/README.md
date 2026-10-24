@@ -10,10 +10,11 @@ Pieces used on many pages. Change one here and it changes everywhere.
 | `DailyQuote.js` | Today's quote |
 | `Icons.js` | Small icons (mail, lock, eye…) |
 | `auth/` | Login, sign-up and password forms, and their shared pieces (`FormParts.js`) |
-| `app/` | Planner frame: menu (Today, Upcoming, Lists, Settings) and account menu |
+| `app/` | Planner frame: menu (Today, Upcoming, Lists, Reports, Settings) and account menu |
 | `tasks/` | Parts shared by all planner pages: add box, task row, edit panel, steps, clash window, Undo |
-| `today/` | The Today page: greeting, Plan tomorrow, sections |
+| `today/` | The Today page: greeting, Plan tomorrow, postpone message (`PostponeNudge.js`), sections |
 | `upcoming/` | The Upcoming page: next 7 days, Later, and the month calendar |
 | `lists/` | The Lists page: create, rename, delete lists and see their tasks |
 | `routine/` | Daily routine setup (first time), 5-minute night planning, and `useSettings` (shift + wake-up time) |
-| `settings/` | The Settings page: my shift, my daily routine, repeating tasks |
+| `settings/` | The Settings page: my shift, my week (`WeekStartSwitch.js`), my daily routine, repeating tasks |
+| `reports/` | The Reports page: weekly and monthly reports with colours |

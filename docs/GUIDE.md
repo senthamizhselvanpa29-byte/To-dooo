@@ -36,7 +36,8 @@ This page tells you which file to open.
 | Upcoming + calendar | `/upcoming` | `src/app/upcoming/page.js` | `src/components/upcoming/UpcomingBoard.js`, `CalendarView.js` |
 | Lists | `/lists` | `src/app/lists/page.js` | `src/components/lists/ListsBoard.js` |
 | Edit panel, steps, clash window (all pages) | — | — | `src/components/tasks/` |
-| Settings (shift, routine, repeats) | `/settings` | `src/app/settings/page.js` | `src/components/settings/SettingsBoard.js` |
+| Reports (weekly / monthly) | `/reports` | `src/app/reports/page.js` | `src/components/reports/ReportsBoard.js` |
+| Settings (shift, week, routine, repeats) | `/settings` | `src/app/settings/page.js` | `src/components/settings/SettingsBoard.js` |
 | Routine setup + night planning windows | — | — | `src/components/routine/` |
 
 ## Rules and settings
@@ -49,13 +50,16 @@ This page tells you which file to open.
 | Quick time buttons (Morning 9:00…) | `src/lib/dates.js` → `QUICK_TIMES` |
 | When "Plan tomorrow" glows (3 hrs before planning time) | `src/lib/dates.js` → `EVENING_GLOW_MINUTES` |
 | Starting habits in the routine setup | `src/data/habits.js` |
+| Benefits of tasks (💡 lines) | `src/data/benefits.js` |
+| After how many moves the postpone message shows (4) | `src/lib/tasks.js` → `POSTPONE_NUDGE` |
+| Report day colours (80% green, 50% yellow) | `src/lib/reports.js` → `GREEN_FROM` / `YELLOW_FROM` |
 | Repeat rules, shift times, habit copies | `src/lib/routines.js` |
 | Planner colours (red / yellow / green) | `src/app/globals.css` → `--prio-high` / `--prio-medium` / `--prio-low` |
 | Clash rules (which plan moves, how many free days) | `src/lib/clash.js` |
 | "How long?" choices | `src/lib/dates.js` → `DURATIONS` |
 | List icons to choose from | `src/components/lists/ListsBoard.js` → `LIST_EMOJIS` |
 | Days shown one by one on Upcoming | `src/components/upcoming/UpcomingBoard.js` → `DAYS_SHOWN` |
-| Menu items (Today, Upcoming, Lists) | `src/components/app/AppShell.js` → `MENU` |
+| Menu items (Today, Upcoming, Lists, Reports, Settings) | `src/components/app/AppShell.js` → `MENU` |
 | Login error messages | Words: `src/locales/*.js` · Which error shows: `src/lib/authErrors.js` |
 | Database tables | `supabase/migrations/` (see `supabase/README.md`) |
 | Secret keys | Never in files! Vercel → Settings → Environment Variables (see `docs/SETUP.md`) |

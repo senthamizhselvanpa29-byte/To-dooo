@@ -2365,3 +2365,168 @@ html:not([lang="en"]) .field-group-label {
   letter-spacing: 0;
   text-transform: none;
 }
+
+/* ==========================================================================
+   WEEK 5: reports, postpone message, benefits, "why"
+   ========================================================================== */
+.pro-badge {
+  margin-left: 0.25rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: rgba(255, 197, 61, 0.18);
+  color: var(--prio-medium);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.segmented button[aria-selected="true"] .pro-badge { background: rgba(255, 255, 255, 0.25); color: #ffffff; }
+
+/* "Week starts on [Monday | Sunday]" */
+.week-start { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+
+/* ‹ This week · 19 Oct – 25 Oct › */
+.report-period {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
+.report-period-text { text-align: center; display: grid; gap: 0.1rem; }
+.report-period-text h2 { font-size: 1.05rem; color: var(--text-pure); text-transform: capitalize; }
+.report-period-now { font-size: 0.75rem; font-weight: 800; color: var(--vdou-cyan); text-transform: uppercase; letter-spacing: 0.06em; }
+.icon-round:disabled { opacity: 0.35; cursor: default; }
+
+/* Day colours (used by the big number and the day grid) */
+.colour-green { --day-colour: var(--prio-low); }
+.colour-yellow { --day-colour: var(--prio-medium); }
+.colour-red { --day-colour: var(--prio-high); }
+.colour-none,
+.colour-future { --day-colour: var(--text-dim); }
+
+/* 1. Big number with a ring */
+.report-hero { display: flex; align-items: center; gap: 1.25rem; padding: 1.25rem; flex-wrap: wrap; }
+
+.report-ring {
+  --pct: 0;
+  flex: none;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(var(--day-colour) calc(var(--pct) * 1%), var(--app-chip) 0);
+}
+
+.report-ring span {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--card-bg);
+  color: var(--text-pure);
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.report-hero-text { display: grid; gap: 0.35rem; flex: 1 1 200px; }
+.report-big { font-size: 1.15rem; font-weight: 700; color: var(--text-pure); }
+.report-compare { font-size: 0.9rem; font-weight: 600; }
+.report-compare.up { color: var(--prio-low); }
+.report-compare.down { color: var(--prio-medium); }
+.report-compare.same { color: var(--text-muted); }
+
+.report-card { display: grid; gap: 0.85rem; padding: 1.15rem; }
+.report-card h2 { font-size: 1.05rem; color: var(--text-pure); }
+
+/* 2. Colour bars */
+.report-bars { list-style: none; display: grid; gap: 0.65rem; }
+.report-bars li { display: grid; grid-template-columns: minmax(90px, auto) 1fr auto; align-items: center; gap: 0.75rem; }
+.report-bar-label { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; color: var(--text-main); font-size: 0.9rem; }
+.report-bar { height: 10px; border-radius: 999px; background: var(--app-chip); overflow: hidden; }
+.report-bar-fill { display: block; height: 100%; border-radius: 999px; transition: width 0.6s ease; }
+.report-bar-fill.high { background: var(--prio-high); }
+.report-bar-fill.medium { background: var(--prio-medium); }
+.report-bar-fill.low { background: var(--prio-low); }
+.report-bar-count { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text-muted); font-size: 0.85rem; }
+
+/* 3. Small numbers */
+.report-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; }
+.report-stat { display: grid; gap: 0.2rem; padding: 0.9rem 1rem; align-content: start; }
+.report-stat-label { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); }
+.report-stat-value { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--text-pure); }
+.report-stat-day { font-weight: 700; color: var(--text-pure); }
+.report-stat-sub { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; }
+
+/* 4. Day by day */
+.report-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+
+.report-day {
+  display: grid;
+  justify-items: center;
+  gap: 0.1rem;
+  padding: 0.5rem 0.2rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--day-colour) 55%, transparent);
+  background: color-mix(in srgb, var(--day-colour) 16%, transparent);
+  min-width: 0;
+}
+
+.report-day.colour-none { border-style: dashed; background: transparent; }
+.report-day.colour-future { opacity: 0.45; border-style: dashed; background: transparent; }
+.report-day-name { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); }
+.report-day-num { font-weight: 700; color: var(--text-pure); font-size: 0.9rem; }
+.report-day-pct { font-size: 0.72rem; font-weight: 800; color: var(--day-colour); min-height: 1em; }
+.report-days.month .report-day { padding: 0.35rem 0.1rem; }
+
+/* 5. Most postponed */
+.report-postponed { list-style: none; display: grid; gap: 0.5rem; }
+.report-postponed li { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.report-postponed-title { flex: 1 1 140px; font-weight: 600; color: var(--text-pure); overflow-wrap: anywhere; }
+
+/* Postpone badge turns red after 4 moves */
+.postpone-badge.strong { background: rgba(255, 92, 92, 0.16); color: var(--prio-high); }
+
+/* "You moved this 4 times" card on Today */
+.nudge-card {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  border-color: rgba(245, 158, 11, 0.5);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(255, 92, 92, 0.08)), var(--card-bg);
+}
+
+.nudge-title { font-weight: 700; color: var(--text-pure); overflow-wrap: anywhere; }
+.nudge-question { color: var(--text-muted); font-size: 0.9rem; }
+.nudge-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+.nudge-actions .spacer { flex: 1; }
+.nudge-go { font-weight: 700; color: var(--prio-low); }
+
+/* 💡 benefit and 💭 my reason */
+.task-why {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.benefit-box {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  padding: 0.6rem 0.85rem;
+  border-radius: 12px;
+  background: rgba(0, 230, 118, 0.08);
+  border: 1px solid rgba(0, 230, 118, 0.3);
+  color: var(--text-main);
+  font-size: 0.86rem;
+}
+
+.add-task .benefit-box { margin-top: 0.75rem; }
+button.text-link { background: none; border: none; padding: 0; font: inherit; font-size: 0.85rem; cursor: pointer; }
+.why-input { width: 100%; max-width: 100%; box-sizing: border-box; border-radius: 12px; }

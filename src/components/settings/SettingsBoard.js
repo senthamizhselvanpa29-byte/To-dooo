@@ -4,8 +4,9 @@
 // SETTINGS
 //   1. My shift: ☀️ Day / 🌙 Night, wake-up time for each,
 //      night planning time. Switching shift moves the whole routine.
-//   2. My daily routine: habits with their times (add / change / remove)
-//   3. Repeating tasks: list with "Stop repeating"
+//   2. My week: Monday or Sunday first (reports + calendar)
+//   3. My daily routine: habits with their times (add / change / remove)
+//   4. Repeating tasks: list with "Stop repeating"
 // ============================================================
 
 import { useCallback, useEffect, useState } from 'react';
@@ -27,6 +28,7 @@ import { taskErrorKey } from '@/lib/tasks';
 import { usePreferences } from '../Preferences';
 import { PlusIcon, TrashIcon } from '../Icons';
 import { useSettings } from '../routine/useSettings';
+import WeekStartSwitch from './WeekStartSwitch';
 
 const REPEAT_KEYS = {
   daily: 'repeatDaily',
@@ -79,6 +81,11 @@ export default function SettingsBoard() {
       )}
 
       <ShiftCard settings={settings} onSave={update} onError={setErrorKey} />
+      <section className="card settings-card">
+        <h2>📅 {t('myWeek')}</h2>
+        <WeekStartSwitch settings={settings} onSave={update} onError={setErrorKey} />
+        <p className="steps-hint">{t('weekHint')}</p>
+      </section>
       <RoutineCard
         settings={settings}
         habits={routines.filter((r) => r.kind === 'habit')}
@@ -175,7 +182,7 @@ function ShiftCard({ settings, onSave, onError }) {
 }
 
 // ------------------------------------------------------------
-// 2. My daily routine
+// 3. My daily routine
 // ------------------------------------------------------------
 function RoutineCard({ settings, habits, onChanged, onError }) {
   const { t, lang } = usePreferences();
@@ -278,7 +285,7 @@ function RoutineCard({ settings, habits, onChanged, onError }) {
 }
 
 // ------------------------------------------------------------
-// 3. Repeating tasks
+// 4. Repeating tasks
 // ------------------------------------------------------------
 function RepeatsCard({ repeats, onChanged, onError }) {
   const { t, lang } = usePreferences();

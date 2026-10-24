@@ -9,7 +9,7 @@
 // ============================================================
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { addDays, formatDayLabel, formatMonth, localeFor, startOfDay, toDateInput } from '@/lib/dates';
+import { addDays, formatDayLabel, formatMonth, localeFor, startOfDay, startOfWeek, toDateInput } from '@/lib/dates';
 import { taskRange } from '@/lib/clash';
 import { fetchTasksBetween, PRIORITIES, taskErrorKey, withPlanDetails } from '@/lib/tasks';
 import { usePreferences } from '../Preferences';
@@ -18,20 +18,19 @@ import AddTaskForm from '../tasks/AddTaskForm';
 import TaskItem from '../tasks/TaskItem';
 import TaskOverlays from '../tasks/TaskOverlays';
 import TaskSection from '../tasks/TaskSection';
+import { useSettings } from '../routine/useSettings';
 import { useLists } from '../tasks/useLists';
 import { useTaskActions } from '../tasks/useTaskActions';
 
-// Weeks start on Monday
-function gridStartFor(month) {
-  const first = new Date(month.getFullYear(), month.getMonth(), 1);
-  const shift = (first.getDay() + 6) % 7;
-  return addDays(first, -shift);
-}
+// Weeks start on Monday or Sunday (chosen in Settings)
+const gridStartFor = (month, weekStart) => startOfWeek(month, weekStart);
 
 export default function CalendarView() {
   const { t, lang } = usePreferences();
   const addFormRef = useRef(null);
   const { lists, listsById } = useLists();
+  const { settings } = useSettings();
+  const weekStart = settings?.week_start ?? 1;
   const [now, setNow] = useState(null);
   const [month, setMonth] = useState(null);
   const [selected, setSelected] = useState(null);
@@ -45,7 +44,7 @@ export default function CalendarView() {
     setSelected(startOfDay(today));
   }, []);
 
-  const gridStart = useMemo(() => (month ? gridStartFor(month) : null), [month]);
+  const gridStart = useMemo(() => (month ? gridStartFor(month, weekStart) : null), [month, weekStart]);
 
   const reload = useCallback(async () => {
     if (!gridStart) return;
