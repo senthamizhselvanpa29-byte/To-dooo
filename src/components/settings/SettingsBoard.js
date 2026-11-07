@@ -7,6 +7,7 @@
 //   2. My week: Monday or Sunday first (reports + calendar)
 //   3. My daily routine: habits with their times (add / change / remove)
 //   4. Repeating tasks: list with "Stop repeating"
+//   5. My plan: Free trial / Pro until … / Lifetime → Go Pro page
 // ============================================================
 
 import { useCallback, useEffect, useState } from 'react';
@@ -27,6 +28,11 @@ import {
 import { taskErrorKey } from '@/lib/tasks';
 import { usePreferences } from '../Preferences';
 import { PlusIcon, TrashIcon } from '../Icons';
+import Link from 'next/link';
+import { formatShortDate } from '@/lib/dates';
+import { FREE_LIMITS, isProPlan, PLANS } from '@/lib/plans';
+import { usePlan } from '../plan/PlanProvider';
+import UpgradeNote from '../plan/UpgradeNote';
 import { useSettings } from '../routine/useSettings';
 import WeekStartSwitch from './WeekStartSwitch';
 
@@ -93,6 +99,7 @@ export default function SettingsBoard() {
         onError={setErrorKey}
       />
       <RepeatsCard repeats={routines.filter((r) => r.kind === 'repeat')} onChanged={loadRoutines} onError={setErrorKey} />
+      <PlanCard />
     </div>
   );
 }
@@ -189,6 +196,8 @@ function RoutineCard({ settings, habits, onChanged, onError }) {
   const [name, setName] = useState('');
   const [time, setTime] = useState('');
   const [busy, setBusy] = useState(false);
+  const { isPro } = usePlan();
+  const atLimit = !isPro && habits.length >= FREE_LIMITS.habits; // Free plan: 5 habits
 
   // In time order, starting from wake-up
   const ordered = [...habits].sort((a, b) => a.offset_minutes - b.offset_minutes);
@@ -266,6 +275,8 @@ function RoutineCard({ settings, habits, onChanged, onError }) {
         ))}
       </ul>
 
+      {atLimit && <UpgradeNote what="habits" />}
+      {!atLimit && (
       <div className="step-add">
         <input
           className="step-add-title"
@@ -280,6 +291,7 @@ function RoutineCard({ settings, habits, onChanged, onError }) {
           <PlusIcon /> {t('addHabit')}
         </button>
       </div>
+      )}
     </section>
   );
 }
@@ -323,6 +335,37 @@ function RepeatsCard({ repeats, onChanged, onError }) {
           </li>
         ))}
       </ul>
+    </section>
+  );
+}
+
+// ------------------------------------------------------------
+// 5. My plan
+// ------------------------------------------------------------
+function PlanCard() {
+  const { t, lang } = usePreferences();
+  const { plan } = usePlan();
+  if (!plan) return null;
+
+  const until = plan.pro_until ? `${formatShortDate(plan.pro_until, lang)} ${new Date(plan.pro_until).getFullYear()}` : '';
+  let text;
+  if (plan.plan === 'lifetime') text = t('statusLifetime');
+  else if (!isProPlan(plan)) text = plan.plan === 'trial' ? t('statusTrialEnded') : t('statusProEnded', { date: until });
+  else if (plan.plan === 'trial') text = t('statusTrial', { date: until });
+  else text = t('statusPro', { plan: t(PLANS[plan.plan].labelKey), date: until });
+
+  return (
+    <section className="card settings-card">
+      <h2>✨ {t('myPlan')}</h2>
+      <p className="pro-status-text">{text}</p>
+      {plan.plan !== 'lifetime' && (
+        <div className="edit-panel-actions">
+          <span className="spacer" />
+          <Link href="/pro" className="save-btn">
+            ✨ {t('goPro')}
+          </Link>
+        </div>
+      )}
     </section>
   );
 }

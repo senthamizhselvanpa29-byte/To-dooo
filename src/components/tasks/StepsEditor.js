@@ -6,16 +6,22 @@
 //
 // Every step needs a date + time, and it can't be after the plan
 // ends (for a "Many days" plan: up to its last day).
+// Free plan: 3 steps per plan (src/lib/plans.js).
 // ============================================================
 
 import { useState } from 'react';
 import { combineDateTime, formatDateTime, toDateInput } from '@/lib/dates';
+import { FREE_LIMITS } from '@/lib/plans';
 import { usePreferences } from '../Preferences';
 import { CheckIcon, PlusIcon } from '../Icons';
+import { usePlan } from '../plan/PlanProvider';
+import UpgradeNote from '../plan/UpgradeNote';
 
 export default function StepsEditor({ plan, actions }) {
   const { t, lang } = usePreferences();
   const steps = plan.steps || [];
+  const { isPro } = usePlan();
+  const atLimit = !isPro && steps.filter((s) => !s.deleted_at).length >= FREE_LIMITS.steps;
   const planEnd = new Date(plan.end_at || plan.due_at);
 
   const [title, setTitle] = useState('');
@@ -76,6 +82,8 @@ export default function StepsEditor({ plan, actions }) {
       )}
 
       {/* ----- Add a step ----- */}
+      {atLimit && <UpgradeNote what="steps" />}
+      {!atLimit && (
       <div className="step-add">
         <input
           className="step-add-title"
@@ -111,6 +119,7 @@ export default function StepsEditor({ plan, actions }) {
           <PlusIcon /> {t('addStep')}
         </button>
       </div>
+      )}
       {tooLate && (
         <p className="form-hint" role="status">
           {t('errStepAfterPlan', { date: formatDateTime(planEnd, lang) })}

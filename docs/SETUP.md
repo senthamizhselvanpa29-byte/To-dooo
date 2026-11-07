@@ -72,6 +72,33 @@ signed up. To make it work on any phone or computer:
    `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery`
 4. Save.
 
+## Step 7 — Payments with Razorpay (Go Pro)
+
+The secret keys below go **only** into Vercel. Never type them in a chat or save them in GitHub.
+
+1. Supabase → **SQL Editor** → New query → paste `supabase/migrations/0006_plans_payments.sql` → **Run**.
+   At the bottom it shows a long **server key**. Keep that tab open.
+2. Razorpay Dashboard → switch to **Test Mode** (top) → **Account & Settings** → **API Keys** →
+   **Generate Key**. You get a **Key Id** (starts with `rzp_test_`) and a **Key Secret**.
+3. Vercel → your project → **Settings** → **Environment Variables** → add these three
+   (tick **Production** and **Preview**):
+
+   | Name | Value |
+   |---|---|
+   | `RAZORPAY_KEY_ID` | the Key Id |
+   | `RAZORPAY_KEY_SECRET` | the Key Secret |
+   | `VDOU_SERVER_KEY` | the server key from step 1 |
+
+   These names do **not** start with `NEXT_PUBLIC_`, so they stay on the server.
+4. Vercel → **Deployments** → the newest one → **⋯** → **Redeploy** (keys are read when the app starts).
+5. Test: open **Go Pro**, choose a plan, and pay with Razorpay's test card or test UPI
+   (`success@razorpay`). No real money moves in Test Mode.
+6. When Razorpay approves your KYC: switch to **Live Mode**, generate live keys, and replace
+   `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET` in Vercel → Redeploy.
+
+To see a server key again later: Supabase → SQL Editor →
+`select value from private.app_keys where name = 'server_key';`
+
 ---
 
 ## Running the app on your own computer (optional)

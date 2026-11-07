@@ -13,6 +13,8 @@ import { addDays, formatDayLabel, startOfDay, toDateInput } from '@/lib/dates';
 import { ensureCopies } from '@/lib/routines';
 import { fetchUpcomingTasks, PRIORITIES, taskErrorKey, withPlanDetails } from '@/lib/tasks';
 import { usePreferences } from '../Preferences';
+import LockedFeature from '../plan/LockedFeature';
+import { usePlan } from '../plan/PlanProvider';
 import { PlusIcon } from '../Icons';
 import AddTaskForm from '../tasks/AddTaskForm';
 import TaskItem from '../tasks/TaskItem';
@@ -27,6 +29,7 @@ const DAYS_SHOWN = 7;
 
 export default function UpcomingBoard() {
   const { t } = usePreferences();
+  const { isPro } = usePlan();
   const [view, setView] = useState('list');
 
   return (
@@ -38,11 +41,12 @@ export default function UpcomingBoard() {
             {t('listView')}
           </button>
           <button type="button" role="tab" aria-selected={view === 'calendar'} onClick={() => setView('calendar')}>
-            {t('calendarView')}
+            {t('calendarView')} {!isPro && '🔒'}
           </button>
         </div>
       </div>
-      {view === 'list' ? <UpcomingList /> : <CalendarView />}
+      {view === 'list' && <UpcomingList />}
+      {view === 'calendar' && (isPro ? <CalendarView /> : <LockedFeature title={t('calendarView')} text={t('lockedCalendar')} />)}
     </div>
   );
 }

@@ -7,6 +7,8 @@
 // - Top bar: logo, language, dark/light, account menu
 // - Menu: on the left on computers, at the bottom on phones
 //
+// - Knows the user's plan (Free / Pro) for every page: ../plan/PlanProvider.js
+//
 // To add a new menu item, add it to MENU below.
 // ============================================================
 
@@ -15,6 +17,7 @@ import { usePathname } from 'next/navigation';
 import TopBar from '../TopBar';
 import { usePreferences } from '../Preferences';
 import { CalendarIcon, ChartIcon, GearIcon, ListIcon, SunIcon } from '../Icons';
+import { PlanProvider } from '../plan/PlanProvider';
 import UserMenu from './UserMenu';
 
 // href: null means the page is not built yet ("Soon")
@@ -31,6 +34,7 @@ export default function AppShell({ name, email, children }) {
   const pathname = usePathname();
 
   return (
+    <PlanProvider>
     <div className="app-page">
       <div className="app-stars" aria-hidden="true" />
 
@@ -62,5 +66,6 @@ export default function AppShell({ name, email, children }) {
 
       <main className="app-main">{children}</main>
     </div>
+    </PlanProvider>
   );
 }

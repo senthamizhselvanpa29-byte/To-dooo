@@ -32,6 +32,9 @@ export function taskErrorKey(error) {
     return 'errDbNotReady';
   }
   if (/step_after_plan/.test(text)) return 'errStepAfterPlanShort';
+  if (/free_limit_habits/.test(text)) return 'errLimitHabits';
+  if (/free_limit_lists/.test(text)) return 'errLimitLists';
+  if (/free_limit_steps/.test(text)) return 'errLimitSteps';
   return 'errSaveTask';
 }
 

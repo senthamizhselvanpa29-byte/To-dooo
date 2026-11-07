@@ -17,4 +17,5 @@ Pieces used on many pages. Change one here and it changes everywhere.
 | `lists/` | The Lists page: create, rename, delete lists and see their tasks |
 | `routine/` | Daily routine setup (first time), 5-minute night planning, and `useSettings` (shift + wake-up time) |
 | `settings/` | The Settings page: my shift, my week (`WeekStartSwitch.js`), my daily routine, repeating tasks |
+| `plan/` | Free vs Pro: `PlanProvider` (my plan), Go Pro page, 🔒 locks, "Go Pro" notes, trial reminder |
 | `reports/` | The Reports page: weekly and monthly reports with colours |
