@@ -27,6 +27,13 @@ export const DEFAULT_SETTINGS = {
   routine_set_up: false,
   night_planned_on: null,
   week_start: 1, // 1 = Monday, 0 = Sunday
+  // 💰 Money (Step 7)
+  money_budget: null, // monthly budget in ₹ (empty = no budget)
+  money_month_start: 1, // 1 = calendar month, or salary day (1–31)
+  money_default_mode: null, // 'cash' | 'upi' | 'card' | 'bank' | 'other'
+  money_on_today: true,
+  money_hide: false,
+  money_warnings: true,
 };
 
 const db = () => createClient();

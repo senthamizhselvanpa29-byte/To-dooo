@@ -14,6 +14,7 @@ Each folder with a `page.js` is a page of the website. The folder name is the we
 | `upcoming/` | `/upcoming` | Next 7 days, Later, and the calendar |
 | `lists/` | `/lists` | Lists (Home, Work, Study…) |
 | `reports/` | `/reports` | Weekly and monthly reports |
+| `money/` | `/money` | 💰 Money: daily income & expenses |
 | `pro/` | `/pro` | Go Pro: plans, prices, Razorpay payment |
 | `api/pay/` | — | Payment server code: create order, check payment, catch up (no screen) |
 | `settings/` | `/settings` | My shift, my daily routine, repeating tasks |

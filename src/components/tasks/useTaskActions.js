@@ -13,12 +13,16 @@
 //
 // Also: tick done, delete (with Undo), add steps, open the edit panel,
 // and answer the "You moved this 4 times" message.
+// Ticking a bill task ("Pay electricity bill") asks "How much did you pay?"
+// (../money/BillAmountDialog.js).
 // Each page shows the windows with <TaskOverlays actions={…} />.
 // ============================================================
 
 import { useCallback, useRef, useState } from 'react';
 import { addDays } from '@/lib/dates';
 import { clashes, importance, LOOK_AHEAD_DAYS, lessImportant, suggestFreeDays, taskRange } from '@/lib/clash';
+import { taskHasMoney } from '@/lib/money';
+import { billFromTitle } from '@/lib/moneyParse';
 import { createRoutines, ensureCopies, repeatRoutineFrom, stopRoutine } from '@/lib/routines';
 import {
   createTask,
@@ -56,6 +60,7 @@ export function useTaskActions({ tasks, setTasks, reload }) {
   const [deleted, setDeleted] = useState(null);
   const [clash, setClash] = useState(null);
   const [errorKey, setErrorKey] = useState(null);
+  const [moneyAsk, setMoneyAsk] = useState(null); // { task, bill } → "How much did you pay?"
 
   const editing = editingId ? findTask(tasks, editingId) || snapshot.current : null;
 
@@ -175,11 +180,26 @@ export function useTaskActions({ tasks, setTasks, reload }) {
     try {
       await updateTask(task.id, { done });
       await reload();
+      if (done && !task.habit) askAboutMoney(task);
     } catch (error) {
       setTasks((list) => patchTasks(list, task.id, { done: task.done, done_at: task.done_at }));
       setErrorKey(taskErrorKey(error));
     }
   }
+
+  // ----- A bill task was ticked → "How much did you pay?" (once per task) -----
+  async function askAboutMoney(task) {
+    const bill = billFromTitle(task.title);
+    if (!bill) return;
+    try {
+      if (await taskHasMoney(task.id)) return;
+    } catch {
+      return; // money tables not set up yet
+    }
+    setMoneyAsk({ task, bill });
+  }
+
+  const closeMoneyAsk = useCallback(() => setMoneyAsk(null), []);
 
   // ----- "You moved this 4 times" was answered: don't ask again until 4 more moves -----
   async function answerNudge(task) {
@@ -230,6 +250,8 @@ export function useTaskActions({ tasks, setTasks, reload }) {
     addStep,
     stopRepeating,
     toggle,
+    moneyAsk,
+    closeMoneyAsk,
     answerNudge,
     remove,
     undoDelete,

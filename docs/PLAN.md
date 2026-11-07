@@ -69,6 +69,8 @@
 | 4 | Daily routine setup, repeating tasks, night planning, night-shift settings | ✅ Built — run supabase/migrations/0004_routine_repeat_settings.sql |
 | 5 | Postpone tracker, weekly / monthly reports, benefits library | ✅ Built — run supabase/migrations/0005_reports_why_week_start.sql |
 | 6 | Razorpay payments, Free vs Pro limits, 45-day free trial | ✅ Built — run supabase/migrations/0006_plans_payments.sql, then docs/SETUP.md Step 7 |
+| 💰 A | Money: daily income & expenses, 20 categories + quick choices, smart add ("tea 20"), calculator, ⭐ frequent, monthly budget with colours, Today box, bill tasks ask "How much?", night-planning money check, money settings | ✅ Built — run supabase/migrations/0007_money.sql |
+| 💰 B | Money: category budgets, repeating money, lend & borrow, savings goals, money reports, Excel download, Free / Pro limits | ⬜ |
 | 7 | Mini Jarvis lite, reminders, home page, privacy / terms, email service, Google verification | ⬜ |
 | 8 | Testing, native speakers check translations, **launch** 🚀 | ⬜ |
 

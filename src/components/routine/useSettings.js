@@ -11,7 +11,15 @@ import { DEFAULT_SETTINGS, fetchSettings, saveSettings } from '@/lib/routines';
 // Only these fields are saved by the app
 const EDITABLE = ['shift', 'day_wake', 'night_wake', 'planning_offset', 'routine_set_up', 'night_planned_on'];
 // Added later (Step 5) — saved only when the database already has it or it is being changed
-const NEWER = ['week_start'];
+const NEWER = [
+  'week_start',
+  'money_budget',
+  'money_month_start',
+  'money_default_mode',
+  'money_on_today',
+  'money_hide',
+  'money_warnings',
+];
 
 export function useSettings() {
   const [settings, setSettings] = useState(null); // null = still loading

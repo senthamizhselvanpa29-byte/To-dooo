@@ -37,6 +37,7 @@ This page tells you which file to open.
 | Lists | `/lists` | `src/app/lists/page.js` | `src/components/lists/ListsBoard.js` |
 | Edit panel, steps, clash window (all pages) | — | — | `src/components/tasks/` |
 | Reports (weekly / monthly) | `/reports` | `src/app/reports/page.js` | `src/components/reports/ReportsBoard.js` |
+| 💰 Money | `/money` | `src/app/money/page.js` | `src/components/money/MoneyBoard.js` (add panel: `MoneyForm.js`) |
 | Go Pro (plans + payment) | `/pro` | `src/app/pro/page.js` | `src/components/plan/ProBoard.js` |
 | Settings (shift, week, routine, repeats) | `/settings` | `src/app/settings/page.js` | `src/components/settings/SettingsBoard.js` |
 | Routine setup + night planning windows | — | — | `src/components/routine/` |
@@ -60,8 +61,12 @@ This page tells you which file to open.
 | "How long?" choices | `src/lib/dates.js` → `DURATIONS` |
 | List icons to choose from | `src/components/lists/ListsBoard.js` → `LIST_EMOJIS` |
 | Days shown one by one on Upcoming | `src/components/upcoming/UpcomingBoard.js` → `DAYS_SHOWN` |
-| Menu items (Today, Upcoming, Lists, Reports, Settings) | `src/components/app/AppShell.js` → `MENU` |
+| Menu items (Today, Upcoming, Lists, Money, Reports, Settings) | `src/components/app/AppShell.js` → `MENU` |
 | Login error messages | Words: `src/locales/*.js` · Which error shows: `src/lib/authErrors.js` |
+| Money categories, quick choices, "paid by" (all 5 languages) | `src/data/money.js` |
+| Words smart add understands ("tea 20", "petrol 500 upi") | `src/data/money.js` → `words` |
+| Which tasks ask "How much did you pay?" | `src/lib/moneyParse.js` → `billFromTitle` |
+| Budget colours (80% yellow, over 100% red), ⭐ frequent (3 times in 60 days) | `src/lib/money.js` → top of the file |
 | Prices, free trial days, Free limits | `src/lib/plans.js` **and** `supabase/migrations/0006_plans_payments.sql` (keep both the same) |
 | Payment keys (Razorpay) | Never in files! Vercel → Environment Variables (see `docs/SETUP.md` Step 7) |
 | Database tables | `supabase/migrations/` (see `supabase/README.md`) |

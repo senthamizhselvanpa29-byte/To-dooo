@@ -8,6 +8,7 @@
 //   3. My daily routine: habits with their times (add / change / remove)
 //   4. Repeating tasks: list with "Stop repeating"
 //   5. My plan: Free trial / Pro until … / Lifetime → Go Pro page
+//   💰 Money settings: ./MoneySettingsCard.js
 // ============================================================
 
 import { useCallback, useEffect, useState } from 'react';
@@ -34,6 +35,7 @@ import { FREE_LIMITS, isProPlan, PLANS } from '@/lib/plans';
 import { usePlan } from '../plan/PlanProvider';
 import UpgradeNote from '../plan/UpgradeNote';
 import { useSettings } from '../routine/useSettings';
+import MoneySettingsCard from './MoneySettingsCard';
 import WeekStartSwitch from './WeekStartSwitch';
 
 const REPEAT_KEYS = {
@@ -92,6 +94,7 @@ export default function SettingsBoard() {
         <WeekStartSwitch settings={settings} onSave={update} onError={setErrorKey} />
         <p className="steps-hint">{t('weekHint')}</p>
       </section>
+      <MoneySettingsCard settings={settings} onSave={update} onError={setErrorKey} />
       <RoutineCard
         settings={settings}
         habits={routines.filter((r) => r.kind === 'habit')}

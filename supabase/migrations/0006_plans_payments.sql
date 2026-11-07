@@ -70,6 +70,9 @@ create table if not exists private.app_keys (
   value  text not null
 );
 
+-- Extra lock (the private schema is already hidden from the app)
+alter table private.app_keys enable row level security;
+
 insert into private.app_keys (name, value)
 values ('server_key', replace(gen_random_uuid()::text || gen_random_uuid()::text, '-', ''))
 on conflict (name) do nothing;
