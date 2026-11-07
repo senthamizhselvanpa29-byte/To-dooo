@@ -2635,3 +2635,220 @@ button.text-link { background: none; border: none; padding: 0; font: inherit; fo
 }
 
 .user-pro-link:hover { background: var(--dropdown-hover); }
+
+/* ==========================================================================
+   💰 MONEY (Money A): page, add form, Today box, settings
+   ========================================================================== */
+.money-board .expense,
+.money-strip .expense,
+.money-preview-line.expense { color: var(--prio-high); }
+.money-board .income,
+.money-strip .income,
+.money-preview-line.income { color: var(--prio-low); }
+.money-board .saved { color: var(--vdou-blue); }
+
+/* Income · Spent · Saved · Balance */
+.money-summary { display: grid; gap: 0.9rem; padding: 1.1rem; }
+.money-totals { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; }
+.money-totals div { display: grid; gap: 0.15rem; }
+.money-totals span { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); }
+.money-totals strong { font-family: var(--font-heading); font-size: 1.35rem; color: var(--text-pure); font-variant-numeric: tabular-nums; }
+
+/* Budget bar (colour comes from .colour-green / -yellow / -red) */
+.money-budget { display: grid; gap: 0.4rem; }
+.money-budget-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; font-weight: 600; color: var(--text-main); font-size: 0.9rem; }
+.money-bar { height: 10px; border-radius: 999px; background: var(--app-chip); overflow: hidden; }
+.money-bar span { display: block; height: 100%; border-radius: 999px; background: var(--day-colour); transition: width 0.5s ease; }
+.money-budget-note { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+.money-set-budget { justify-self: start; }
+.money-budget-edit { display: grid; gap: 0.6rem; }
+
+/* ⚡ Smart add */
+.money-smart { display: grid; gap: 0.5rem; padding: 0.75rem 0.9rem; }
+.money-smart-row { display: flex; align-items: center; gap: 0.6rem; }
+.money-smart-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-pure);
+  font: inherit;
+  font-size: 1rem;
+  outline: none;
+}
+.money-smart-input::placeholder { color: var(--text-dim); }
+.money-preview { font-size: 0.86rem; font-weight: 600; overflow-wrap: anywhere; }
+.money-preview-hint { color: var(--text-muted); }
+
+/* − Expense   + Income */
+.money-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.money-btn {
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.money-btn.expense { color: var(--prio-high); border-color: color-mix(in srgb, var(--prio-high) 50%, transparent); background: color-mix(in srgb, var(--prio-high) 12%, transparent); }
+.money-btn.income { color: var(--prio-low); border-color: color-mix(in srgb, var(--prio-low) 50%, transparent); background: color-mix(in srgb, var(--prio-low) 12%, transparent); }
+.money-btn:hover { filter: brightness(1.12); }
+
+/* ⭐ Frequent */
+.money-frequent { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+.money-frequent-label { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); margin-right: 0.2rem; }
+
+/* 🔍 Search + filters */
+.money-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.money-filters .chip-input { padding: 0.5rem 0.75rem; }
+.money-search { flex: 1 1 180px; min-width: 0; }
+
+/* Day by day */
+.money-day-totals { display: inline-flex; gap: 0.6rem; font-size: 0.82rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.money-list { list-style: none; display: grid; gap: 0.45rem; }
+.money-row {
+  border-radius: 14px;
+  background: var(--app-card);
+  border: 1px solid var(--app-card-border);
+  border-left: 4px solid var(--prio-high);
+}
+.money-row.income { border-left-color: var(--prio-low); }
+.money-row-body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.money-emoji { font-size: 1.35rem; flex: none; }
+.money-main { flex: 1; min-width: 0; display: grid; gap: 0.15rem; }
+.money-title { color: var(--text-pure); font-weight: 600; overflow-wrap: anywhere; }
+.money-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 0.6rem; font-size: 0.78rem; color: var(--text-muted); }
+.money-note-text { font-style: italic; overflow-wrap: anywhere; }
+.money-amount { flex: none; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--prio-high); }
+.money-row.income .money-amount { color: var(--prio-low); }
+
+/* ----- Add / change panel ----- */
+/* One column that never grows wider than the panel */
+.money-panel,
+.bill-dialog,
+.money-budget-edit,
+.amount-box { grid-template-columns: minmax(0, 1fr); }
+.money-panel .money-kind { width: 100%; }
+.money-panel .money-kind button { flex: 1; }
+.segmented.money-kind button.expense[aria-checked="true"] { background: var(--prio-high); }
+.segmented.money-kind button.income[aria-checked="true"] { background: var(--prio-low); color: #04130b; }
+.money-note { width: 100%; box-sizing: border-box; border-radius: 12px; }
+
+/* ₹ amount box + calculator keys */
+.amount-box { display: grid; gap: 0.5rem; }
+.amount-input {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 16px;
+  border: 1px solid var(--app-chip-border);
+  background: var(--app-chip);
+}
+.amount-input:focus-within { border-color: var(--vdou-blue); box-shadow: 0 0 0 3px rgba(0, 132, 255, 0.2); }
+.amount-input.missing { border-color: #f59e0b; }
+.amount-rupee { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--text-muted); }
+.amount-input input {
+  flex: 1;
+  width: 0;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-pure);
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  outline: none;
+}
+.amount-result { flex: none; font-weight: 800; color: var(--vdou-cyan); font-variant-numeric: tabular-nums; }
+.calc-keys { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.calc-keys .chip { min-width: 2.6rem; justify-content: center; font-size: 1rem; }
+
+/* Category tiles */
+.category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); gap: 0.45rem; }
+.category-tile {
+  display: grid;
+  justify-items: center;
+  gap: 0.2rem;
+  padding: 0.55rem 0.3rem;
+  border-radius: 12px;
+  border: 1px solid var(--app-chip-border);
+  background: var(--app-chip);
+  color: var(--text-main);
+  font: inherit;
+  cursor: pointer;
+  min-width: 0;
+}
+.category-tile:hover { border-color: var(--vdou-blue); }
+.category-tile[aria-checked="true"] { background: rgba(0, 132, 255, 0.16); border-color: var(--vdou-blue); color: var(--text-pure); }
+.category-tile.add { border-style: dashed; }
+.category-emoji { font-size: 1.35rem; line-height: 1; }
+.category-name { font-size: 0.72rem; font-weight: 700; text-align: center; line-height: 1.2; overflow-wrap: anywhere; }
+.own-category-form { display: grid; gap: 0.5rem; padding: 0.6rem; border-radius: 12px; border: 1px dashed var(--app-chip-border); }
+
+/* ----- 💰 box on Today ----- */
+.money-strip { display: grid; gap: 0.4rem; padding: 0.85rem 1rem; }
+.money-strip-head { display: flex; align-items: center; gap: 0.5rem; }
+.money-strip-title { color: var(--text-pure); font-weight: 800; text-decoration: none; }
+.money-strip-title:hover { color: var(--vdou-blue); }
+.money-strip-line { color: var(--text-main); font-size: 0.92rem; }
+.money-strip-line strong { font-variant-numeric: tabular-nums; }
+.money-strip-budget { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+.money-warning { font-size: 0.85rem; font-weight: 700; color: var(--prio-medium); }
+
+/* "How much did you pay?" */
+.bill-dialog { width: min(440px, 100%); }
+
+/* Night planning money check */
+.np-money { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+
+/* ----- On / off switches (Settings) ----- */
+.switch-list { display: grid; gap: 0.6rem; }
+.switch-row { display: flex; align-items: center; gap: 0.7rem; cursor: pointer; color: var(--text-main); font-weight: 600; font-size: 0.92rem; }
+.switch-row input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.switch-track {
+  position: relative;
+  flex: none;
+  width: 42px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--app-chip);
+  border: 1px solid var(--app-chip-border);
+  transition: background 0.2s ease;
+}
+.switch-track::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.switch-row input:checked + .switch-track { background: var(--vdou-blue); border-color: var(--vdou-blue); }
+.switch-row input:checked + .switch-track::after { transform: translateX(18px); background: #ffffff; }
+.switch-row input:focus-visible + .switch-track { box-shadow: 0 0 0 3px rgba(0, 132, 255, 0.35); }
+.own-categories { border-top: 1px solid var(--app-chip-border); padding-top: 0.85rem; }
+
+/* Phones: 6 menu buttons must fit */
+@media (max-width: 600px) {
+  .app-nav-item { font-size: 0.64rem; padding: 0.45rem 0.1rem; min-width: 0; }
+  .app-nav-item span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .money-totals strong { font-size: 1.15rem; }
+  .amount-input input { font-size: 1.5rem; }
+}

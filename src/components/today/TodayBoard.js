@@ -6,6 +6,7 @@
 // Order on the page:
 //   1. Greeting + progress circle + quote
 //   2. Plan tomorrow box
+//   2a. 💰 Money today (can be hidden in Settings)
 //   2b. "You moved this 4 times" message (only when needed)
 //   2c. "Your Pro / free trial ends in 3 days" (only when needed)
 //   3. Add a task
@@ -39,6 +40,7 @@ import { useLists } from '../tasks/useLists';
 import { useTaskActions } from '../tasks/useTaskActions';
 import Greeting from './Greeting';
 import PlanTomorrow from './PlanTomorrow';
+import MoneyStrip from '../money/MoneyStrip';
 import PostponeNudge from './PostponeNudge';
 import ProReminder from '../plan/ProReminder';
 
@@ -182,6 +184,8 @@ export default function TodayBoard({ name, quote }) {
         onStartPlanning={() => setPlanningOpen(true)}
       />
 
+      <MoneyStrip settings={settings} />
+
       <ProReminder />
 
       <PostponeNudge tasks={[...overdue, ...today, ...tomorrow]} actions={actions} />
@@ -238,6 +242,8 @@ export default function TodayBoard({ name, quote }) {
         <NightPlanning
           tasks={tasks}
           targetDay={nextWakeDay}
+          moneySince={lastWake}
+          settings={settings}
           lists={lists}
           actions={actions}
           onFinish={finishPlanning}

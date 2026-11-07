@@ -1,7 +1,7 @@
 'use client';
 
 // ============================================================
-// PLANNER FRAME — used by every planner page (Today, Upcoming, Lists, Reports, Settings)
+// PLANNER FRAME — used by every planner page (Today, Upcoming, Lists, Money, Reports, Settings)
 //
 // - Calm background with a few tiny stars
 // - Top bar: logo, language, dark/light, account menu
@@ -16,7 +16,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import TopBar from '../TopBar';
 import { usePreferences } from '../Preferences';
-import { CalendarIcon, ChartIcon, GearIcon, ListIcon, SunIcon } from '../Icons';
+import { CalendarIcon, ChartIcon, GearIcon, ListIcon, SunIcon, WalletIcon } from '../Icons';
 import { PlanProvider } from '../plan/PlanProvider';
 import UserMenu from './UserMenu';
 
@@ -25,6 +25,7 @@ const MENU = [
   { key: 'navToday', href: '/today', Icon: SunIcon },
   { key: 'navUpcoming', href: '/upcoming', Icon: CalendarIcon },
   { key: 'navLists', href: '/lists', Icon: ListIcon },
+  { key: 'navMoney', href: '/money', Icon: WalletIcon },
   { key: 'navReports', href: '/reports', Icon: ChartIcon },
   { key: 'navSettings', href: '/settings', Icon: GearIcon },
 ];
