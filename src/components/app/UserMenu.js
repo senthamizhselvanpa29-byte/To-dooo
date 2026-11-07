@@ -2,17 +2,20 @@
 
 // ============================================================
 // ACCOUNT MENU — the round button with your first letter.
-// Shows your name and email, and the Sign out button.
+// Shows your name and email, your plan (Go Pro ✨), and the Sign out button.
 // ============================================================
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { saveRememberChoice } from '@/lib/rememberMe';
 import { usePreferences } from '../Preferences';
+import { usePlan } from '../plan/PlanProvider';
 
 export default function UserMenu({ name, email }) {
   const { t } = usePreferences();
+  const { plan } = usePlan();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -61,6 +64,9 @@ export default function UserMenu({ name, email }) {
           <strong>{name}</strong>
           <span>{email}</span>
         </div>
+        <Link href="/pro" role="menuitem" className="user-pro-link" onClick={() => setOpen(false)}>
+          {plan?.plan === 'lifetime' ? `💎 ${t('myPlan')}` : `✨ ${t('goPro')}`}
+        </Link>
         <button type="button" role="menuitem" className="user-signout" onClick={handleSignOut} disabled={busy}>
           {t('signOut')}
         </button>

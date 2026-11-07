@@ -12,7 +12,7 @@
 //   5. ⏳ Most postponed tasks
 //
 // The numbers are worked out in src/lib/reports.js
-// (Monthly becomes a Pro feature when payments are added in Week 6.)
+// Monthly is a Pro feature (Free users see a 🔒 Go Pro box).
 // ============================================================
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -31,6 +31,8 @@ import { usePreferences } from '../Preferences';
 import { ChevronIcon } from '../Icons';
 import { useSettings } from '../routine/useSettings';
 import WeekStartSwitch from '../settings/WeekStartSwitch';
+import LockedFeature from '../plan/LockedFeature';
+import { usePlan } from '../plan/PlanProvider';
 
 const PRIORITY_KEYS = { high: 'priorityHigh', medium: 'priorityMedium', low: 'priorityLow' };
 const COLOUR_EMOJI = { green: '🟢', yellow: '🟡', red: '🔴', none: '⚪' };
@@ -53,6 +55,7 @@ function previousOf(view, from, weekStart) {
 export default function ReportsBoard() {
   const { t, lang } = usePreferences();
   const { settings, update } = useSettings();
+  const { isPro } = usePlan();
   const [view, setView] = useState('week');
   const [anchor, setAnchor] = useState(null); // any day inside the shown period
   const [now, setNow] = useState(null);
@@ -129,7 +132,7 @@ export default function ReportsBoard() {
             {t('reportWeekly')}
           </button>
           <button type="button" role="tab" aria-selected={view === 'month'} onClick={() => switchView('month')}>
-            {t('reportMonthly')} <span className="pro-badge">✨{t('proBadge')}</span>
+            {t('reportMonthly')} <span className="pro-badge">{isPro ? '✨' : '🔒'}{t('proBadge')}</span>
           </button>
         </div>
       </div>
@@ -162,9 +165,9 @@ export default function ReportsBoard() {
       {view === 'week' && settings && (
         <WeekStartSwitch settings={settings} onSave={update} onError={setErrorKey} compact />
       )}
-      {view === 'month' && <p className="steps-hint">✨ {t('monthlyProNote')}</p>}
-
-      {!reports ? (
+      {view === 'month' && !isPro ? (
+        <LockedFeature title={t('reportMonthly')} text={t('lockedMonthly')} />
+      ) : !reports ? (
         <p className="loading-text" role="status">
           {t('loadingTasks')}
         </p>

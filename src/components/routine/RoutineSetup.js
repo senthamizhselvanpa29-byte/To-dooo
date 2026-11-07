@@ -7,14 +7,18 @@
 //   Step 3: "Your day is ready!"
 // Habits are saved as "minutes after wake-up", so switching shift
 // later moves them all. Starting habits: src/data/habits.js
+// Free plan (after the trial): up to 5 habits.
 // ============================================================
 
 import { useState } from 'react';
 import { DEFAULT_HABITS } from '@/data/habits';
 import { formatTime, toDateInput } from '@/lib/dates';
+import { FREE_LIMITS } from '@/lib/plans';
 import { createRoutines, ensureCopies, habitClock, minutesOf, offsetFromClock } from '@/lib/routines';
 import { usePreferences } from '../Preferences';
 import { PlusIcon } from '../Icons';
+import { usePlan } from '../plan/PlanProvider';
+import UpgradeNote from '../plan/UpgradeNote';
 
 export default function RoutineSetup({ settings, onSave, onDone }) {
   const { t, lang } = usePreferences();
@@ -27,6 +31,10 @@ export default function RoutineSetup({ settings, onSave, onDone }) {
   const [customTime, setCustomTime] = useState('');
   const [busy, setBusy] = useState(false);
   const [errorKey, setErrorKey] = useState(null);
+  const { isPro } = usePlan();
+  const ticked = habits.filter((h) => h.on).length;
+  const overLimit = !isPro && ticked > FREE_LIMITS.habits;
+  const atLimit = !isPro && ticked >= FREE_LIMITS.habits;
 
   const draft = { ...settings, shift, day_wake: dayWake, night_wake: nightWake };
   const wake = shift === 'night' ? nightWake : dayWake;
@@ -40,7 +48,7 @@ export default function RoutineSetup({ settings, onSave, onDone }) {
   }
 
   function addCustom() {
-    if (!customName.trim() || !customTime) return;
+    if (!customName.trim() || !customTime || atLimit) return;
     setHabits((list) => [...list, { key: `custom-${list.length}`, emoji: '✅', title: customName.trim(), time: customTime, on: true }]);
     setCustomName('');
     setCustomTime('');
@@ -66,8 +74,8 @@ export default function RoutineSetup({ settings, onSave, onDone }) {
       if (rows.length) await createRoutines(rows);
       await ensureCopies();
       setStep(2);
-    } catch {
-      setErrorKey('errSaveTask');
+    } catch (error) {
+      setErrorKey(/free_limit_habits/.test(error?.message) ? 'errLimitHabits' : 'errSaveTask');
     }
     setBusy(false);
   }
@@ -141,6 +149,7 @@ export default function RoutineSetup({ settings, onSave, onDone }) {
                     <input
                       type="checkbox"
                       checked={h.on}
+                      disabled={!h.on && atLimit}
                       onChange={(e) => setHabits((list) => list.map((x) => (x.key === h.key ? { ...x, on: e.target.checked } : x)))}
                     />
                     <span className="habit-emoji" aria-hidden="true">
@@ -169,10 +178,11 @@ export default function RoutineSetup({ settings, onSave, onDone }) {
                 onChange={(e) => setCustomName(e.target.value)}
               />
               <input type="time" step="60" className="chip-input" aria-label={t('timeLabel')} value={customTime} onChange={(e) => setCustomTime(e.target.value)} />
-              <button type="button" className="save-btn small" onClick={addCustom} disabled={!customName.trim() || !customTime}>
+              <button type="button" className="save-btn small" onClick={addCustom} disabled={!customName.trim() || !customTime || atLimit}>
                 <PlusIcon /> {t('addHabit')}
               </button>
             </div>
+            {atLimit && <UpgradeNote what="habits" />}
             {errorKey && (
               <div className="form-alert error" role="alert">
                 {t(errorKey)}
@@ -183,7 +193,7 @@ export default function RoutineSetup({ settings, onSave, onDone }) {
                 {t('back')}
               </button>
               <span className="spacer" />
-              <button type="button" className="save-btn" onClick={finish} disabled={busy}>
+              <button type="button" className="save-btn" onClick={finish} disabled={busy || overLimit}>
                 {t('next')}
               </button>
             </div>

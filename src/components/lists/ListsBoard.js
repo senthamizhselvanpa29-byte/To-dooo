@@ -10,8 +10,11 @@
 // ============================================================
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { FREE_LIMITS } from '@/lib/plans';
 import { createList, deleteList, fetchListTasks, taskErrorKey, updateList, withPlanDetails } from '@/lib/tasks';
 import { usePreferences } from '../Preferences';
+import { usePlan } from '../plan/PlanProvider';
+import UpgradeNote from '../plan/UpgradeNote';
 import { ChevronIcon, PlusIcon, TrashIcon } from '../Icons';
 import AddTaskForm from '../tasks/AddTaskForm';
 import { Chip } from '../tasks/TaskFields';
@@ -29,6 +32,7 @@ export default function ListsBoard() {
   const { lists, listsById, reloadLists } = useLists();
   const [selectedId, setSelectedId] = useState(null);
   const [creating, setCreating] = useState(false);
+  const { isPro } = usePlan();
   const [errorKey, setErrorKey] = useState(null);
 
   // Open the first list automatically
@@ -66,7 +70,11 @@ export default function ListsBoard() {
         </div>
       )}
 
-      {creating && <NewListForm onCreate={handleCreate} onCancel={() => setCreating(false)} />}
+      {/* Free plan: 3 lists */}
+      {creating && !isPro && lists.length >= FREE_LIMITS.lists && <UpgradeNote what="lists" />}
+      {creating && (isPro || lists.length < FREE_LIMITS.lists) && (
+        <NewListForm onCreate={handleCreate} onCancel={() => setCreating(false)} />
+      )}
 
       {lists.length === 0 && !creating && <p className="empty-state">{t('noLists')}</p>}
 

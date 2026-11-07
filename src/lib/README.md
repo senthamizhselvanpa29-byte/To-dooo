@@ -17,8 +17,10 @@
 | `routines.js` | Daily habits and repeating tasks: shift-aware times, "does it happen on this day?", making each day's copies |
 | `reports.js` | Weekly / monthly report numbers and day colours (🟢 80%+, 🟡 50–79%, 🔴 under 50%) |
 | `benefits.js` | Finds the 💡 benefit line for a task name |
+| `plans.js` | Prices, free trial, Free limits, "is this user Pro?" |
+| `razorpay.js` | Talks to Razorpay — **server only** (create order, check payment) |
 | `clash.js` | Clash check rules: which plan moves, free-day suggestions |
 | `dates.js` | Date and time helpers, quick time buttons, evening glow |
 | `safeRedirect.js` | Makes sure email links only go to our own pages |
 
-Coming later: `razorpay` (payments, Week 6), `plans` (Free vs Pro limits), `ai` (after launch).
+Coming later: `ai` (after launch).
