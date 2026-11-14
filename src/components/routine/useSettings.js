@@ -19,6 +19,11 @@ const NEWER = [
   'money_on_today',
   'money_hide',
   'money_warnings',
+  'gold_rate',
+  'silver_rate',
+  'metal_rate_on',
+  'show_80c',
+  'value_reminder_id',
 ];
 
 export function useSettings() {

@@ -2,9 +2,10 @@
 // FREE vs PRO — prices, Free limits and "is this user Pro?"
 //
 // Keep these numbers the same as the database
-// (supabase/migrations/0006_plans_payments.sql):
+// (supabase/migrations/0006_plans_payments.sql and 0008_portfolio_loans.sql):
 //   • free trial: 45 days of Pro for every new user
-//   • Free limits: 5 habits, 3 lists, 3 steps in a big plan
+//   • Free limits: 5 habits, 3 lists, 3 steps in a big plan,
+//     3 investments, 3 loans
 //   • Pro only: calendar view, monthly report
 // Tasks are unlimited for everyone.
 // ============================================================
@@ -20,7 +21,7 @@ export const PLANS = {
   lifetime: { price: 15000, labelKey: 'planLifetime', periodKey: 'oneTime' },
 };
 
-export const FREE_LIMITS = { habits: 5, lists: 3, steps: 3 };
+export const FREE_LIMITS = { habits: 5, lists: 3, steps: 3, investments: 3, loans: 3 };
 
 // Lifetime users: AI (coming later) is limited to this many uses a month
 export const LIFETIME_AI_PER_MONTH = 100;

@@ -19,6 +19,7 @@
 | `benefits.js` | Finds the 💡 benefit line for a task name |
 | `money.js` | 💰 Money: saving and loading, money month (1st or salary day), totals, budget colours, ₹ format, ⭐ frequent |
 | `moneyParse.js` | 💰 Calculator (120+45), smart add ("petrol 500 upi" in 5 languages), which tasks are bills |
+| `portfolio.js` | 📈 Investment values (FD / RD / PPF interest, units × NAV, gold rate), returns + yearly return, loan EMI / interest / end date, net worth, 80C |
 | `plans.js` | Prices, free trial, Free limits, "is this user Pro?" |
 | `razorpay.js` | Talks to Razorpay — **server only** (create order, check payment) |
 | `clash.js` | Clash check rules: which plan moves, free-day suggestions |

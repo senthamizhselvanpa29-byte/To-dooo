@@ -34,6 +34,12 @@ export const DEFAULT_SETTINGS = {
   money_on_today: true,
   money_hide: false,
   money_warnings: true,
+  // 📈 Portfolio (Step 8)
+  gold_rate: null, // ₹ per gram
+  silver_rate: null,
+  metal_rate_on: null,
+  show_80c: true,
+  value_reminder_id: null,
 };
 
 const db = () => createClient();

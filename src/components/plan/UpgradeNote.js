@@ -3,14 +3,14 @@
 // ============================================================
 // "Free plan allows 5 habits. Go Pro for unlimited ✨  [Go Pro]"
 // Shown where a Free limit is reached.
-//   <UpgradeNote what="habits" />   what: habits | lists | steps
+//   <UpgradeNote what="habits" />   what: habits | lists | steps | investments | loans
 // ============================================================
 
 import Link from 'next/link';
 import { FREE_LIMITS } from '@/lib/plans';
 import { usePreferences } from '../Preferences';
 
-const WORD_KEYS = { habits: 'limitHabits', lists: 'limitLists', steps: 'limitSteps' };
+const WORD_KEYS = { habits: 'limitHabits', lists: 'limitLists', steps: 'limitSteps', investments: 'limitInvestmentsWord', loans: 'limitLoansWord' };
 
 export default function UpgradeNote({ what }) {
   const { t } = usePreferences();

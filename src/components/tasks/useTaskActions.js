@@ -23,6 +23,7 @@ import { addDays } from '@/lib/dates';
 import { clashes, importance, LOOK_AHEAD_DAYS, lessImportant, suggestFreeDays, taskRange } from '@/lib/clash';
 import { taskHasMoney } from '@/lib/money';
 import { billFromTitle } from '@/lib/moneyParse';
+import { loanBillForRoutine } from '@/lib/portfolio';
 import { createRoutines, ensureCopies, repeatRoutineFrom, stopRoutine } from '@/lib/routines';
 import {
   createTask,
@@ -189,14 +190,16 @@ export function useTaskActions({ tasks, setTasks, reload }) {
 
   // ----- A bill task was ticked → "How much did you pay?" (once per task) -----
   async function askAboutMoney(task) {
-    const bill = billFromTitle(task.title);
-    if (!bill) return;
     try {
+      // A loan's monthly reminder, or any task that looks like a bill
+      const loanBill = task.routine_id ? await loanBillForRoutine(task.routine_id).catch(() => null) : null;
+      const bill = loanBill || billFromTitle(task.title);
+      if (!bill) return;
       if (await taskHasMoney(task.id)) return;
+      setMoneyAsk({ task, bill });
     } catch {
-      return; // money tables not set up yet
+      // money tables not set up yet
     }
-    setMoneyAsk({ task, bill });
   }
 
   const closeMoneyAsk = useCallback(() => setMoneyAsk(null), []);

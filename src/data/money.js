@@ -680,6 +680,12 @@ export const INCOME_CATEGORIES = [
     words: ['harvest', 'crop', 'paddy', 'milk sale', 'farm income', 'அறுவடை', 'விளைச்சல்', 'விவசாய வருமானம்', 'വിളവ്', 'നെല്ല്', 'കൃഷി വരുമാനം', 'పంట', 'ధాన్యం', 'వ్యవసాయ ఆదాయం', 'फसल', 'धान', 'खेती'],
   },
   {
+    key: 'investret',
+    emoji: '💹',
+    name: ['Investment returned / sold', 'முதலீடு திரும்பியது / விற்றது', 'നിക്ഷേപം തിരികെ / വിറ്റത്', 'పెట్టుబడి తిరిగి / అమ్మకం', 'निवेश वापस / बेचा'],
+    words: ['redeemed', 'redemption', 'matured', 'maturity', 'sold shares', 'sold gold', 'fd matured', 'முதிர்வு', 'മെച്യൂരിറ്റി', 'కాలపరిమితి ముగిసింది', 'मैच्योरिटी', 'परिपक्वता'],
+  },
+  {
     key: 'otherin',
     emoji: '📦',
     name: ['Other income', 'மற்ற வரவு', 'മറ്റ് വരുമാനം', 'ఇతర ఆదాయం', 'अन्य आमदनी'],

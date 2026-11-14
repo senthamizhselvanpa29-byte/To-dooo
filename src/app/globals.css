@@ -2852,3 +2852,108 @@ button.text-link { background: none; border: none; padding: 0; font: inherit; fo
   .money-totals strong { font-size: 1.15rem; }
   .amount-input input { font-size: 1.5rem; }
 }
+
+/* ==========================================================================
+   📈 PORTFOLIO + 🏦 LOANS (tab inside 💰 Money)
+   ========================================================================== */
+.money-tabs { width: 100%; }
+.money-tabs button { flex: 1; }
+.portfolio { display: grid; gap: 1.25rem; }
+
+/* 🟢 profit · 🔴 loss · ⚪ about the same */
+.gain-green { color: var(--prio-low) !important; }
+.gain-red { color: var(--prio-high) !important; }
+.gain-flat { color: var(--text-muted) !important; }
+.portfolio .expense,
+.pf-panel .expense { color: var(--prio-high); }
+.portfolio .income,
+.pf-panel .income { color: var(--prio-low); }
+
+/* Net worth + totals */
+.pf-summary { display: grid; gap: 0.9rem; padding: 1.1rem; }
+.pf-networth { display: grid; gap: 0.15rem; }
+.pf-networth span { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.pf-networth strong { font-family: var(--font-heading); font-size: 2rem; font-variant-numeric: tabular-nums; }
+.money-totals strong small,
+.pf-stat strong small { font-size: 0.78rem; font-weight: 700; }
+.pf-yearly { font-weight: 700; color: var(--text-main); }
+.pf-pro-line { font-size: 0.86rem; color: var(--text-muted); }
+
+/* Where your money is (circle + list) */
+.pf-allocation { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.pf-donut { width: 132px; height: 132px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.pf-donut span {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  padding: 0.3rem;
+  text-align: center;
+  background: var(--card-bg);
+  color: var(--text-pure);
+  font-size: 0.8rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+.pf-legend { list-style: none; display: grid; gap: 0.4rem; flex: 1 1 200px; }
+.pf-legend li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--text-main); }
+.pf-legend strong { margin-left: auto; font-variant-numeric: tabular-nums; }
+.pf-dot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+
+/* Lists */
+.pf-head-buttons { display: inline-flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
+.pf-row { border-radius: 14px; background: var(--app-card); border: 1px solid var(--app-card-border); border-left: 4px solid var(--text-dim); }
+.pf-row.gain-border-green { border-left-color: var(--prio-low); }
+.pf-row.gain-border-red { border-left-color: var(--prio-high); }
+.pf-row.loan { border-left-color: var(--prio-medium); }
+.pf-row.closed { opacity: 0.7; }
+.pf-amounts { flex: none; display: grid; justify-items: end; gap: 0.15rem; text-align: right; }
+.pf-value { font-weight: 800; color: var(--text-pure); font-variant-numeric: tabular-nums; }
+.pf-gain { font-size: 0.78rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pf-progress { display: block; height: 6px; border-radius: 999px; background: var(--app-chip); overflow: hidden; margin-top: 0.3rem; max-width: 220px; }
+.pf-progress span { display: block; height: 100%; border-radius: 999px; background: var(--prio-low); }
+.pf-progress.big { height: 10px; max-width: none; }
+.pf-loans-line { font-weight: 600; }
+.pf-disclaimer { font-size: 0.8rem; color: var(--text-dim); line-height: 1.5; }
+
+/* 🪙 Gold / silver rate */
+.pf-rates { display: flex; align-items: center; gap: 0.5rem 1rem; flex-wrap: wrap; font-size: 0.88rem; color: var(--text-muted); padding: 0.6rem 0.8rem; border-radius: 12px; border: 1px dashed var(--app-chip-border); }
+.pf-rates strong { color: var(--text-pure); }
+.pf-rates.editing { display: grid; gap: 0.6rem; }
+
+/* Panels */
+.pf-panel-meta { gap: 0.3rem 0.8rem; }
+.pf-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.6rem; }
+.pf-stat { display: grid; gap: 0.15rem; padding: 0.6rem 0.75rem; border-radius: 12px; background: var(--app-chip); border: 1px solid var(--app-chip-border); min-width: 0; }
+.pf-stat span { font-size: 0.72rem; font-weight: 800; color: var(--text-muted); }
+.pf-stat strong { font-size: 1.02rem; color: var(--text-pure); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.pf-stat em { font-size: 0.72rem; color: var(--text-muted); font-style: normal; }
+.pf-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.pf-action-form { display: grid; gap: 0.55rem; padding: 0.75rem; border-radius: 14px; border: 1px solid var(--vdou-blue); background: rgba(0, 132, 255, 0.06); }
+.pf-history { list-style: none; display: grid; gap: 0.35rem; }
+.pf-history li { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 0.6rem; font-size: 0.86rem; padding: 0.35rem 0; border-bottom: 1px solid var(--app-chip-border); }
+.pf-history-date { color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pf-history-what { color: var(--text-main); display: inline-flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
+.pf-history-amount { font-weight: 800; font-variant-numeric: tabular-nums; }
+.icon-round.placeholder { visibility: hidden; }
+
+/* Form bits */
+.check-row { display: flex; align-items: center; gap: 0.55rem; font-size: 0.9rem; font-weight: 600; color: var(--text-main); cursor: pointer; }
+.check-row input { width: 18px; height: 18px; accent-color: var(--vdou-blue); flex: none; }
+.chip-input.wide { width: 100%; box-sizing: border-box; border-radius: 12px; }
+.chip-input.tiny { width: 3.6rem; text-align: center; }
+.pf-monthly { display: grid; gap: 0.5rem; padding-left: 1.6rem; }
+.pf-update-row { display: grid; grid-template-columns: minmax(0, 1fr) 9rem; align-items: center; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid var(--app-chip-border); color: var(--text-main); font-weight: 600; }
+.pf-update-row small { display: block; font-size: 0.72rem; color: var(--text-muted); font-weight: 600; }
+
+/* "Add ₹4,500 to which investment?" under smart add */
+.money-link-prompt { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; padding: 0.6rem 0.85rem; border-radius: 12px; background: rgba(0, 132, 255, 0.08); border: 1px solid rgba(0, 132, 255, 0.35); font-size: 0.88rem; font-weight: 600; color: var(--text-main); }
+
+@media (max-width: 600px) {
+  .pf-networth strong { font-size: 1.6rem; }
+  .pf-history li { grid-template-columns: 1fr auto auto; }
+  .pf-history-date { grid-column: 1 / -1; font-size: 0.76rem; }
+  .pf-update-row { grid-template-columns: minmax(0, 1fr) 7rem; }
+}
+.portfolio .section-head { flex-wrap: wrap; row-gap: 0.5rem; }

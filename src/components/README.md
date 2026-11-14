@@ -18,5 +18,6 @@ Pieces used on many pages. Change one here and it changes everywhere.
 | `routine/` | Daily routine setup (first time), 5-minute night planning, and `useSettings` (shift + wake-up time) |
 | `settings/` | The Settings page: my shift, my week (`WeekStartSwitch.js`), money (`MoneySettingsCard.js`), my daily routine, repeating tasks |
 | `money/` | 💰 Money: the Money page, add / change panel, ₹ amount box with calculator, Today box, "How much did you pay?" |
+| `portfolio/` | 📈 The Portfolio tab (inside Money): investments, loans, net worth, forms, history, reminders |
 | `plan/` | Free vs Pro: `PlanProvider` (my plan), Go Pro page, 🔒 locks, "Go Pro" notes, trial reminder |
 | `reports/` | The Reports page: weekly and monthly reports with colours |

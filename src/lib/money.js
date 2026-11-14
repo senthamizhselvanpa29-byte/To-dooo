@@ -69,10 +69,12 @@ export function describeEntry(entry, customById, lang) {
 
 // ------------------------------------------------------------
 // ₹ amounts — Indian style (₹1,20,000), paise only when needed
+// (whole: true → rounded to rupees, used in the Portfolio)
 // ------------------------------------------------------------
-export function formatMoney(amount, lang, { hidden = false, sign = '' } = {}) {
+export function formatMoney(amount, lang, { hidden = false, sign = '', whole = false } = {}) {
   if (hidden) return `${sign}₹•••`;
-  const value = Math.abs(Number(amount) || 0);
+  const raw = Math.abs(Number(amount) || 0);
+  const value = whole ? Math.round(raw) : raw;
   const text = new Intl.NumberFormat(localeFor(lang), {
     minimumFractionDigits: Number.isInteger(value) ? 0 : 2,
     maximumFractionDigits: 2,

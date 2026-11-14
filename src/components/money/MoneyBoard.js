@@ -13,6 +13,8 @@
 //   Today · spent ₹640
 //     ☕ Tea   ₹20  💵 8:15 am …
 //
+// Second tab: 📈 Portfolio (investments + loans) → ../portfolio/
+//
 // Numbers: src/lib/money.js · Smart add: src/lib/moneyParse.js
 // ============================================================
 
@@ -41,10 +43,12 @@ import {
   updateMoneyEntry,
 } from '@/lib/money';
 import { calcAmount, parseMoneyText } from '@/lib/moneyParse';
+import { createInvestmentTxn, fetchOpenInvestments } from '@/lib/portfolio';
 import { usePreferences } from '../Preferences';
 import { ChevronIcon, EyeIcon, EyeOffIcon, PlusIcon } from '../Icons';
 import { useSettings } from '../routine/useSettings';
 import UndoToast from '../tasks/UndoToast';
+import PortfolioBoard from '../portfolio/PortfolioBoard';
 import AmountInput from './AmountInput';
 import MoneyForm from './MoneyForm';
 import { useMoneyCategories } from './useMoneyCategories';
@@ -65,6 +69,24 @@ export default function MoneyBoard() {
   const [form, setForm] = useState(null); // { entry } or { initial }
   const [undo, setUndo] = useState(null); // { text, run }
   const [filters, setFilters] = useState({ q: '', kind: 'all', category: '', mode: '' });
+  const [tab, setTab] = useState('daily'); // 'daily' | 'portfolio'
+  const [investments, setInvestments] = useState([]); // for "Add to which investment?"
+  const [linkPrompt, setLinkPrompt] = useState(null); // money entry just saved under Savings
+
+  // Open the Portfolio tab when the address ends with #portfolio
+  // (also when a link changes it while this page is already open)
+  useEffect(() => {
+    const fromAddress = () => setTab(window.location.hash === '#portfolio' ? 'portfolio' : 'daily');
+    fromAddress();
+    window.addEventListener('hashchange', fromAddress);
+    return () => window.removeEventListener('hashchange', fromAddress);
+  }, []);
+
+  function switchTab(next) {
+    setTab(next);
+    if (next === 'daily') reload(); // investments may have changed in the Portfolio tab
+    window.history.replaceState(null, '', next === 'portfolio' ? '#portfolio' : window.location.pathname);
+  }
 
   useEffect(() => {
     const today = new Date();
@@ -82,6 +104,10 @@ export default function MoneyBoard() {
       setEntries(list);
       setRecent(lately);
       setLoadErrorKey(null);
+      // One-time investments only (monthly SIPs count their payments by themselves)
+      fetchOpenInvestments()
+        .then((rows) => setInvestments(rows.filter((x) => !x.monthly_amount)))
+        .catch(() => setInvestments([]));
     } catch (error) {
       setEntries((current) => current || []);
       setLoadErrorKey(moneyErrorKey(error) === 'errMoneyNotReady' ? 'errMoneyNotReady' : 'errLoadMoney');
@@ -93,11 +119,14 @@ export default function MoneyBoard() {
   }, [reload]);
 
   // ----- Saving -----
-  async function save(fields, existing) {
+  async function save(fields, existing, extra = {}) {
     setErrorKey(null);
     try {
       if (existing) await updateMoneyEntry(existing.id, fields);
-      else await createMoneyEntry(fields);
+      else {
+        const created = await createMoneyEntry(fields);
+        if (extra.investmentId) await linkToInvestment(created, extra.investmentId);
+      }
       await reload();
       announceMoneyChange();
       return true;
@@ -120,6 +149,17 @@ export default function MoneyBoard() {
     }
   }
 
+  // Savings entry → also "Add money" in that investment (Portfolio)
+  async function linkToInvestment(entry, investmentId) {
+    await createInvestmentTxn({
+      investment_id: investmentId,
+      kind: 'invest',
+      amount: Number(entry.amount),
+      on_date: toDateInput(entry.spent_at),
+      money_entry_id: entry.id,
+    });
+  }
+
   // Quick save (smart add, ⭐ frequent) — with Undo
   async function quickSave(fields) {
     setErrorKey(null);
@@ -127,6 +167,8 @@ export default function MoneyBoard() {
       const created = await createMoneyEntry({ ...fields, spent_at: new Date().toISOString() });
       const { emoji, title } = describeEntry(created, own.byId, lang);
       setUndo({ text: t('moneySaved', { what: `${emoji} ${title} ${formatMoney(created.amount, lang)}` }), run: () => deleteMoneyEntry(created.id) });
+      // "Add ₹4,500 to which investment?"
+      setLinkPrompt(created.kind === 'expense' && created.category === 'savings' && investments.length > 0 ? created : null);
       await reload();
       announceMoneyChange();
       return true;
@@ -222,6 +264,20 @@ export default function MoneyBoard() {
         </button>
       </div>
 
+      {/* ----- 💰 Daily · 📈 Portfolio ----- */}
+      <div className="segmented money-tabs" role="tablist">
+        <button type="button" role="tab" aria-selected={tab === 'daily'} onClick={() => switchTab('daily')}>
+          💰 {t('tabDaily')}
+        </button>
+        <button type="button" role="tab" aria-selected={tab === 'portfolio'} onClick={() => switchTab('portfolio')}>
+          📈 {t('tabPortfolio')}
+        </button>
+      </div>
+
+      {tab === 'portfolio' ? (
+        <PortfolioBoard hidden={hidden} settings={settings} updateSettings={updateSettings} />
+      ) : (
+      <>
       {(loadErrorKey || errorKey) && (
         <div className="form-alert error" role="alert">
           {t(loadErrorKey || errorKey)}
@@ -269,6 +325,32 @@ export default function MoneyBoard() {
 
       {/* ----- Smart add ----- */}
       <SmartAdd defaultMode={settings.money_default_mode} hidden={hidden} customById={own.byId} onSave={quickSave} />
+      {linkPrompt && (
+        <div className="money-link-prompt" role="status">
+          <span>📈 {t('linkInvestmentQuestion', { amount: money(linkPrompt.amount) })}</span>
+          {investments.map((inv) => (
+            <button
+              key={inv.id}
+              type="button"
+              className="chip"
+              onClick={async () => {
+                const entry = linkPrompt;
+                setLinkPrompt(null);
+                try {
+                  await linkToInvestment(entry, inv.id);
+                } catch (error) {
+                  setErrorKey(moneyErrorKey(error));
+                }
+              }}
+            >
+              {inv.name}
+            </button>
+          ))}
+          <button type="button" className="text-link" onClick={() => setLinkPrompt(null)}>
+            {t('skip')}
+          </button>
+        </div>
+      )}
 
       {/* ----- Big buttons ----- */}
       <div className="money-buttons">
@@ -385,6 +467,7 @@ export default function MoneyBoard() {
           customCategories={own.categories}
           onAddCategory={addOwnCategory}
           defaultMode={settings.money_default_mode}
+          investments={investments}
           onSave={save}
           onDelete={remove}
           onClose={() => setForm(null)}
@@ -392,6 +475,8 @@ export default function MoneyBoard() {
       )}
 
       {undo && <UndoToast key={undo.text} text={undo.text} onUndo={runUndo} onDone={hideUndo} />}
+      </>
+      )}
     </div>
   );
 }

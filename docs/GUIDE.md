@@ -64,6 +64,8 @@ This page tells you which file to open.
 | Menu items (Today, Upcoming, Lists, Money, Reports, Settings) | `src/components/app/AppShell.js` → `MENU` |
 | Login error messages | Words: `src/locales/*.js` · Which error shows: `src/lib/authErrors.js` |
 | Money categories, quick choices, "paid by" (all 5 languages) | `src/data/money.js` |
+| Investment and loan types (all 5 languages) | `src/data/portfolio.js` |
+| 80C limit, yearly return shown after 3 months, reminder time (10 AM), "matures soon" 7 days | `src/lib/portfolio.js` → top of the file |
 | Words smart add understands ("tea 20", "petrol 500 upi") | `src/data/money.js` → `words` |
 | Which tasks ask "How much did you pay?" | `src/lib/moneyParse.js` → `billFromTitle` |
 | Budget colours (80% yellow, over 100% red), ⭐ frequent (3 times in 60 days) | `src/lib/money.js` → top of the file |

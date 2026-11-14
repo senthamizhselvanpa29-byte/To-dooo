@@ -41,7 +41,7 @@ function startValues(entry, initial, defaultMode) {
   };
 }
 
-export default function MoneyForm({ entry, initial, customCategories, onAddCategory, defaultMode, onSave, onDelete, onClose }) {
+export default function MoneyForm({ entry, initial, customCategories, onAddCategory, defaultMode, investments, onSave, onDelete, onClose }) {
   const { t, lang } = usePreferences();
   const [form, setForm] = useState(() => startValues(entry, initial, defaultMode));
   const [busy, setBusy] = useState(false);
@@ -93,7 +93,8 @@ export default function MoneyForm({ entry, initial, customCategories, onAddCateg
         note: form.note.trim() || null,
         ...(initial?.task_id ? { task_id: initial.task_id } : {}),
       },
-      entry
+      entry,
+      { investmentId: !entry && form.category === 'savings' ? form.investmentId : null }
     );
     setBusy(false);
     if (ok) onClose();
@@ -200,6 +201,21 @@ export default function MoneyForm({ entry, initial, customCategories, onAddCateg
               ))}
             </div>
           </div>
+        )}
+
+        {/* ----- Savings → also into one of my investments (Portfolio) ----- */}
+        {!entry && form.kind === 'expense' && form.category === 'savings' && investments?.length > 0 && (
+          <label className="field-group">
+            <span className="field-group-label">📈 {t('addToInvestment')}</span>
+            <select className="chip-input" value={form.investmentId || ''} onChange={(e) => set({ investmentId: e.target.value || null })}>
+              <option value="">{t('noInvestmentLink')}</option>
+              {investments.map((inv) => (
+                <option key={inv.id} value={inv.id}>
+                  {inv.name}
+                </option>
+              ))}
+            </select>
+          </label>
         )}
 
         {/* ----- Paid by (optional) ----- */}
